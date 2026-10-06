@@ -58,10 +58,6 @@ export const articles: Arcticle[] = [
         content: "Due to recent supply chain disruptions and increased demand, supermarket prices are expected to rise in the coming months. Consumers are advised to stock up on essential items while prices are still reasonable.",
         publishedAt: "2024-06-03"
     },
-
-]
-
-export const extraArticles: Arcticle[] = [
     {
         id: 4,
         slug: "article4",
@@ -97,6 +93,7 @@ export const extraArticles: Arcticle[] = [
         description: "Providing fresh produce and goods to the community.",
         imageUrl: "/images/farmersmarket.jpg"
     }
+
 ]
 
 export const categories: category[] = [

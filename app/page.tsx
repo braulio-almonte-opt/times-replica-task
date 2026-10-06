@@ -1,7 +1,7 @@
 import Image from "next/image";
 import ArticleCard from "../components/articleCard";
 import Link from "next/link";
-import {articles, extraArticles} from "@/data/articles";
+import {articles} from "@/data/articles";
 
 // TODO1: Display banner with TIME image and welcome message (DONE)
 // TODO2: Show cards with featured articles (DONE)
@@ -28,7 +28,7 @@ export default function Home() {
       {/* Row with the three articles, also, I know AI likes to write comments but this one is mine
       to keep code organized */}
       {/* Changed approach to generate card dinamically, code is cleaner now :D*/}
-      {articles.map((article) =>(
+      {articles.slice(0, 3).map((article) =>(
         <div key={article.id} className="flex flex-col justify-center items-center w-1/3 h-150 p-4 m-5 bg-amber-50 rounded-lg shadow-md">
         <ArticleCard title={article.title} description={article.description} imageUrl={article.imageUrl} />
         <Link href={`/articles/${article.slug}`} className="text-blue-500 mt-2">
@@ -47,7 +47,7 @@ export default function Home() {
           </tr>
         </thead>
         <tbody>
-          {extraArticles.map((article) => (
+          {articles.slice(4).map((article) => (
             <tr>
               <td className="border border-gray-300 p-2">{article.title}</td>
               <td className="border border-gray-300 p-2">{article.description}</td>
