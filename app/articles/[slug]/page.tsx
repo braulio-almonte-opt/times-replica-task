@@ -5,6 +5,8 @@ import Link from "next/link";
 interface PageProps{
     params: Promise<{slug: string}>;
 }
+// Doubt: I don't know how to exactly use promises
+//This was suggested by AI but I need to research more on how and why it works.
 
 export default async function ArticlePage({params}: PageProps){
     const {slug} = await params;
@@ -13,9 +15,10 @@ export default async function ArticlePage({params}: PageProps){
     if(!article){
         return notFound();
     }
-
+//I wanted to return all the divs but apparently that is not possible and AI suggested to use a "fragment"
+//or basically the <> </> tags.
     return (
-        <>
+        <> 
         <div className="flex justify-center items-start">
             <Link href="/" className="text-blue-500 hover:underline">
             <Image src="/images/TIME-logo.png" alt="TIME Logo" width={100} height={100} />
@@ -37,6 +40,7 @@ export default async function ArticlePage({params}: PageProps){
     );
 }
 
+//Old code/idea that I had, but it is already corrected on earlier lines.
 // export default function TestArticle1(){
 //     return (
 //         <div>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import ArticleCard from "../components/articleCard";
 import Link from "next/link";
+import {articles} from "@/data/articles";
 
 export default function Home() {
   return (
@@ -17,27 +18,15 @@ export default function Home() {
     <div className="flex flex-row justify-center items-start h-64">
       {/* Row with the three articles, also, I know AI likes to write comments but this one is mine
       to keep code organized */}
-      {/* Article 1 */}
-      <div className="flex flex-col justify-center items-center w-1/3 h-150 p-4 m-5 bg-amber-50 rounded-lg shadow-md">
-        <ArticleCard title="Hospital Opened Nearby" description="This is the first modern hospital in the area." imageUrl="/images/hospital.jpg" />
-        <Link href="/articles/article1" className="text-blue-500 mt-2">
+      {/* Changed approach to generate card dinamically, code is cleaner now :D*/}
+      {articles.map((article) =>(
+        <div className="flex flex-col justify-center items-center w-1/3 h-150 p-4 m-5 bg-amber-50 rounded-lg shadow-md">
+        <ArticleCard title={article.title} description={article.description} imageUrl={article.imageUrl} />
+        <Link href={`/articles/${article.slug}`} className="text-blue-500 mt-2">
           Read more
         </Link>
       </div>
-      {/* Article 2 */}
-      <div className="flex flex-col justify-center items-center w-1/3 h-150 p-4 m-5 bg-amber-50 rounded-lg shadow-md">
-        <ArticleCard title="River Dam Built as Flood Control" description="It is expected to hold back floodwaters." imageUrl="/images/riverdam.jpg" />
-        <Link href="/articles/article2" className="text-blue-500 mt-2">
-          Read more
-        </Link>
-      </div>
-      {/* Article 3 */}
-      <div className="flex flex-col justify-center items-center w-1/3 h-150 p-4 m-5 bg-amber-50 rounded-lg shadow-md">
-        <ArticleCard title="Supermarket Prices expected to be rise soon" description="Do your groceries while you can." imageUrl="/images/supermarket.jpeg" />
-        <Link href="/articles/article3" className="text-blue-500 mt-2">
-          Read more
-        </Link>
-      </div>
+      ))}
     </div>
     </>
   );

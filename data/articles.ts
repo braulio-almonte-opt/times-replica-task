@@ -1,4 +1,5 @@
 export interface Arcticle {
+    id: number;
     slug: string;
     title: string;
     description: string;
@@ -9,6 +10,7 @@ export interface Arcticle {
 
 export const articles: Arcticle[] = [
     {
+        id: 1,
         slug: "article1",
         title: "Hospital Opened Nearby",
         description: "This is the first modern hospital in the area.",
@@ -17,6 +19,7 @@ export const articles: Arcticle[] = [
         publishedAt: "2024-06-01"
     },
     {
+        id: 2,
         slug: "article2",
         title: "River Dam Built as Flood Control",
         description: "It is expected to hold back floodwaters.",
@@ -25,6 +28,7 @@ export const articles: Arcticle[] = [
         publishedAt: "2024-06-02"
     },
     {
+        id: 3,
         slug: "article3",
         title: "Supermarket Prices expected to be rise soon",
         description: "Do your groceries while you can.",
