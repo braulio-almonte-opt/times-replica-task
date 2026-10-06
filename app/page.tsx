@@ -38,23 +38,29 @@ export default function Home() {
       ))}
     </div>
     {/* Column to display additional articles that are not featured */}
+    {/* Also generated dinamically based on data provided */}
     <div className="flex flex-col justify-center items-center p-4 bg-amber-gray-50">
-      <table className="border-separate border border-gray-300">
+      <table className="border-separate border border-gray-300 w-full bg-amber-50 rounded-lg shadow-md">
         <thead>
           <tr>  
             <th>Article Title</th>
             <th>Article Description</th>
+            <th>Publish Date</th>
           </tr>
         </thead>
         <tbody>
           {articles.slice(4).map((article) => (
-            <tr>
-              <td className="border border-gray-300 p-2">{article.title}</td>
+            <tr key={article.id}>
+              <td className="border border-gray-300 text-blue-500 p-2"><Link href={`/articles/${article.slug}`}>{article.title}</Link></td>
               <td className="border border-gray-300 p-2">{article.description}</td>
+              <td className="border border-gray-300 p-2">{article.publishedAt}</td>
             </tr>
           ))}
         </tbody>
       </table>
+      <footer className="mt-4 text-sm text-gray-500">
+        &copy; {new Date().getFullYear()} TIME News. All rights reserved.
+      </footer>
     </div>
     </>
   );
