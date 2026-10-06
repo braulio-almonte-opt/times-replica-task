@@ -1,7 +1,16 @@
 import Image from "next/image";
 import ArticleCard from "../components/articleCard";
 import Link from "next/link";
-import {articles} from "@/data/articles";
+import {articles, extraArticles} from "@/data/articles";
+
+// TODO: Display banner with TIME image and welcome message (DONE)
+// TODO: Show cards with featured articles (DONE)
+// TODO: Make articles show dinamically instead of manually [articles.map()](DONE)
+// TODO: Show column with additional articles (WIP)
+// TODO: Make a footer with categories, common info and authors (Not started)
+// TODO: Newsletter Signup process (Not started)
+// TODO: Handle 404 pages with a custom message and link to homepage (Not started)
+// TODO: 
 
 export default function Home() {
   return (
@@ -15,18 +24,22 @@ export default function Home() {
     <div className="flex justify-center items-start">
       <p className="text-lg mt-2">Today's Headlines</p>
     </div>
-    <div className="flex flex-row justify-center items-start h-64">
+    <div className="flex flex-row justify-center items-start h-auto">
       {/* Row with the three articles, also, I know AI likes to write comments but this one is mine
       to keep code organized */}
       {/* Changed approach to generate card dinamically, code is cleaner now :D*/}
       {articles.map((article) =>(
-        <div className="flex flex-col justify-center items-center w-1/3 h-150 p-4 m-5 bg-amber-50 rounded-lg shadow-md">
+        <div key={article.id} className="flex flex-col justify-center items-center w-1/3 h-150 p-4 m-5 bg-amber-50 rounded-lg shadow-md">
         <ArticleCard title={article.title} description={article.description} imageUrl={article.imageUrl} />
         <Link href={`/articles/${article.slug}`} className="text-blue-500 mt-2">
           Read more
         </Link>
       </div>
       ))}
+    </div>
+    {/* Column to display additional articles that are not featured */}
+    <div className="flex flex-col justify-center items-center p-4 bg-amber-gray-50">
+      <p>this is a test</p>
     </div>
     </>
   );
