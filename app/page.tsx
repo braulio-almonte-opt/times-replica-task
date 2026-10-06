@@ -6,7 +6,7 @@ import {articles} from "@/data/articles";
 // TODO1: Display banner with TIME image and welcome message (DONE)
 // TODO2: Show cards with featured articles (DONE)
 // TODO3: Make articles show dynamically instead of manually [articles.map()](DONE)
-// TODO4: Show column with additional articles (WIP)
+// TODO4: Show column with additional articles (DONE, in a table format but I'm pretty sure I can still do it in a column)
 // TODO5: Make a footer with categories, common info and authors (Not started)
 // TODO6: Newsletter Signup process (Not started)
 // TODO7: Handle 404 pages with a custom message and link to homepage (Not started)
@@ -51,13 +51,26 @@ export default function Home() {
         <tbody>
           {articles.slice(4).map((article) => (
             <tr key={article.id}>
-              <td className="border border-gray-300 text-blue-500 p-2"><Link href={`/articles/${article.slug}`}>{article.title}</Link></td>
+              <td className="border border-gray-300 text-blue-500 p-2 hover:underline"><Link href={`/articles/${article.slug}`}>{article.title}</Link></td>
               <td className="border border-gray-300 p-2">{article.description}</td>
               <td className="border border-gray-300 p-2">{article.publishedAt}</td>
             </tr>
           ))}
         </tbody>
       </table>
+      {/* I had an idea to make it a little more better looking but that'll have to wait for later */}
+      {/* <ul role="list">
+        {articles.slice(4).map((article) => (
+          <li key={article.id} className=" flex py-4 text-blue-500 hover:underline first:pt-0 last:pb-0">
+            <Link href={`/articles/${article.slug}`}>
+            <div className="ml-3 overflow-hidden">
+              <p className="text-sm font-medium text-gray-900">{article.title}</p>
+              <p className="text-sm text-gray-500">{article.description}</p>
+            </div>
+            </Link>
+          </li>
+        ))}
+      </ul> */}
       <footer className="mt-4 text-sm text-gray-500">
         &copy; {new Date().getFullYear()} TIME News. All rights reserved.
       </footer>
