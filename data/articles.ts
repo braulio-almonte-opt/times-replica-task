@@ -57,7 +57,7 @@ export const articles: Arcticle[] = [
         author: "Alice Johnson",
         content: "Due to recent supply chain disruptions and increased demand, supermarket prices are expected to rise in the coming months. Consumers are advised to stock up on essential items while prices are still reasonable.",
         publishedAt: "2024-06-03"
-    }
+    },
 
 ]
 
@@ -82,6 +82,20 @@ export const extraArticles: Arcticle[] = [
         title: "City Council Approves New Bike Lanes",
         description: "Promoting eco-friendly transportation options.",
         imageUrl: "/images/bikelanes.jpg"
+    },
+    {
+        id: 7,
+        slug: "article7",
+        title: "Community Center Offers Free Fitness Classes",
+        description: "Encouraging residents to stay active and healthy.",
+        imageUrl: "/images/fitness.jpg"
+    },
+    {
+        id: 8,
+        slug: "article8",
+        title: "Local Farmers Market Expands to New Location",
+        description: "Providing fresh produce and goods to the community.",
+        imageUrl: "/images/farmersmarket.jpg"
     }
 ]
 

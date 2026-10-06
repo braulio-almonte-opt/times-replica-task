@@ -3,13 +3,13 @@ import ArticleCard from "../components/articleCard";
 import Link from "next/link";
 import {articles, extraArticles} from "@/data/articles";
 
-// TODO: Display banner with TIME image and welcome message (DONE)
-// TODO: Show cards with featured articles (DONE)
-// TODO: Make articles show dinamically instead of manually [articles.map()](DONE)
-// TODO: Show column with additional articles (WIP)
-// TODO: Make a footer with categories, common info and authors (Not started)
-// TODO: Newsletter Signup process (Not started)
-// TODO: Handle 404 pages with a custom message and link to homepage (Not started)
+// TODO1: Display banner with TIME image and welcome message (DONE)
+// TODO2: Show cards with featured articles (DONE)
+// TODO3: Make articles show dynamically instead of manually [articles.map()](DONE)
+// TODO4: Show column with additional articles (WIP)
+// TODO5: Make a footer with categories, common info and authors (Not started)
+// TODO6: Newsletter Signup process (Not started)
+// TODO7: Handle 404 pages with a custom message and link to homepage (Not started)
 // TODO: 
 
 export default function Home() {
@@ -39,7 +39,22 @@ export default function Home() {
     </div>
     {/* Column to display additional articles that are not featured */}
     <div className="flex flex-col justify-center items-center p-4 bg-amber-gray-50">
-      <p>this is a test</p>
+      <table className="border-separate border border-gray-300">
+        <thead>
+          <tr>  
+            <th>Article Title</th>
+            <th>Article Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {extraArticles.map((article) => (
+            <tr>
+              <td className="border border-gray-300 p-2">{article.title}</td>
+              <td className="border border-gray-300 p-2">{article.description}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
     </>
   );
