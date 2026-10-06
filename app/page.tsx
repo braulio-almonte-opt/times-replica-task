@@ -10,11 +10,21 @@ export default function Home() {
     <div className="flex flex-row justify-center items-start h-64">
       {/* Row with the three articles, also, I know AI likes to write comments but this one is mine
       to keep code organized */}
+      {/* Article 1 */}
       <div className="flex flex-col justify-center items-center w-1/3 p-4">
-        <ArticleCard title="Article 1" description="This is the first article." imageUrl="/images/hospital.jpg" />
-        <a href="/articles/article1" className="text-blue-500 mt-2">Read more</a>
+        <ArticleCard title="Hospital Opened Nearby" description="This is the first modern hospital in the area." imageUrl="/images/hospital.jpg" />
+        <a href="/articles/article1.tsx" className="text-blue-500 mt-2">Read more</a>
       </div>
-
+      {/* Article 2 */}
+      <div className="flex flex-col justify-center items-center w-1/3 p-4">
+        <ArticleCard title="Hospital Opened Nearby" description="This is the first modern hospital in the area." imageUrl="/images/hospital.jpg" />
+        <a href="/articles/article1.tsx" className="text-blue-500 mt-2">Read more</a>
+      </div>
+      {/* Article 3 */}
+      <div className="flex flex-col justify-center items-center w-1/3 p-4">
+        <ArticleCard title="Hospital Opened Nearby" description="This is the first modern hospital in the area." imageUrl="/images/hospital.jpg" />
+        <a href="/articles/article1.tsx" className="text-blue-500 mt-2">Read more</a>
+      </div>
     </div>
     </>
   );
