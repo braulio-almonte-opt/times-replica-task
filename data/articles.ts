@@ -63,7 +63,7 @@ export const articles: Arcticle[] = [
         slug: "article4",
         title: "New Park Opens in Downtown Area",
         description: "A new green space for the community to enjoy.",
-        imageUrl: "/images/park.jpg",
+        imageUrl: "/images/park.jpeg",
         category: "Environment",
         author: "Grace Lee",
         content: "A new park has opened in the downtown area, providing a green space for the community to enjoy.",

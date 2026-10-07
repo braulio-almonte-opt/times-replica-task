@@ -10,7 +10,7 @@ import {articles} from "@/data/articles";
 // TODO5: Make a footer with categories, common info and authors (Not started)
 // TODO6: Newsletter Signup process (Not started)
 // TODO7: Handle 404 pages with a custom message and link to homepage (Not started)
-// TODO: 
+// TODO8: 
 
 export default function Home() {
   return (
@@ -40,27 +40,10 @@ export default function Home() {
     {/* Column to display additional articles that are not featured */}
     {/* Also generated dinamically based on data provided */}
     <div className="flex flex-col justify-center items-center p-4 bg-amber-gray-50">
-      <table className="border-separate border border-gray-300 w-full bg-amber-50 rounded-lg shadow-md">
-        <thead>
-          <tr>  
-            <th>Article Title</th>
-            <th>Article Description</th>
-            <th>Publish Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {articles.slice(4).map((article) => (
-            <tr key={article.id}>
-              <td className="border border-gray-300 text-blue-500 p-2 hover:underline"><Link href={`/articles/${article.slug}`}>{article.title}</Link></td>
-              <td className="border border-gray-300 p-2">{article.description}</td>
-              <td className="border border-gray-300 p-2">{article.publishedAt}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
       {/* I had an idea to make it a little more better looking but that'll have to wait for later */}
-      {/* <ul role="list">
-        {articles.slice(4).map((article) => (
+      <h2 className="text-xl font-bold mb-4">Other articles</h2>
+      <ul role="list">
+        {articles.slice(3).map((article) => (
           <li key={article.id} className=" flex py-4 text-blue-500 hover:underline first:pt-0 last:pb-0">
             <Link href={`/articles/${article.slug}`}>
             <div className="ml-3 overflow-hidden">
@@ -70,7 +53,7 @@ export default function Home() {
             </Link>
           </li>
         ))}
-      </ul> */}
+      </ul>
       <footer className="mt-4 text-sm text-gray-500">
         &copy; {new Date().getFullYear()} TIME News. All rights reserved.
       </footer>
