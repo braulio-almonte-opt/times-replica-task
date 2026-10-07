@@ -9,7 +9,7 @@ import Banner from "../components/Banner";
 // TODO3: Make articles show dynamically instead of manually [articles.map()](DONE)
 // TODO4: Show column with additional articles (DONE, but needs styling)
 // TODO5: Make a footer with categories, common info and authors (Not started)
-// TODO6: Newsletter Signup process (Not started)
+// TODO6: Newsletter Signup process (DONE)
 // TODO7: Handle 404 pages with a custom message and link to homepage (Not started)
 // TODO8: 
 
@@ -26,7 +26,7 @@ export default function Home() {
     <div className="flex flex-row justify-center items-start h-auto">
       {/* Row with the three articles, also, I know AI likes to write comments but this one is mine
       to keep code organized */}
-      {/* Changed approach to generate card dinamically, code is cleaner now :D*/}
+      {/* Changed approach to generate card dinamically, code is cleaner now :D */}
       {articles.slice(0, 3).map((article) =>(
         <div key={article.id} className="flex flex-col justify-center items-center w-1/3 h-150 p-4 m-5 bg-amber-50 rounded-lg shadow-md">
         <ArticleCard title={article.title} description={article.description} imageUrl={article.imageUrl} />

@@ -3,13 +3,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-// import Logo from "@/components/Banner";
+import { exportValidEmail } from "@/scripts/emailExport";
 
 function checkEmail (email: string): boolean {
     // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; <- Sugested by AI
     const emailRegex = /^[^@]*@[^@]*$/; //<- Also suggested by AI but I just 
     return emailRegex.test(email);
 }
+
 export default function Signup(){
     const [email, setEmail] = useState<string>('');
     const [message,setMessage] = useState<string>('');
@@ -17,6 +18,7 @@ export default function Signup(){
     const handleSubmit = () => {
         if (checkEmail(email)) {
             setMessage("Thank you for signing up!");
+            exportValidEmail(email);
         } else {
             setMessage("Please enter a valid email address.");
         }
