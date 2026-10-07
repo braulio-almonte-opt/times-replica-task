@@ -2,6 +2,8 @@ import {articles} from "@/data/articles";
 import {notFound} from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import Banner from "@/components/Banner";
+
 interface PageProps{
     params: Promise<{slug: string}>;
 }
@@ -19,11 +21,7 @@ export default async function ArticlePage({params}: PageProps){
 //or basically the <> </> tags.
     return (
         <> 
-        <div className="flex justify-center items-start">
-            <Link href="/" className="text-blue-500 hover:underline">
-            <Image src="/images/TIME-logo.png" alt="TIME Logo" width={100} height={100} />
-            </Link>
-          </div>
+        <Banner/>
           <div className="flex justify-center items-start">
             <h1 className="text-4xl font-bold mt-4">Welcome to the TIME News Website</h1>
           </div>

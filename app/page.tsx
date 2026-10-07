@@ -2,6 +2,7 @@ import Image from "next/image";
 import ArticleCard from "../components/articleCard";
 import Link from "next/link";
 import {articles} from "@/data/articles";
+import Banner from "../components/Banner";
 
 // TODO1: Display banner with TIME image and welcome message (DONE)
 // TODO2: Show cards with featured articles (DONE)
@@ -15,9 +16,7 @@ import {articles} from "@/data/articles";
 export default function Home() {
   return (
     <>
-    <div className="flex justify-center items-start">
-      <Image src="/images/TIME-logo.png" alt="TIME Logo" width={100} height={100} />
-    </div>
+    <Banner/>
     <div className="flex justify-center items-start">
       <h1 className="text-4xl font-bold mt-4">Welcome to the TIME News Website</h1>
     </div>
