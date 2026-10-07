@@ -1,18 +1,20 @@
-import Image from "next/image";
 import ArticleCard from "../components/articleCard";
 import Link from "next/link";
-import {articles} from "@/data/articles";
 import Banner from "../components/Banner";
+import {articles} from "@/data/articles";
 import { categories } from "@/data/articles";
+import { authors } from "@/data/articles";
+import CustomFooter from "@/components/customFooter";
+
 
 // TODO1: Display banner with TIME image and welcome message (DONE)
 // TODO2: Show cards with featured articles (DONE)
 // TODO3: Make articles show dynamically instead of manually [articles.map()](DONE)
 // TODO4: Show column with additional articles (DONE)
-// TODO5: Make a footer with categories, common info and authors (Not started)
+// TODO5: Make a footer with categories, common info and authors (DONE)
 // TODO6: Newsletter Signup process (DONE)
 // TODO7: Handle 404 pages with a custom message and link to homepage (Not started)
-// TODO8: Make page that shows only articles of a specific category or author (WIP)
+// TODO8: Make page that shows only articles of a specific category or author (DONE)
 
 export default function Home() {
   return (
@@ -56,16 +58,32 @@ export default function Home() {
       </ul>
       </div>
       {/* Tried to adjust footer to the left but couldn't do it */}
-      <div className="flex items-left pt-5 gap-2">
-        {categories.map((category) => (
-          <Link href={`/category/${category.slug}`}>
-            <p key={category.id}>{`${category.name}`}</p>
-          </Link>
-        ))}
+      <div className="flex flex-row gap-50">
+        <ul role="list">
+          <li>
+            <h2 className="text-xl font-bold my-4">Categories</h2>
+          </li>
+            {categories.map((category) =>(
+              <Link key={category.id} href={`/category/${category.slug}`}>
+                <p key={category.id}>{`${category.name}`}</p>
+              </Link>
+            ))}
+        </ul>
+        <ul role="list">
+          <li>
+            <h2 className="text-xl font-bold my-4">Authors</h2>
+          </li>
+            {authors.map((author) =>(
+              <Link key={author.id} href={`/author/${author.slug}`}>
+                <p key={author.id}>{`${author.name}`}</p>
+              </Link>
+            ))}
+        </ul>
       </div>
-      <footer className="mt-4 text-sm text-left text-gray-500">
+      <CustomFooter/>
+      {/* <footer className="mt-4 text-sm text-left text-gray-500">
         &copy; {new Date().getFullYear()} TIME News. All rights reserved.
-      </footer>
+      </footer> */}
     </div>
     </>
   );

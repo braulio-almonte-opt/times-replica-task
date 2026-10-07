@@ -1,10 +1,10 @@
 import { articles } from "@/data/articles";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import Banner from "@/components/Banner";
 import ArticleCard from "@/components/articleCard";
 import { categories } from "@/data/articles";
+import CustomFooter from "@/components/customFooter";
 
 //This and the home page could have been transformed into components, but again, I'm running out of time...
 
@@ -59,10 +59,7 @@ export default async function CategoryPage({ params }: PageProps) {
             ))}
           </ul>
         </div>
-
-        <footer className="mt-4 text-sm text-gray-500">
-          &copy; {new Date().getFullYear()} TIME News. All rights reserved.
-        </footer>
+          <CustomFooter/>
       </div>
     </>
   );

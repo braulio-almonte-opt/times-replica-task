@@ -1,7 +1,5 @@
 import { articles } from "@/data/articles";
 import { notFound } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
 import Banner from "@/components/Banner";
 
 interface PageProps {

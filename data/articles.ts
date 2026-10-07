@@ -18,6 +18,7 @@ export interface category{
 
 export interface author{
     id: number;
+    slug: string;
     name: string;
     bio?: string;
     profileImageUrl?: string;
@@ -175,32 +176,37 @@ export const categories: category[] = [
 export const authors: author[] = [
     {
         id: 1,
+        slug: "john-doe",
         name: "John Doe",
         bio: "John is a seasoned journalist with over 10 years of experience in healthcare reporting.",
-        profileImageUrl: "/images/johndoe.jpg"
+        profileImageUrl: "/images/authors/john_doe.jpg"
     },
     {
         id: 2,
+        slug: "jane-smith",
         name: "Jane Smith",
         bio: "Jane specializes in environmental issues and has been recognized for her investigative reporting.",
-        profileImageUrl: "/images/janesmith.jpg"
+        profileImageUrl: "/images/authors/jane_smith.jpg"
     },
     {
         id: 3,
+        slug: "alice-johnson",
         name: "Alice Johnson",
         bio: "Alice covers business news and has a keen eye for market trends and economic developments.",
-        profileImageUrl: "/images/alicejohnson.jpg"
+        profileImageUrl: "/images/authors/alice_johnson.jpg"
     },
     {
         id: 4,
+        slug: "grace-lee",
         name: "Grace Lee",
         bio: "Grace loves to write articles about whats happening in the entertainment industry.",
-        profileImageUrl: "images/gracelee.jpg"
+        profileImageUrl: "/images/authors/grace_lee.jpg"
     },
     {
         id: 5,
+        slug: "frank-miller",
         name: "Frank Miller",
         bio: "Frank likes to cover education new as he believes it's important to keep people informed in one of the most important sectors.",
-        profileImageUrl: "images/frankmiller.jpg"
+        profileImageUrl: "/images/authors/frank_miller.jpg"
     }
 ]
