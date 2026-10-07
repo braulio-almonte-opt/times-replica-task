@@ -150,6 +150,18 @@ export const categories: category[] = [
     {
         id: 3,
         name: "Business"
+    },
+    {
+        id: 4,
+        name: "Entertainment"
+    },
+    {
+        id: 5,
+        name: "Education"
+    },
+    {
+        id: 6,
+        name: "Food"
     }
 ]
 
@@ -171,5 +183,17 @@ export const authors: author[] = [
         name: "Alice Johnson",
         bio: "Alice covers business news and has a keen eye for market trends and economic developments.",
         profileImageUrl: "/images/alicejohnson.jpg"
+    },
+    {
+        id: 4,
+        name: "Grace Lee",
+        bio: "Grace loves to write articles about whats happening in the entertainment industry.",
+        profileImageUrl: "images/gracelee.jpg"
+    },
+    {
+        id: 5,
+        name: "Frank Miller",
+        bio: "Frank likes to cover education new as he believes it's important to keep people informed in one of the most important sectors.",
+        profileImageUrl: "images/frankmiller.jpg"
     }
 ]

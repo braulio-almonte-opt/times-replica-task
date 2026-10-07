@@ -7,11 +7,11 @@ import Banner from "../components/Banner";
 // TODO1: Display banner with TIME image and welcome message (DONE)
 // TODO2: Show cards with featured articles (DONE)
 // TODO3: Make articles show dynamically instead of manually [articles.map()](DONE)
-// TODO4: Show column with additional articles (DONE, but needs styling)
+// TODO4: Show column with additional articles (DONE)
 // TODO5: Make a footer with categories, common info and authors (Not started)
 // TODO6: Newsletter Signup process (DONE)
 // TODO7: Handle 404 pages with a custom message and link to homepage (Not started)
-// TODO8: 
+// TODO8: Make page that shows only articles of a specific category or author
 
 export default function Home() {
   return (
@@ -39,11 +39,11 @@ export default function Home() {
     {/* Column to display additional articles that are not featured */}
     {/* Also generated dinamically based on data provided */}
     <div className="flex flex-col justify-center items-center p-4 bg-amber-gray-50">
-      {/* I had an idea to make it a little more better looking but that'll have to wait for later */}
       <h2 className="text-xl font-bold mb-4">Other articles</h2>
-      <ul role="list">
+      <div className="flex flex-1 bg-amber-50 p-4 rounded-lg shadow-lg">
+        <ul role="list">
         {articles.slice(3).map((article) => (
-          <li key={article.id} className=" flex py-4 text-blue-500 hover:underline first:pt-0 last:pb-0">
+          <li key={article.id} className="flex py-4 text-blue-500 hover:underline first:pt-0 last:pb-0">
             <Link href={`/articles/${article.slug}`}>
             <div className="ml-3 overflow-hidden">
               <p className="text-sm font-medium text-gray-900">{article.title}</p>
@@ -53,6 +53,8 @@ export default function Home() {
           </li>
         ))}
       </ul>
+      </div>
+      
       <footer className="mt-4 text-sm text-gray-500">
         &copy; {new Date().getFullYear()} TIME News. All rights reserved.
       </footer>
