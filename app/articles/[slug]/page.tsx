@@ -1,6 +1,7 @@
 import { articles } from "@/data/articles";
 import { notFound } from "next/navigation";
 import Banner from "@/components/Banner";
+import CalculateTimeDifference from "@/scripts/timeDifference";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -42,7 +43,7 @@ export default async function ArticlePage({ params }: PageProps) {
         </div>
         <p className="text-base">{article.content}</p>
         <p className="text-sm text-gray-500 mt-4">
-          Published on: {article.publishedAt}
+          Published {CalculateTimeDifference(article.publishedAt)} days ago on {article.publishedAt}.
         </p>
       </div>
     </>

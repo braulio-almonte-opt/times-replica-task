@@ -7,7 +7,7 @@ import { authors } from "@/data/articles";
 import CustomFooter from "@/components/customFooter";
 
 interface PageProps{
-    params: Promise<{slug: String}>;
+    params: Promise<{slug: string}>;
 }
 
 export default async function AuthorPage({ params }:PageProps){

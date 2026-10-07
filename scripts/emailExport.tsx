@@ -3,7 +3,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-export async function exportValidEmail(email:String): Promise <{success: boolean}>{
+export async function exportValidEmail(email:string): Promise <{success: boolean}>{
     try{
         const filePath = path.join(process.cwd(), 'validEmails.txt');
         await fs.appendFile(filePath, email + '\n', 'utf-8');
