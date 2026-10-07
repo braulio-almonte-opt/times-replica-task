@@ -6,7 +6,7 @@ import {articles} from "@/data/articles";
 // TODO1: Display banner with TIME image and welcome message (DONE)
 // TODO2: Show cards with featured articles (DONE)
 // TODO3: Make articles show dynamically instead of manually [articles.map()](DONE)
-// TODO4: Show column with additional articles (DONE, in a table format but I'm pretty sure I can still do it in a column)
+// TODO4: Show column with additional articles (DONE, but needs styling)
 // TODO5: Make a footer with categories, common info and authors (Not started)
 // TODO6: Newsletter Signup process (Not started)
 // TODO7: Handle 404 pages with a custom message and link to homepage (Not started)

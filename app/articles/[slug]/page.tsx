@@ -6,7 +6,7 @@ interface PageProps{
     params: Promise<{slug: string}>;
 }
 // Doubt: I don't know how to exactly use promises
-//This was suggested by AI but I need to research more on how and why it works.
+// This was suggested by AI but I need to research more on how and why it works.
 
 export default async function ArticlePage({params}: PageProps){
     const {slug} = await params;
