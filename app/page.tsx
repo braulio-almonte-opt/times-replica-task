@@ -3,6 +3,7 @@ import ArticleCard from "../components/articleCard";
 import Link from "next/link";
 import {articles} from "@/data/articles";
 import Banner from "../components/Banner";
+import { categories } from "@/data/articles";
 
 // TODO1: Display banner with TIME image and welcome message (DONE)
 // TODO2: Show cards with featured articles (DONE)
@@ -11,7 +12,7 @@ import Banner from "../components/Banner";
 // TODO5: Make a footer with categories, common info and authors (Not started)
 // TODO6: Newsletter Signup process (DONE)
 // TODO7: Handle 404 pages with a custom message and link to homepage (Not started)
-// TODO8: Make page that shows only articles of a specific category or author
+// TODO8: Make page that shows only articles of a specific category or author (WIP)
 
 export default function Home() {
   return (
@@ -54,8 +55,15 @@ export default function Home() {
         ))}
       </ul>
       </div>
-      
-      <footer className="mt-4 text-sm text-gray-500">
+      {/* Tried to adjust footer to the left but couldn't do it */}
+      <div className="flex items-left pt-5 gap-2">
+        {categories.map((category) => (
+          <Link href={`/category/${category.slug}`}>
+            <p key={category.id}>{`${category.name}`}</p>
+          </Link>
+        ))}
+      </div>
+      <footer className="mt-4 text-sm text-left text-gray-500">
         &copy; {new Date().getFullYear()} TIME News. All rights reserved.
       </footer>
     </div>

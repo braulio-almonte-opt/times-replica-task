@@ -12,6 +12,7 @@ export interface Arcticle {
 
 export interface category{
     id: number;
+    slug: string;
     name: string;
 }
 
@@ -141,26 +142,32 @@ export const articles: Arcticle[] = [
 export const categories: category[] = [
     {
         id: 1,
+        slug: "Healthcare",
         name: "Healthcare"
     },
     {
         id: 2,
+        slug: "Environment",
         name: "Environment"
     },
     {
         id: 3,
+        slug: "Business",
         name: "Business"
     },
     {
         id: 4,
+        slug: "Entertainment",
         name: "Entertainment"
     },
     {
         id: 5,
+        slug: "Education",
         name: "Education"
     },
     {
         id: 6,
+        slug: "Food",
         name: "Food"
     }
 ]
