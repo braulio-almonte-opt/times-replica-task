@@ -24,7 +24,7 @@ export default async function AuthorPage({ params }:PageProps){
         <div className="flex justify-center items-center">
             <div className="flex flex-row gap-4 bg-amber-50 p-4 rounded-lg shadow-lg">
                 <div className="flex p-x4">
-                    <Image src={author.profileImageUrl} alt={author.name} width={100} height={100}/>
+                    <img src={author.profileImageUrl} alt={author.name} width={100} height={100}/>
                 </div>
                 <div className="flex flex-col">
                     <h1 className="text-2xl">{author.name}</h1>
