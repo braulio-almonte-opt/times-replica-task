@@ -1,23 +1,36 @@
-import { articles } from "@/data/articles";
+import { articles, filterByCategory } from "@/data/articles";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Banner from "@/components/Banner";
-import ArticleCard from "@/components/articleCard";
+import FeaturedArticles from "@/components/FeaturedArticles";
 import { categories } from "@/data/categories";
 import CustomFooter from "@/components/customFooter";
+import { paginate } from "@/data/pagination";
 
 //This and the home page could have been transformed into components, but again, I'm running out of time...
 
 interface PageProps {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ page?: string | string[] }>;
 }
 
-export default async function CategoryPage({ params }: PageProps) {
-  const { slug } = await params;
+const PAGE_SIZE = 1;
+
+export default async function CategoryPage({ params, searchParams }: PageProps) {
+  const [{ slug }, { page: requestedPage }] = await Promise.all([params, searchParams]);
   const category = categories.find((category) => category.slug === slug);
   if (!category) {
     return notFound();
   }
+
+  const categoryArticles = filterByCategory(articles, category.slug);
+  const pageValue = Array.isArray(requestedPage) ? undefined : requestedPage;
+  const parsedPage = pageValue && /^\d+$/.test(pageValue) ? Number(pageValue) : 1;
+  const totalPages = Math.ceil(categoryArticles.length / PAGE_SIZE);
+  if (!Number.isSafeInteger(parsedPage) || parsedPage < 1 || parsedPage > totalPages) {
+    return notFound();
+  }
+  const pageArticles = paginate(categoryArticles, parsedPage, PAGE_SIZE);
 
   return (
     <>
@@ -28,38 +41,32 @@ export default async function CategoryPage({ params }: PageProps) {
       <div className="flex justify-center items-start">
         <p className="text-lg mt-2">Today&apos;s Headlines</p>
       </div>
-      <div className="flex flex-row justify-center items-start h-auto">
-        {/* Row with the three articles, also, I know AI likes to write comments but this one is mine
-      to keep code organized */}
-        {/* Changed approach to generate card dinamically, code is cleaner now :D */}
-        {articles.filter((article) => article.categorySlug === category.slug).slice(0,3).map((article) => (
-          <div key={article.id} className="flex flex-col justify-center items-center w-1/3 h-150 p-4 m-5 bg-amber-50 rounded-lg shadow-md">
-            <ArticleCard title={article.title} description={article.description} imageUrl={article.imageUrl} />
-            <Link href={`/articles/${article.slug}`} className="text-blue-500 mt-2">
-              Read more
-            </Link>
-          </div>
-        ))}
-      </div>
-      {/* Column to display additional articles that are not featured */}
-      {/* Also generated dinamically based on data provided */}
-      <div className="flex flex-col justify-center items-center p-4 bg-amber-gray-50">
-        <h2 className="text-xl font-bold mb-4">Other articles</h2>
-        <div className="flex flex-1 bg-amber-50 p-4 rounded-lg shadow-lg">
-          <ul role="list">
-            {articles.filter((article) => article.categorySlug === category.slug).slice(3).map((article) => (
-              <li key={article.id} className="flex py-4 text-blue-500 hover:underline first:pt-0 last:pb-0">
-                <Link href={`/articles/${article.slug}`}>
-                  <div className="ml-3 overflow-hidden">
-                    <p className="text-sm font-medium text-gray-900">{article.title}</p>
-                    <p className="text-sm text-gray-500">{article.description}</p>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-          <CustomFooter/>
+      <FeaturedArticles articles={pageArticles} />
+      <nav aria-label="Category article pages" className="flex justify-center items-center gap-4 p-4">
+        {parsedPage > 1 ? (
+          <Link
+            href={`/category/${category.slug}?page=${parsedPage - 1}`}
+            className="text-blue-500 hover:underline"
+          >
+            Previous
+          </Link>
+        ) : (
+          <span className="text-gray-400">Previous</span>
+        )}
+        <span aria-current="page">Page {parsedPage} of {totalPages}</span>
+        {parsedPage < totalPages ? (
+          <Link
+            href={`/category/${category.slug}?page=${parsedPage + 1}`}
+            className="text-blue-500 hover:underline"
+          >
+            Next
+          </Link>
+        ) : (
+          <span className="text-gray-400">Next</span>
+        )}
+      </nav>
+      <div className="flex flex-col items-center p-4 bg-amber-gray-50">
+        <CustomFooter />
       </div>
     </>
   );
