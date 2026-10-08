@@ -8,7 +8,7 @@ export default function Banner() {
         <div className="flex justify-center items-center">
           <div className="flex justify-center items-start">
             <Link href="/" className="text-blue-500 hover:underline">
-                <Image src="/images/TIME-logo.png" alt="TIME Logo" width={100} height={100} />
+                <Image src="/images/time_logo.png" alt="TIME Logo" width={100} height={100} />
             </Link>
           </div>
         </div>
