@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { exportValidEmail } from "@/scripts/emailExport";
+import CustomFooter from "@/components/CustomFooter";
 
 const initialState = { status: "idle" as const, message: "" };
 
@@ -45,6 +46,7 @@ export default function Signup(){
                 </button>
             </form>
             <p className="text-sm text-gray-500 mt-2">We respect your privacy. Unsubscribe at any time.</p>
+            <CustomFooter/>
         </div>
         </>
     );
