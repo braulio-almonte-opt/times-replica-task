@@ -6,16 +6,6 @@ import { categories } from "@/data/articles";
 import { authors } from "@/data/articles";
 import CustomFooter from "@/components/customFooter";
 
-
-// TODO1: Display banner with TIME image and welcome message (DONE)
-// TODO2: Show cards with featured articles (DONE)
-// TODO3: Make articles show dynamically instead of manually [articles.map()](DONE)
-// TODO4: Show column with additional articles (DONE)
-// TODO5: Make a footer with categories, common info and authors (DONE)
-// TODO6: Newsletter Signup process (DONE)
-// TODO7: Handle 404 pages with a custom message and link to homepage (DONE)
-// TODO8: Make page that shows only articles of a specific category or author (DONE)
-
 export default function Home() {
   return (
     <>
@@ -24,7 +14,7 @@ export default function Home() {
       <h1 className="text-4xl font-bold mt-4">Welcome to the TIME News Website</h1>
     </div>
     <div className="flex justify-center items-start">
-      <p className="text-lg mt-2">Today's Headlines</p>
+      <p className="text-lg mt-2">Today&apos;s Headlines</p>
     </div>
     <div className="flex flex-row justify-center items-start h-auto">
       {/* Row with the three articles, also, I know AI likes to write comments but this one is mine
