@@ -4,10 +4,10 @@ export interface Arcticle {
     title: string;
     description: string;
     imageUrl: string;
-    category?: string;
-    author?: string;
-    content?: string;
-    publishedAt?: string;
+    category: string;
+    author: string;
+    content: string;
+    publishedAt: string;
 }
 
 export interface category{
@@ -20,7 +20,7 @@ export interface author{
     id: number;
     slug: string;
     name: string;
-    bio?: string;
+    bio: string;
     profileImageUrl?: string;
 }
 

@@ -13,7 +13,7 @@ import CustomFooter from "@/components/customFooter";
 // TODO4: Show column with additional articles (DONE)
 // TODO5: Make a footer with categories, common info and authors (DONE)
 // TODO6: Newsletter Signup process (DONE)
-// TODO7: Handle 404 pages with a custom message and link to homepage (Not started)
+// TODO7: Handle 404 pages with a custom message and link to homepage (DONE)
 // TODO8: Make page that shows only articles of a specific category or author (DONE)
 
 export default function Home() {
