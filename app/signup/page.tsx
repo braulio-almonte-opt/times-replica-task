@@ -1,29 +1,14 @@
 
 'use client';
-import { useState } from "react";
+import { useActionState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { exportValidEmail } from "@/scripts/emailExport";
 
-function checkEmail (email: string): boolean {
-    // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; <- Sugested by AI
-    const emailRegex = /^[^@]*@[^@]*$/; //<- Also suggested by AI but I just 
-    return emailRegex.test(email);
-}
+const initialState = { status: "idle" as const, message: "" };
 
 export default function Signup(){
-    const [email, setEmail] = useState<string>('');
-    const [message,setMessage] = useState<string>('');
-
-    const handleSubmit = () => {
-        if (checkEmail(email)) {
-            setMessage("Thank you for signing up!");
-            exportValidEmail(email);
-        } else {
-            setMessage("Please enter a valid email address.");
-        }
-   }
-
+    const [state, formAction, pending] = useActionState(exportValidEmail, initialState);
     return (
         <>
         <div className="flex justify-center items-center">
@@ -35,9 +20,30 @@ export default function Signup(){
         </div>
         <div className="flex flex-col justify-center items-center">
             <h1 className="text-4xl font-bold mt-4">Sign up for our Newsletter</h1>
-            <input type="email" placeholder="Enter your email" className="border border-gray-300 rounded-md p-2 mt-4 w-64" value={email} onChange={(e) => setEmail(e.target.value)}/>
-            <p className="text-black-500">{message}</p>
-            <button className="bg-yellow-950 text-white rounded-md p-2 mt-4 transition-colors duration-300 hover:bg-yellow-800" onClick={handleSubmit}>Sign Up</button>
+            <form action={formAction} className="flex flex-col items-center">
+                <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="Enter your email"
+                    className="border border-gray-300 rounded-md p-2 mt-4 w-64"
+                />
+                {state.message && (
+                    <p
+                        className={state.status === "error" ? "text-red-700" : "text-green-700"}
+                        role={state.status === "error" ? "alert" : "status"}
+                    >
+                        {state.message}
+                    </p>
+                )}
+                <button
+                    type="submit"
+                    disabled={pending}
+                    className="bg-yellow-950 text-white rounded-md p-2 mt-4 transition-colors duration-300 hover:bg-yellow-800"
+                >
+                    {pending ? "Signing up..." : "Sign Up"}
+                </button>
+            </form>
             <p className="text-sm text-gray-500 mt-2">We respect your privacy. Unsubscribe at any time.</p>
         </div>
         </>
