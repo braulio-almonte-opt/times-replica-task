@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Banner from "@/components/Banner";
 import calculateTimeDifference from "@/scripts/timeDifference";
+import CustomFooter from "@/components/CustomFooter";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -52,6 +53,7 @@ export default async function ArticlePage({ params }: PageProps) {
           Published {calculateTimeDifference(article.publishedAt)} on {article.publishedAt}.
         </p>
       </div>
+      <CustomFooter/>
     </>
   );
 }
