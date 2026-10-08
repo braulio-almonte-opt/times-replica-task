@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { articles } from "@/data/articles";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import Banner from "@/components/Banner";
 import { authors } from "@/data/authors";
 import CustomFooter from "@/components/customFooter";
+import ArticleList from "@/components/ArticleList";
 
 interface PageProps{
     params: Promise<{slug: string}>;
@@ -34,23 +34,10 @@ export default async function AuthorPage({ params }:PageProps){
                 </div>
             </div>
         </div>
-        <div className="flex flex-col justify-center items-center pt-10 gap-4">
-            <h2 className="text-xl font-bold">Written Articles</h2>
-            <div className="flex flex-1 bg-amber-50 p-4 rounded-lg shadow-lg">
-        <ul role="list">
-        {articles.filter(article => article.authorSlug === author.slug).map((article) => (
-          <li key={article.id} className="flex py-4 text-blue-500 hover:underline first:pt-0 last:pb-0">
-            <Link href={`/articles/${article.slug}`}>
-            <div className="ml-3 overflow-hidden">
-              <p className="text-sm font-medium text-gray-900">{article.title}</p>
-              <p className="text-sm text-gray-500">{article.description}</p>
-            </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
-      </div>
-        </div>
+        <ArticleList
+            title="Written Articles"
+            articles={articles.filter(article => article.authorSlug === author.slug)}
+        />
         <CustomFooter/>
         </>
     );
