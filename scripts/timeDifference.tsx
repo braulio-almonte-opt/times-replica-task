@@ -8,6 +8,6 @@ export default function CalculateTimeDifference(articleDate: string){
     const date1 = new Date(articleDate)
 
     const millDiff = Math.abs(date2.getTime() - date1.getTime());
-    const daysDiff = Math.floor(millDiff / (100*60*60*24));
+    const daysDiff = Math.floor(millDiff / (1000*60*60*24));
     return daysDiff;
 }
