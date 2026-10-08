@@ -1,4 +1,4 @@
-export interface Arcticle {
+export interface Article {
     id: number;
     slug: string;
     title: string;
@@ -26,7 +26,7 @@ export interface author{
 
 // Extra articles are going to be displayed in the homepage column, therefore they
 // don't need extra info as they are static
-export const articles: Arcticle[] = [
+export const articles: Article[] = [
     {
         id: 1,
         slug: "article1",
