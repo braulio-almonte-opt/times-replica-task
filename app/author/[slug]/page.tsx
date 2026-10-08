@@ -3,7 +3,7 @@ import { articles } from "@/data/articles";
 import { notFound } from "next/navigation";
 import Banner from "@/components/Banner";
 import { authors } from "@/data/authors";
-import CustomFooter from "@/components/customFooter";
+import CustomFooter from "@/components/CustomFooter";
 import ArticleList from "@/components/ArticleList";
 
 interface PageProps{

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ArticleCard from "@/components/articleCard";
+import ArticleCard from "@/components/ArticleCard";
 import type { Article } from "@/data/articles";
 
 interface FeaturedArticlesProps {

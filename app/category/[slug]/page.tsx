@@ -4,7 +4,7 @@ import Link from "next/link";
 import Banner from "@/components/Banner";
 import FeaturedArticles from "@/components/FeaturedArticles";
 import { categories } from "@/data/categories";
-import CustomFooter from "@/components/customFooter";
+import CustomFooter from "@/components/CustomFooter";
 import { paginate } from "@/data/pagination";
 
 //This and the home page could have been transformed into components, but again, I'm running out of time...

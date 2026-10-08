@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Banner from "@/components/Banner";
-import CustomFooter from "@/components/customFooter";
+import CustomFooter from "@/components/CustomFooter";
 export default function notFound(){
     return (
         <>

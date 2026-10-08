@@ -1,6 +1,6 @@
 import Banner from "../components/Banner";
 import { articles } from "@/data/articles";
-import CustomFooter from "@/components/customFooter";
+import CustomFooter from "@/components/CustomFooter";
 import FeaturedArticles from "@/components/FeaturedArticles";
 import ArticleList from "@/components/ArticleList";
 
