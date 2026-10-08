@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { articles, authors } from "@/data/articles";
+import { articles } from "@/data/articles";
+import { authors } from "@/data/authors";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Banner from "@/components/Banner";
@@ -48,7 +49,7 @@ export default async function ArticlePage({ params }: PageProps) {
         </div>
         <p className="text-base">{article.content}</p>
         <p className="text-sm text-gray-500 mt-4">
-          Published {CalculateTimeDifference(article.publishedAt)} days ago on {article.publishedAt}.
+          Published {CalculateTimeDifference(article.publishedAt)} on {article.publishedAt}.
         </p>
       </div>
     </>

@@ -1,9 +1,9 @@
 import ArticleCard from "../components/articleCard";
 import Link from "next/link";
 import Banner from "../components/Banner";
-import {articles} from "@/data/articles";
-import { categories } from "@/data/articles";
-import { authors } from "@/data/articles";
+import { articles } from "@/data/articles";
+import { categories } from "@/data/categories";
+import { authors } from "@/data/authors";
 import CustomFooter from "@/components/customFooter";
 
 export default function Home() {
