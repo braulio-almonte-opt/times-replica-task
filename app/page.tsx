@@ -8,6 +8,10 @@ import FeaturedArticles from "@/components/FeaturedArticles";
 import ArticleList from "@/components/ArticleList";
 
 export default function Home() {
+  const newestArticles = [...articles].sort((first, second) =>
+    second.publishedAt.localeCompare(first.publishedAt)
+  );
+
   return (
     <>
     <Banner/>
@@ -17,8 +21,8 @@ export default function Home() {
     <div className="flex justify-center items-start">
       <p className="text-lg mt-2">Today&apos;s Headlines</p>
     </div>
-    <FeaturedArticles articles={articles.slice(0, 3)} />
-    <ArticleList title="Other articles" articles={articles.slice(3)} />
+    <FeaturedArticles articles={newestArticles.slice(0, 3)} />
+    <ArticleList title="Other articles" articles={newestArticles.slice(3)} />
     <div className="flex flex-col justify-center items-center p-4 bg-amber-gray-50">
       {/* Tried to adjust footer to the left but couldn't do it */}
       <div className="flex flex-row gap-50">

@@ -13,6 +13,13 @@ export interface Article {
     publishedAt: string;
 }
 
+export function filterByCategory(
+    articles: readonly Article[],
+    category: CategorySlug
+): Article[] {
+    return articles.filter((article) => article.categorySlug === category);
+}
+
 // Extra articles are going to be displayed in the homepage column, therefore they
 // don't need extra info as they are static
 export const articles = [
