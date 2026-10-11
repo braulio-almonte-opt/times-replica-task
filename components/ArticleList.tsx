@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Article } from "@/data/articles";
+import { Article } from "@/app/types/cmsTypes";
 
 interface ArticleListProps {
   articles: readonly Article[];
@@ -14,7 +14,7 @@ export default function ArticleList({ articles, title }: ArticleListProps) {
         <ul role="list">
           {articles.map((article) => (
             <li
-              key={article.id}
+              key={article.slug}
               className="flex py-4 text-blue-500 hover:underline first:pt-0 last:pb-0"
             >
               <Link href={`/articles/${article.slug}`}>
