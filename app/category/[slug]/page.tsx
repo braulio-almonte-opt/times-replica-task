@@ -1,11 +1,11 @@
-import { articles, filterByCategory } from "@/data/articles";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Banner from "@/components/Banner";
+import FeaturedArticles from "@/components/FeaturedArticles";
 import ArticleList from "@/components/ArticleList";
-import { categories } from "@/data/categories";
 import CustomFooter from "@/components/CustomFooter";
 import { paginate } from "@/data/pagination";
+import { getArticlesByCategory, getCategoryBySlug } from "@/app/lib/queries";
 
 //This and the home page could have been transformed into components, but again, I'm running out of time...
 
@@ -18,12 +18,16 @@ const PAGE_SIZE = 1;
 
 export default async function CategoryPage({ params, searchParams }: PageProps) {
   const [{ slug }, { page: requestedPage }] = await Promise.all([params, searchParams]);
-  const category = categories.find((category) => category.slug === slug);
+  // const category = categories.find((category) => category.slug === slug);
+
+  const category = await getCategoryBySlug(slug);
   if (!category) {
     return notFound();
   }
 
-  const categoryArticles = filterByCategory(articles, category.slug);
+  const articlesData = (await getArticlesByCategory(category.title)) ?? [];
+  const categoryArticles = articlesData;
+
   const pageValue = Array.isArray(requestedPage) ? undefined : requestedPage;
   const parsedPage = pageValue && /^\d+$/.test(pageValue) ? Number(pageValue) : 1;
   const totalPages = Math.ceil(categoryArticles.length / PAGE_SIZE);

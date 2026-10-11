@@ -1,13 +1,13 @@
 import Banner from "../components/Banner";
-import { articles } from "@/data/articles";
 import CustomFooter from "@/components/CustomFooter";
 import FeaturedArticles from "@/components/FeaturedArticles";
 import ArticleList from "@/components/ArticleList";
+import { getFeaturedArticles } from "./lib/queries";
 
-export default function Home() {
-  const newestArticles = [...articles].sort((first, second) =>
-    second.publishedAt.localeCompare(first.publishedAt)
-  );
+export default async function Home() {
+
+  const featuredArticles  = (await getFeaturedArticles(true)) ?? [];
+  const nonFeaturedArticles  = (await getFeaturedArticles(false)) ?? [];
 
   return (
     <>
@@ -18,8 +18,8 @@ export default function Home() {
     <div className="flex justify-center items-start">
       <p className="text-lg mt-2">Today&apos;s Headlines</p>
     </div>
-    <FeaturedArticles articles={newestArticles.slice(0, 3)} />
-    <ArticleList title="Other articles" articles={newestArticles.slice(3)} />
+    <FeaturedArticles articles={featuredArticles} />
+    <ArticleList title="Other articles" articles={nonFeaturedArticles} />
     <CustomFooter/>
     </>
   );
