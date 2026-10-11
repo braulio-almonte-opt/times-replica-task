@@ -9,7 +9,7 @@ export default function ArticleCard({ title, description, imageUrl }: { title: s
     <div className="flex flex-col justify-center items-center w-1/2 p-4">
       <div className="w-full h-64 relative">
         <Image
-          src={imageUrl}
+          src={`${imageUrl}`}
           alt={title}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
