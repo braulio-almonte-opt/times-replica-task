@@ -4,7 +4,7 @@ import { useActionState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { exportValidEmail } from "@/scripts/emailExport";
-import CustomFooter from "@/components/customFooter";
+import CustomFooter from "@/components/CustomFooter";
 
 const initialState = { status: "idle" as const, message: "" };
 
@@ -15,7 +15,7 @@ export default function Signup(){
         <div className="flex justify-center items-center">
           <div className="flex justify-center items-start">
             <Link href="/" className="text-blue-500 hover:underline">
-                <Image src="/images/time-logo.png" alt="TIME Logo" width={100} height={100} />
+                <Image src="/images/time_logo.png" alt="TIME Logo" width={100} height={100} />
             </Link>
           </div>
         </div>
