@@ -46,6 +46,7 @@ export default async function ArticlePage({ params }: PageProps) {
             width={1200}
             height={600}
             className="w-full h-full object-cover"
+            loading="eager"
           />
         </div>
         <p className="text-base">{article.content}</p>

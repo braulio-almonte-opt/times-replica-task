@@ -14,6 +14,7 @@ export default function ArticleCard({ title, description, imageUrl }: { title: s
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
           className="object-cover"
+          loading="eager"
         />
       </div>
       <h2 className="text-lg font-bold mt-4">{title}</h2>
