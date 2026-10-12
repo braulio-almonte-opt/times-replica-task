@@ -6,6 +6,7 @@ import calculateTimeDifference, { formatDate } from "@/scripts/timeDifference";
 import CustomFooter from "@/components/CustomFooter";
 import { getArticleBySlug } from "@/app/lib/queries";
 import {formatArticle, formatAuthor} from "@/scripts/objectParser";
+import ArticleDataLayer from "@/components/ArticleDataLayer";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -43,6 +44,13 @@ export default async function ArticlePage({ params }: PageProps) {
   //Side note, I could just wrap everything on a div that takes the whole page, but I'm running out of time...
   return (
     <>
+    <ArticleDataLayer 
+      title={article.title}
+      slug={article.slug}
+      category={article.category?.title ?? "Uncategorized"}
+      author={article.author.title}
+      publishedDate={article.publishedAt}>
+      </ArticleDataLayer>
       <Banner />
       <div className="flex flex-col justify-center items-center p-4">
         <h2 className="text-3xl font-bold mb-4">{article.title}</h2>
@@ -65,7 +73,7 @@ export default async function ArticlePage({ params }: PageProps) {
         </div>
         <p className="text-base">{article.content}</p>
         <p className="text-sm text-gray-500 mt-4">
-          Published {calculateTimeDifference(article.publishedAt)} on {article.publishedAt}.
+          Published {calculateTimeDifference(article.publishedAt)} on {formatDate(article.publishedAt)}.
         </p>
       </div>
       <CustomFooter/>

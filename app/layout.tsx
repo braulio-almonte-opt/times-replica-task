@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,13 +18,16 @@ export const metadata: Metadata = {
   description: "TIME Replica built for the Next.js practice task",
 };
 
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <GoogleTagManager gtmId={`${GTM_ID}`}/>
+      <body className="min-h-full flex flex-col">{children}
+      </body>
     </html>
   );
 }
