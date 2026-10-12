@@ -67,6 +67,16 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
               }
             }
           }
+          categoryConnection {
+            edges {
+              node {
+                ... on Category {
+                  title
+                  slug
+                }
+              }
+            }
+          }
         }
       }
     }
