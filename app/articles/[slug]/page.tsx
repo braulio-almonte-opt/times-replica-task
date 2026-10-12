@@ -2,7 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Banner from "@/components/Banner";
-import calculateTimeDifference from "@/scripts/timeDifference";
+import calculateTimeDifference, { formatDate } from "@/scripts/timeDifference";
 import CustomFooter from "@/components/CustomFooter";
 import { getArticleBySlug } from "@/app/lib/queries";
 import {formatArticle, formatAuthor} from "@/scripts/objectParser";
