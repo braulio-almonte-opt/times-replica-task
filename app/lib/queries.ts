@@ -240,8 +240,8 @@ export async function getAllCategories():Promise<Category[] | null>{
 // Get single category for category page render
 export async function getCategoryBySlug(slug: string): Promise<Category | null>{
   const query = `
-  query getCategoryBySlug {
-  all_category(where: {slug: "education"}) {
+  query getCategoryBySlug($slug: String!) {
+  all_category(where: {slug: $slug}) {
     items {
       slug
       title

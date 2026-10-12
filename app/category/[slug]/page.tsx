@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Banner from "@/components/Banner";
-import FeaturedArticles from "@/components/FeaturedArticles";
 import ArticleList from "@/components/ArticleList";
 import CustomFooter from "@/components/CustomFooter";
 import { paginate } from "@/data/pagination";
@@ -45,7 +44,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
       <div className="flex justify-center items-start">
         <p className="text-lg mt-2">Today&apos;s Headlines</p>
       </div>
-      <ArticleList title={`${category.name} articles`} articles={pageArticles} />
+      <ArticleList title={`${category.title} articles`} articles={pageArticles} />
       <nav aria-label="Category article pages" className="flex justify-center items-center gap-4 p-4">
         {parsedPage > 1 ? (
           <Link
