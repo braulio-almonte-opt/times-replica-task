@@ -91,10 +91,9 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
 }
 
 // Get articles by category for category pagination
-export async function getArticlesByCategory(category: string): Promise<Article[] | null>{
-  const query = `
-  query getArticlesByCategory {
-  all_article(where: {category: {category: {title: "${category}"}}}) {
+export async function getArticlesByCategory(category: string, skippedArticles: number, limitArticles: number): Promise<Article[] | null>{
+  const query = `query getArticlesByCategory {
+  all_article(where: {category: {category: {title: "${category}"}}},skip:${skippedArticles}, limit:${limitArticles}) {
     items {
       title
       slug
@@ -111,8 +110,7 @@ export async function getArticlesByCategory(category: string): Promise<Article[]
       }
     }
   }
-}
-  `
+}`
   const data = await fetchGraphQL<AllArticlesResponse>({
     query,
     variables:{category},
@@ -265,4 +263,10 @@ export async function getCategoryBySlug(slug: string): Promise<Category | null>{
   })
 
   return data.all_category.items[0] ?? null;
+}
+
+export async function getPaginatedArticlesByCategory(slug:string, limitArticles: number, skipArticles: number): Promise<Category[] | null>{
+  const query =`
+  `
+  return null;
 }

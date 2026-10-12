@@ -3,7 +3,6 @@ import Link from "next/link";
 import Banner from "@/components/Banner";
 import ArticleList from "@/components/ArticleList";
 import CustomFooter from "@/components/CustomFooter";
-import { paginate } from "@/data/pagination";
 import { getArticlesByCategory, getCategoryBySlug } from "@/app/lib/queries";
 
 //This and the home page could have been transformed into components, but again, I'm running out of time...
@@ -13,7 +12,7 @@ interface PageProps {
   searchParams: Promise<{ page?: string | string[] }>;
 }
 
-const PAGE_SIZE = 1;
+const PAGE_SIZE = 5;
 
 export default async function CategoryPage({ params, searchParams }: PageProps) {
   const [{ slug }, { page: requestedPage }] = await Promise.all([params, searchParams]);
@@ -24,16 +23,23 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
     return notFound();
   }
 
-  const articlesData = (await getArticlesByCategory(category.title)) ?? [];
-  const categoryArticles = articlesData;
-
   const pageValue = Array.isArray(requestedPage) ? undefined : requestedPage;
   const parsedPage = pageValue && /^\d+$/.test(pageValue) ? Number(pageValue) : 1;
-  const totalPages = Math.ceil(categoryArticles.length / PAGE_SIZE);
-  if (!Number.isSafeInteger(parsedPage) || parsedPage < 1 || parsedPage > totalPages) {
+  if (!Number.isSafeInteger(parsedPage) || parsedPage < 1) {
     return notFound();
   }
-  const pageArticles = paginate(categoryArticles, parsedPage, PAGE_SIZE);
+
+  const skippedArticles = (parsedPage - 1) * PAGE_SIZE;
+  const [pageArticles, nextPageArticles] = await Promise.all([
+    getArticlesByCategory(category.title, skippedArticles, PAGE_SIZE),
+    getArticlesByCategory(category.title, skippedArticles + PAGE_SIZE, 1),
+  ]);
+
+  if (!pageArticles?.length) {
+    return notFound();
+  }
+
+  const hasNextPage = Boolean(nextPageArticles?.length);
 
   return (
     <>
@@ -56,8 +62,8 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
         ) : (
           <span className="text-gray-400">Previous</span>
         )}
-        <span aria-current="page">Page {parsedPage} of {totalPages}</span>
-        {parsedPage < totalPages ? (
+        <span aria-current="page">Page {parsedPage}</span>
+        {hasNextPage ? (
           <Link
             href={`/category/${category.slug}?page=${parsedPage + 1}`}
             className="text-blue-500 hover:underline"
