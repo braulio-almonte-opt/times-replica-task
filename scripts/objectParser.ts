@@ -1,5 +1,4 @@
 import { Article, Author, Category } from "@/app/types/cmsTypes";
-// Flattening helper to simplify component usage
 
 export function formatArticle(article: Article) {
   return {
