@@ -34,6 +34,7 @@ export default function ArticleDataLayer({
       category_name: category?.trim() || 'Uncategorized',
       author_name: author?.trim() || 'Anonymous',
       article_image_url: imageUrl || '/images/emptynews.jpg',
+      has_image : imageUrl ? true : false, //Hopefully this fulfills the purpose
       published_date: publishedDate,
     });
   }, [title, slug, category, author, imageUrl, publishedDate]);
