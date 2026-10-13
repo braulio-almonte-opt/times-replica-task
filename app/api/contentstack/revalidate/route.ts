@@ -29,7 +29,7 @@ export async function POST(request: Request): Promise<Response> {
   if (!hasValidWebhookSecret(request, expectedSecret)) {
     return Response.json({ error: 'Unauthorized.' }, { status: 401 });
   }
-
+  //Changed from {expire: 0} to 'max'
   revalidateTag(CONTENTSTACK_CACHE_TAG, 'max');
   return Response.json({ revalidated: true });
 }
