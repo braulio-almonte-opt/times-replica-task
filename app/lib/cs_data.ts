@@ -1,7 +1,7 @@
-const API_KEY = process.env.API_KEY ?? '';
-const ACCESS_TOKEN = process.env.ACCESS_TOKEN ?? '';
-const ENVIRONMENT = process.env.ENVIRONMENT ?? '';
-const BASE_ENDPOINT = process.env.EU_ENDPOINT ?? '';
+const API_KEY = process.env.CONTENTSTACK_API_KEY ?? '';
+const ACCESS_TOKEN = process.env.CONTENTSTACK_ACCESS_TOKEN ?? '';
+const ENVIRONMENT = process.env.CONTENTSTACK_ENVIRONMENT ?? '';
+const BASE_ENDPOINT = process.env.CONTENTSTACK_EU_ENDPOINT ?? '';
 
 interface GraphQLRequestOptions {
   query: string;
