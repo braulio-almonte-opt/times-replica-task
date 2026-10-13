@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Article } from "@/app/types/cmsTypes";
+import type { Article } from "@/app/types/domainTypes";
 
 interface ArticleListProps {
   articles: readonly Article[];

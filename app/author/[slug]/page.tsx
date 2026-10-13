@@ -26,14 +26,7 @@ export default async function AuthorPage({ params }:PageProps){
 
     //In this case I cannot send a 404 if the author has no articles
     //because they may be a newly hired author
-    const articles = articleData.map((article) => {
-        const formattedArticle = formatArticle(article);
-        return {
-            ...formattedArticle,
-            publishedat: formattedArticle.publishedAt,
-            featured: formattedArticle.isFeatured,
-        };
-    });
+    const articles = articleData.map(formatArticle);
 
     return (
         <>

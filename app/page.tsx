@@ -3,6 +3,7 @@ import CustomFooter from "@/components/CustomFooter";
 import FeaturedArticles from "@/components/FeaturedArticles";
 import ArticleList from "@/components/ArticleList";
 import { getFeaturedArticles } from "./lib/queries";
+import { formatArticle } from "@/scripts/objectParser";
 
 export default async function Home() {
 
@@ -10,6 +11,8 @@ export default async function Home() {
     getFeaturedArticles(true),
     getFeaturedArticles(false)
   ]);
+  const featuredDomainArticles = (featuredArticles ?? []).map(formatArticle);
+  const nonFeaturedDomainArticles = (nonFeaturedArticles ?? []).map(formatArticle);
 
   return (
     <>
@@ -20,8 +23,8 @@ export default async function Home() {
     <div className="flex justify-center items-start">
       <p className="text-lg mt-2">Today&apos;s Headlines</p>
     </div>
-    <FeaturedArticles articles={featuredArticles ?? []} />
-    <ArticleList title="Other articles" articles={nonFeaturedArticles ?? []} />
+    <FeaturedArticles articles={featuredDomainArticles} />
+    <ArticleList title="Other articles" articles={nonFeaturedDomainArticles} />
     <CustomFooter/>
     </>
   );

@@ -5,7 +5,7 @@ import Banner from "@/components/Banner";
 import calculateTimeDifference, { formatDate } from "@/scripts/timeDifference";
 import CustomFooter from "@/components/CustomFooter";
 import { getArticleBySlug } from "@/app/lib/queries";
-import {formatArticle, formatAuthor} from "@/scripts/objectParser";
+import {formatArticle} from "@/scripts/objectParser";
 import ArticleDataLayer from "@/components/ArticleDataLayer";
 
 interface PageProps {
@@ -31,7 +31,7 @@ export default async function ArticlePage({ params }: PageProps) {
     return notFound();
   }
   const article = formatArticle(articleData)
-  const author = article.author ? formatAuthor(article.author) : null;
+  const author = article.author;
 
   //I wanted to return all the divs but apparently that is not possible and AI suggested to use a "fragment"
   //or basically the <> </> tags.

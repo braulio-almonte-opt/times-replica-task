@@ -5,6 +5,7 @@ import ArticleList from "@/components/ArticleList";
 import CustomFooter from "@/components/CustomFooter";
 import { getArticlesByCategory, getCategoryBySlug } from "@/app/lib/queries";
 import noArticles from "@/app/no-articles";
+import { formatArticle } from "@/scripts/objectParser";
 
 //This and the home page could have been transformed into components, but again, I'm running out of time...
 
@@ -45,7 +46,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
     return notFound();
   }
 
-  const pageArticles = articlePage.articles;
+  const pageArticles = articlePage.articles.map(formatArticle);
 
   return (
     <>
