@@ -43,32 +43,14 @@ export interface ArticleResponse{
     };
 }
 
-// export interface SingleArticleResponse{
-//     all_article:{
-//         items: Article[];
-//     };
-// }
-
 export interface AuthorResponse{
     all_author:{
         items: Author[];
     }
 }
 
-// export interface SingleAuthorResponse{
-//     all_author:{
-//         items:Author[];
-//     }
-// }
-
 export interface CategoryResponse{
     all_category:{
         items:Category[];
     }
 }
-
-// export interface SingleCategoryResponse{
-//     all_category:{
-//         items:[Category];
-//     }
-// }
