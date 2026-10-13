@@ -4,6 +4,7 @@ import Banner from "@/components/Banner";
 import ArticleList from "@/components/ArticleList";
 import CustomFooter from "@/components/CustomFooter";
 import { getArticlesByCategory, getCategoryBySlug } from "@/app/lib/queries";
+import noArticles from "@/app/no-articles";
 
 //This and the home page could have been transformed into components, but again, I'm running out of time...
 
@@ -36,7 +37,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
   ]);
 
   if (!pageArticles?.length) {
-    return notFound();
+    return noArticles();
   }
 
   const hasNextPage = Boolean(nextPageArticles?.length);
