@@ -31,13 +31,7 @@ export default async function ArticlePage({ params }: PageProps) {
     return notFound();
   }
   const article = formatArticle(articleData)
-
-  // const author = authors.find((author) => author.slug === article.authorSlug);
-  if (!article.author) {
-    return notFound();
-  }
-
-  const author = formatAuthor(article.author);
+  const author = article.author ? formatAuthor(article.author) : null;
 
   //I wanted to return all the divs but apparently that is not possible and AI suggested to use a "fragment"
   //or basically the <> </> tags.
@@ -48,7 +42,7 @@ export default async function ArticlePage({ params }: PageProps) {
       title={article.title}
       slug={article.slug}
       category={article.category?.title ?? "Uncategorized"}
-      author={article.author.title}
+      author={author?.title ?? "Anonymous"}
       publishedDate={article.publishedAt}>
       </ArticleDataLayer>
       <Banner />
@@ -56,9 +50,13 @@ export default async function ArticlePage({ params }: PageProps) {
         <h2 className="text-3xl font-bold mb-4">{article.title}</h2>
         <h3 className="text-xl font-semibold mb-2">
           Written by:{" "}
-          <Link href={`/author/${author.slug}`} className="text-blue-500 hover:underline">
-            {author.title}
-          </Link>
+          {author ? (
+            <Link href={`/author/${author.slug}`} className="text-blue-500 hover:underline">
+              {author.title}
+            </Link>
+          ) : (
+            "Anonymous"
+          )}
         </h3>
         <p className="text-lg mb-4">{article.description}</p>
         <div className="w-full h-64 relative mb-4">
