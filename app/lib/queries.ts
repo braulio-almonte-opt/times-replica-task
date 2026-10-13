@@ -35,6 +35,22 @@ const authorProfileImageRequestString = `profileimageConnection {
         }
       }`
 
+function sortArticlesByPublishedAt(articles: Article[]): Article[] {
+  return [...articles].sort((firstArticle, secondArticle) => {
+    const firstTimestamp = Date.parse(firstArticle.publishedat);
+    const secondTimestamp = Date.parse(secondArticle.publishedat);
+
+    if (!Number.isFinite(firstTimestamp)) {
+      return Number.isFinite(secondTimestamp) ? 1 : 0;
+    }
+    if (!Number.isFinite(secondTimestamp)) {
+      return -1;
+    }
+
+    return secondTimestamp - firstTimestamp;
+  });
+}
+
 // Fetch single article typed
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
   const query = `
@@ -74,8 +90,8 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
 
 // Get articles by category for category pagination
 export async function getArticlesByCategory(category: string, skippedArticles: number, limitArticles: number): Promise<Article[] | null>{
-  const query = `query getArticlesByCategory {
-  all_article(where: {category: {category: {title: "${category}"}}},skip:${skippedArticles}, limit:${limitArticles}) {
+  const query = `query getArticlesByCategory($category: String!, $skippedArticles: Int!, $limitArticles: Int!) {
+  all_article(where: {category: {category: {title: $category}}}, skip:$skippedArticles, limit:$limitArticles) {
     items {
       title
       slug
@@ -89,7 +105,7 @@ export async function getArticlesByCategory(category: string, skippedArticles: n
 }`
   const data = await fetchGraphQL<ArticleResponse>({
     query,
-    variables:{category},
+    variables:{category, skippedArticles, limitArticles},
   });
 
   return data.all_article.items ?? null;
@@ -121,8 +137,9 @@ export async function getArticlesByAuthor(author:string): Promise<Article[] | nu
 
 // Get featured articles for home page
 export async function getFeaturedArticles(featured: boolean): Promise<Article[] | null>{
-  const query = `query getFeaturedArticles {
-  all_article(where: {featured: ${featured}}) {
+  const limit = featured ? 3:0; //This is my favorite line. Easy solution to not split featured and non-featured into separate functions :D
+  const query = `query getFeaturedArticles ($featured: Boolean!, $limit: Int!) {
+  all_article(where: {featured: $featured}, limit: $limit) {
     items {
       content
       description
@@ -139,10 +156,12 @@ export async function getFeaturedArticles(featured: boolean): Promise<Article[] 
 
   const data = await fetchGraphQL<ArticleResponse>({
     query,
-    variables:{featured},
+    variables:{featured, limit},
   });
 
-  return data.all_article.items ?? null;
+  return data.all_article.items
+    ? sortArticlesByPublishedAt(data.all_article.items)
+    : null;
 }
 
 // Get all authors for footer
@@ -166,8 +185,8 @@ export async function getAllAuthors(): Promise<Author[] | null>{
 // Get single author for their profile page
 export async function getAuthorBySlug(slug: string): Promise<Author | null>{
   const query = `
-  query getAuthorBySlug {
-  all_author(where: {slug: "${slug}"}) {
+  query getAuthorBySlug ($slug: String!) {
+  all_author(where: {slug: $slug}) {
     items {
       bio
       slug
