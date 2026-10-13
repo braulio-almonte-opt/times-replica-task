@@ -2,12 +2,9 @@ import {
   Article, 
   Author, 
   Category,
-  AllArticlesResponse,
-  SingleArticleResponse, 
-  AllAuthorResponse,
-  SingleAuthorResponse,
-  AllCategoryResponse,
-  SingleCategoryResponse} from "../types/cmsTypes";
+  ArticleResponse,
+  AuthorResponse,
+  CategoryResponse} from "../types/cmsTypes";
 import { fetchGraphQL } from "./cs_data";
 
 const imageRequestString = `imageConnection {
@@ -67,7 +64,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
     }
   `;
 
-  const data = await fetchGraphQL<SingleArticleResponse>({
+  const data = await fetchGraphQL<ArticleResponse>({
     query,
     variables: { slug },
   });
@@ -90,7 +87,7 @@ export async function getArticlesByCategory(category: string, skippedArticles: n
     }
   }
 }`
-  const data = await fetchGraphQL<AllArticlesResponse>({
+  const data = await fetchGraphQL<ArticleResponse>({
     query,
     variables:{category},
   });
@@ -114,7 +111,7 @@ export async function getArticlesByAuthor(author:string): Promise<Article[] | nu
   }
 }
   `
-  const data = await fetchGraphQL<AllArticlesResponse>({
+  const data = await fetchGraphQL<ArticleResponse>({
     query,
     variables:{author},
   });
@@ -140,7 +137,7 @@ export async function getFeaturedArticles(featured: boolean): Promise<Article[] 
 
  `
 
-  const data = await fetchGraphQL<AllArticlesResponse>({
+  const data = await fetchGraphQL<ArticleResponse>({
     query,
     variables:{featured},
   });
@@ -162,7 +159,7 @@ export async function getAllAuthors(): Promise<Author[] | null>{
   }
 }
   `
-  const data = await fetchGraphQL<AllAuthorResponse>({ query });
+  const data = await fetchGraphQL<AuthorResponse>({ query });
   return data.all_author.items ?? null;
 }
 
@@ -181,7 +178,7 @@ export async function getAuthorBySlug(slug: string): Promise<Author | null>{
 }
 
   `
-  const data = await fetchGraphQL<SingleAuthorResponse>({
+  const data = await fetchGraphQL<AuthorResponse>({
     query,
     variables: {slug}
 });
@@ -201,7 +198,7 @@ export async function getAllCategories():Promise<Category[] | null>{
 }
   `
 
-  const data = await fetchGraphQL<AllCategoryResponse>({ query });
+  const data = await fetchGraphQL<CategoryResponse>({ query });
 
   return data.all_category.items ?? null;
 }
@@ -218,7 +215,7 @@ export async function getCategoryBySlug(slug: string): Promise<Category | null>{
   }
 }
 `
-  const data = await fetchGraphQL<SingleCategoryResponse>({
+  const data = await fetchGraphQL<CategoryResponse>({
     query,
     variables: {slug}
   })

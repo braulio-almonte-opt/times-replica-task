@@ -37,38 +37,38 @@ export interface Article{
     categoryConnection?: ConnectionNode<Category>;
 }
 
-export interface AllArticlesResponse{
+export interface ArticleResponse{
     all_article: {
         items: Article[];
     };
 }
 
-export interface SingleArticleResponse{
-    all_article:{
-        items: Article[];
-    };
-}
+// export interface SingleArticleResponse{
+//     all_article:{
+//         items: Article[];
+//     };
+// }
 
-export interface AllAuthorResponse{
+export interface AuthorResponse{
     all_author:{
         items: Author[];
     }
 }
 
-export interface SingleAuthorResponse{
-    all_author:{
-        items:[Author];
-    }
-}
+// export interface SingleAuthorResponse{
+//     all_author:{
+//         items:Author[];
+//     }
+// }
 
-export interface AllCategoryResponse{
+export interface CategoryResponse{
     all_category:{
         items:Category[];
     }
 }
 
-export interface SingleCategoryResponse{
-    all_category:{
-        items:[Category];
-    }
-}
+// export interface SingleCategoryResponse{
+//     all_category:{
+//         items:[Category];
+//     }
+// }
