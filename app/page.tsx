@@ -2,7 +2,10 @@ import Banner from "../components/Banner";
 import CustomFooter from "@/components/CustomFooter";
 import FeaturedArticles from "@/components/FeaturedArticles";
 import ArticleList from "@/components/ArticleList";
-import { getFeaturedArticles } from "./lib/queries";
+import {
+  getFeaturedArticles,
+  sortArticlesByPublishedAt,
+} from "./lib/queries";
 import { formatArticle } from "@/scripts/objectParser";
 
 export default async function Home() {
@@ -11,8 +14,15 @@ export default async function Home() {
     getFeaturedArticles(true),
     getFeaturedArticles(false)
   ]);
-  const featuredDomainArticles = (featuredArticles ?? []).map(formatArticle);
-  const nonFeaturedDomainArticles = (nonFeaturedArticles ?? []).map(formatArticle);
+  const allFeaturedArticles = featuredArticles ?? [];
+  const featuredDomainArticles = allFeaturedArticles
+    .slice(0, 3)
+    .map(formatArticle);
+  const otherArticles = sortArticlesByPublishedAt([
+    ...(nonFeaturedArticles ?? []),
+    ...allFeaturedArticles.slice(3),
+  ]);
+  const nonFeaturedDomainArticles = otherArticles.map(formatArticle);
 
   return (
     <>

@@ -36,7 +36,7 @@ const authorProfileImageRequestString = `profileimageConnection {
         }
       }`
 
-function sortArticlesByPublishedAt(articles: Article[]): Article[] {
+export function sortArticlesByPublishedAt(articles: Article[]): Article[] {
   return [...articles].sort((firstArticle, secondArticle) => {
     const firstTimestamp = Date.parse(firstArticle.publishedat);
     const secondTimestamp = Date.parse(secondArticle.publishedat);
@@ -148,7 +148,6 @@ export async function getArticlesByAuthor(authorSlug:string): Promise<Article[] 
 
 // Get featured articles for home page
 export async function getFeaturedArticles(featured: boolean): Promise<Article[] | null>{
-  const limit = featured ? 3:0; //This is my favorite line. Easy solution to not split featured and non-featured into separate functions :D
   const query = `query getFeaturedArticles ($featured: Boolean!, $limit: Int!) {
   all_article(where: {featured: $featured}, limit: $limit) {
     items {
@@ -167,7 +166,7 @@ export async function getFeaturedArticles(featured: boolean): Promise<Article[] 
 
   const data = await fetchGraphQL<ArticleResponse>({
     query,
-    variables:{featured, limit},
+    variables:{featured, limit: 0},
     revalidate: 300,
     tags: ['contentstack:articles'],
   });
