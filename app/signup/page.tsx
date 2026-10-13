@@ -12,8 +12,8 @@ export default function SignupPage() {
             <Image
               src="/images/time_logo.png"
               alt="TIME Logo"
-              width={100}
-              height={100}
+              width={200}
+              height={200}
             />
           </Link>
         </div>
