@@ -10,6 +10,33 @@ import {
   SingleCategoryResponse} from "../types/cmsTypes";
 import { fetchGraphQL } from "./cs_data";
 
+const imageRequestString = `imageConnection {
+            edges {
+              node {
+                url
+              }
+            }
+          }`
+
+const authorRequestString = `authorConnection {
+            edges {
+              node {
+                ... on Author {
+                  title
+                  bio
+                  slug
+                }
+              }
+            }
+          }`
+
+const authorProfileImageRequestString = `profileimageConnection {
+        edges {
+          node {
+            url
+          }
+        }
+      }`
 
 // Fetch single article typed
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
@@ -23,24 +50,8 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
           content
           publishedat
           featured
-          imageConnection {
-            edges {
-              node {
-                url
-              }
-            }
-          }
-          authorConnection {
-            edges {
-              node {
-                ... on Author {
-                  title
-                  bio
-                  slug
-                }
-              }
-            }
-          }
+          ${imageRequestString}
+          ${authorRequestString}
           categoryConnection {
             edges {
               node {
@@ -75,13 +86,7 @@ export async function getArticlesByCategory(category: string, skippedArticles: n
       description
       content
       featured
-      imageConnection {
-        edges {
-          node {
-            url
-          }
-        }
-      }
+      ${imageRequestString}
     }
   }
 }`
@@ -128,13 +133,7 @@ export async function getFeaturedArticles(featured: boolean): Promise<Article[] 
       publishedat
       slug
       title
-      imageConnection {
-        edges {
-          node {
-            url
-          }
-        }
-      }
+      ${imageRequestString}
     }
   }
 }
@@ -158,13 +157,7 @@ export async function getAllAuthors(): Promise<Author[] | null>{
       bio
       slug
       title
-      profileimageConnection {
-        edges {
-          node {
-            url
-          }
-        }
-      }
+      ${authorProfileImageRequestString}
     }
   }
 }
@@ -182,13 +175,7 @@ export async function getAuthorBySlug(slug: string): Promise<Author | null>{
       bio
       slug
       title
-      profileimageConnection {
-        edges {
-          node {
-            url
-          }
-        }
-      }
+      ${authorProfileImageRequestString}
     }
   }
 }
