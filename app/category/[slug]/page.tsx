@@ -32,7 +32,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
 
   const skippedArticles = (parsedPage - 1) * PAGE_SIZE;
   const articlePage = await getArticlesByCategory(
-    category.title,
+    category.slug,
     skippedArticles,
     PAGE_SIZE,
   );
