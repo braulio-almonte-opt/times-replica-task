@@ -30,6 +30,6 @@ export async function POST(request: Request): Promise<Response> {
     return Response.json({ error: 'Unauthorized.' }, { status: 401 });
   }
 
-  revalidateTag(CONTENTSTACK_CACHE_TAG, { expire: 0 });
+  revalidateTag(CONTENTSTACK_CACHE_TAG, 'max');
   return Response.json({ revalidated: true });
 }

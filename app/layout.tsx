@@ -26,7 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <GoogleTagManager gtmId={`${GTM_ID}`}/>
+      {GTM_ID ? <GoogleTagManager gtmId={GTM_ID} /> : null}
       <body className="min-h-full flex flex-col">
         <PageViewDataLayer />
         {children}
