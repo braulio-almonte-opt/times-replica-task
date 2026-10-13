@@ -17,7 +17,6 @@ const PAGE_SIZE = 5;
 
 export default async function CategoryPage({ params, searchParams }: PageProps) {
   const [{ slug }, { page: requestedPage }] = await Promise.all([params, searchParams]);
-  // const category = categories.find((category) => category.slug === slug);
 
   const category = await getCategoryBySlug(slug);
   if (!category) {
@@ -31,16 +30,22 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
   }
 
   const skippedArticles = (parsedPage - 1) * PAGE_SIZE;
-  const [pageArticles, nextPageArticles] = await Promise.all([
-    getArticlesByCategory(category.title, skippedArticles, PAGE_SIZE),
-    getArticlesByCategory(category.title, skippedArticles + PAGE_SIZE, 1),
-  ]);
+  const articlePage = await getArticlesByCategory(
+    category.title,
+    skippedArticles,
+    PAGE_SIZE,
+  );
 
-  if (!pageArticles?.length) {
+  if (!articlePage || articlePage.total === 0) {
     return noArticles();
   }
 
-  const hasNextPage = Boolean(nextPageArticles?.length);
+  const totalPages = Math.ceil(articlePage.total / PAGE_SIZE);
+  if (parsedPage > totalPages) {
+    return notFound();
+  }
+
+  const pageArticles = articlePage.articles;
 
   return (
     <>
@@ -63,8 +68,8 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
         ) : (
           <span className="text-gray-400">Previous</span>
         )}
-        <span aria-current="page">Page {parsedPage}</span>
-        {hasNextPage ? (
+        <span aria-current="page">Page {parsedPage} of {totalPages}</span>
+        {parsedPage < totalPages ? (
           <Link
             href={`/category/${category.slug}?page=${parsedPage + 1}`}
             className="text-blue-500 hover:underline"

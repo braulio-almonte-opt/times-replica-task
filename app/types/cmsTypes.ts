@@ -43,6 +43,13 @@ export interface ArticleResponse{
     };
 }
 
+export interface PaginatedArticleResponse {
+    all_article: {
+        total: number;
+        items: Article[];
+    };
+}
+
 export interface AuthorResponse{
     all_author:{
         items: Author[];

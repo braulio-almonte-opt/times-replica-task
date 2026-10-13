@@ -3,6 +3,7 @@ import {
   Author, 
   Category,
   ArticleResponse,
+  PaginatedArticleResponse,
   AuthorResponse,
   CategoryResponse} from "../types/cmsTypes";
 import { fetchGraphQL } from "./cs_data";
@@ -89,9 +90,10 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
 }
 
 // Get articles by category for category pagination
-export async function getArticlesByCategory(category: string, skippedArticles: number, limitArticles: number): Promise<Article[] | null>{
+export async function getArticlesByCategory(category: string, skippedArticles: number, limitArticles: number): Promise<{ articles: Article[]; total: number } | null>{
   const query = `query getArticlesByCategory($category: String!, $skippedArticles: Int!, $limitArticles: Int!) {
   all_article(where: {category: {category: {title: $category}}}, skip:$skippedArticles, limit:$limitArticles) {
+    total
     items {
       title
       slug
@@ -103,12 +105,15 @@ export async function getArticlesByCategory(category: string, skippedArticles: n
     }
   }
 }`
-  const data = await fetchGraphQL<ArticleResponse>({
+  const data = await fetchGraphQL<PaginatedArticleResponse>({
     query,
     variables:{category, skippedArticles, limitArticles},
   });
 
-  return data.all_article.items ?? null;
+  return {
+    articles: data.all_article.items,
+    total: data.all_article.total,
+  };
 }
 
 // Get articles by author (for author page)
