@@ -1,7 +1,7 @@
 const API_KEY = process.env.CONTENTSTACK_API_KEY ?? '';
 const ACCESS_TOKEN = process.env.CONTENTSTACK_ACCESS_TOKEN ?? '';
 const ENVIRONMENT = process.env.CONTENTSTACK_ENVIRONMENT ?? '';
-const BASE_ENDPOINT = process.env.CONTENTSTACK_EU_ENDPOINT ?? '';
+const BASE_ENDPOINT = process.env.CONTENTSTACK_GRAPHQL_ENDPOINT ?? '';
 const REQUEST_TIMEOUT_MS = 10_000;
 
 export const CONTENTSTACK_CACHE_TAG = 'contentstack:all';
