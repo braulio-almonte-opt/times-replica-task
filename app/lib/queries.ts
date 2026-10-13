@@ -121,10 +121,10 @@ export async function getArticlesByCategory(category: string, skippedArticles: n
 }
 
 // Get articles by author (for author page)
-export async function getArticlesByAuthor(author:string): Promise<Article[] | null>{
+export async function getArticlesByAuthor(authorSlug:string): Promise<Article[] | null>{
   const query = `
-  query getArticlesByAuthor {
-  all_article(where: {author: {author: {title: "${author}"}}}) {
+  query getArticlesByAuthor ($authorSlug : String!){
+  all_article(where: {author: {author: {slug: $authorSlug}}}) {
     items {
       title
       slug
@@ -138,7 +138,7 @@ export async function getArticlesByAuthor(author:string): Promise<Article[] | nu
   `
   const data = await fetchGraphQL<ArticleResponse>({
     query,
-    variables:{author},
+    variables:{authorSlug},
     revalidate: 300,
     tags: ['contentstack:articles'],
   });

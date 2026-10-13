@@ -22,7 +22,7 @@ export default async function AuthorPage({ params }:PageProps){
 
     const authorImage = author.profileImage;
 
-    const articleData = (await getArticlesByAuthor(author.title)) ?? [];
+    const articleData = (await getArticlesByAuthor(author.slug)) ?? [];
 
     //In this case I cannot send a 404 if the author has no articles
     //because they may be a newly hired author
