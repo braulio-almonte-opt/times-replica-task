@@ -6,8 +6,13 @@ import { getFeaturedArticles } from "./lib/queries";
 
 export default async function Home() {
 
-  const featuredArticles  = (await getFeaturedArticles(true)) ?? [];
-  const nonFeaturedArticles  = (await getFeaturedArticles(false)) ?? [];
+  // const featuredArticles  = (await getFeaturedArticles(true)) ?? [];
+  // const nonFeaturedArticles  = (await getFeaturedArticles(false)) ?? [];
+
+  const [featuredArticles, nonFeaturedArticles] = await Promise.all([
+    getFeaturedArticles(true),
+    getFeaturedArticles(false)
+  ]);
 
   return (
     <>
@@ -18,8 +23,8 @@ export default async function Home() {
     <div className="flex justify-center items-start">
       <p className="text-lg mt-2">Today&apos;s Headlines</p>
     </div>
-    <FeaturedArticles articles={featuredArticles} />
-    <ArticleList title="Other articles" articles={nonFeaturedArticles} />
+    <FeaturedArticles articles={featuredArticles?? []} />
+    <ArticleList title="Other articles" articles={nonFeaturedArticles ?? []} />
     <CustomFooter/>
     </>
   );
