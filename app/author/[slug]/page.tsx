@@ -13,7 +13,7 @@ interface PageProps{
 export default async function AuthorPage({ params }:PageProps){
     const { slug } = await params;
     const authorData = (await getAuthorBySlug(slug));
-    console.log(authorData)
+    
     if (!authorData) {
         return notFound();
     }
