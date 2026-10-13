@@ -4,8 +4,8 @@ import Banner from "@/components/Banner";
 import ArticleList from "@/components/ArticleList";
 import CustomFooter from "@/components/CustomFooter";
 import { getArticlesByCategory, getCategoryBySlug } from "@/app/lib/queries";
-import NoArticles from "@/components/NoCategoryArticles";
 import { formatArticle } from "@/scripts/objectParser";
+import NoArticles from "@/components/NoObjectArticles";
 
 //This and the home page could have been transformed into components, but again, I'm running out of time...
 
@@ -39,7 +39,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
 
   if (!articlePage || articlePage.total === 0) {
     return (
-      <NoArticles/>
+      <NoArticles title="No discoveries in this field." description="No articles from this categoy yet."/>
     );
   }
 
