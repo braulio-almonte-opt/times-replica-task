@@ -4,10 +4,13 @@ const ENVIRONMENT = process.env.CONTENTSTACK_ENVIRONMENT ?? '';
 const BASE_ENDPOINT = process.env.CONTENTSTACK_EU_ENDPOINT ?? '';
 const REQUEST_TIMEOUT_MS = 10_000;
 
+export const CONTENTSTACK_CACHE_TAG = 'contentstack:all';
+
 interface GraphQLRequestOptions {
   query: string;
   variables?: Record<string, unknown>;
-  revalidate?: number | false; // Next.js ISR revalidation time in seconds
+  revalidate: number | false;
+  tags: string[];
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -17,7 +20,8 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 export async function fetchGraphQL<T>({
   query,
   variables = {},
-  revalidate = 60, // Default cache: 60 seconds
+  revalidate,
+  tags,
 }: GraphQLRequestOptions): Promise<T> {
   if (!API_KEY || !ACCESS_TOKEN || !ENVIRONMENT || !BASE_ENDPOINT) {
     throw new Error('Missing Contentstack configuration');
@@ -33,12 +37,14 @@ export async function fetchGraphQL<T>({
         'Content-Type': 'application/json',
         access_token: ACCESS_TOKEN,
       },
+      cache: 'force-cache',
       body: JSON.stringify({
         query,
         variables,
       }),
       next: {
         revalidate,
+        tags: [CONTENTSTACK_CACHE_TAG, ...tags],
       },
       signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
     });

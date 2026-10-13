@@ -36,3 +36,22 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Contentstack caching and publishing
+
+Article requests are cached for up to five minutes. Author and category
+directory requests are cached for up to one hour. These time-based lifetimes
+are fallbacks in case a publish webhook is missed. All Contentstack requests
+also carry a shared cache tag so a publish event can expire CMS data across
+the site immediately.
+
+Set `CONTENTSTACK_WEBHOOK_SECRET` in the server environment. Configure a
+Contentstack webhook to send a `POST` request to
+`/api/contentstack/revalidate` with an `x-contentstack-webhook-secret` header
+whose value matches that secret. The endpoint returns `401` for an invalid
+secret and expires the Contentstack cache when authentication succeeds.
+
+The home page and CMS-backed footer are statically prerendered. Therefore, the
+Contentstack environment variables must be configured and Contentstack must be
+reachable during `next build`. A CMS failure intentionally fails the build
+instead of silently generating empty content.

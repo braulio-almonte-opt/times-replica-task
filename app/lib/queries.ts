@@ -84,6 +84,8 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
   const data = await fetchGraphQL<ArticleResponse>({
     query,
     variables: { slug },
+    revalidate: 300,
+    tags: ['contentstack:articles'],
   });
 
   return data.all_article.items[0] ?? null;
@@ -108,6 +110,8 @@ export async function getArticlesByCategory(category: string, skippedArticles: n
   const data = await fetchGraphQL<PaginatedArticleResponse>({
     query,
     variables:{category, skippedArticles, limitArticles},
+    revalidate: 300,
+    tags: ['contentstack:articles'],
   });
 
   return {
@@ -135,6 +139,8 @@ export async function getArticlesByAuthor(author:string): Promise<Article[] | nu
   const data = await fetchGraphQL<ArticleResponse>({
     query,
     variables:{author},
+    revalidate: 300,
+    tags: ['contentstack:articles'],
   });
 
   return data.all_article.items ?? null;
@@ -162,6 +168,8 @@ export async function getFeaturedArticles(featured: boolean): Promise<Article[] 
   const data = await fetchGraphQL<ArticleResponse>({
     query,
     variables:{featured, limit},
+    revalidate: 300,
+    tags: ['contentstack:articles'],
   });
 
   return data.all_article.items
@@ -183,7 +191,11 @@ export async function getAllAuthors(): Promise<Author[] | null>{
   }
 }
   `
-  const data = await fetchGraphQL<AuthorResponse>({ query });
+  const data = await fetchGraphQL<AuthorResponse>({
+    query,
+    revalidate: 3600,
+    tags: ['contentstack:authors'],
+  });
   return data.all_author.items ?? null;
 }
 
@@ -204,8 +216,10 @@ export async function getAuthorBySlug(slug: string): Promise<Author | null>{
   `
   const data = await fetchGraphQL<AuthorResponse>({
     query,
-    variables: {slug}
-});
+    variables: {slug},
+    revalidate: 3600,
+    tags: ['contentstack:authors'],
+  });
   return data.all_author.items[0] ?? null;
 }
 
@@ -222,7 +236,11 @@ export async function getAllCategories():Promise<Category[] | null>{
 }
   `
 
-  const data = await fetchGraphQL<CategoryResponse>({ query });
+  const data = await fetchGraphQL<CategoryResponse>({
+    query,
+    revalidate: 3600,
+    tags: ['contentstack:categories'],
+  });
 
   return data.all_category.items ?? null;
 }
@@ -241,7 +259,9 @@ export async function getCategoryBySlug(slug: string): Promise<Category | null>{
 `
   const data = await fetchGraphQL<CategoryResponse>({
     query,
-    variables: {slug}
+    variables: {slug},
+    revalidate: 3600,
+    tags: ['contentstack:categories'],
   })
 
   return data.all_category.items[0] ?? null;
