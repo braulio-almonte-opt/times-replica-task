@@ -6,9 +6,6 @@ import { getFeaturedArticles } from "./lib/queries";
 
 export default async function Home() {
 
-  // const featuredArticles  = (await getFeaturedArticles(true)) ?? [];
-  // const nonFeaturedArticles  = (await getFeaturedArticles(false)) ?? [];
-
   const [featuredArticles, nonFeaturedArticles] = await Promise.all([
     getFeaturedArticles(true),
     getFeaturedArticles(false)
