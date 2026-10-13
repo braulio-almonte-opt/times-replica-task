@@ -10,32 +10,6 @@ import {
   SingleCategoryResponse} from "../types/cmsTypes";
 import { fetchGraphQL } from "./cs_data";
 
-// Fetch all articles typed
-export async function getAllArticles(): Promise<Article[]> {
-  const query = `
-    query GetAllArticles {
-      all_article {
-        items {
-          title
-          slug
-          description
-          publishedat
-          featured
-          imageConnection {
-            edges {
-              node {
-                url
-              }
-            }
-          }
-        }
-      }
-    }
-  `;
-
-  const data = await fetchGraphQL<AllArticlesResponse>({ query });
-  return data.all_article.items;
-}
 
 // Fetch single article typed
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
@@ -263,10 +237,4 @@ export async function getCategoryBySlug(slug: string): Promise<Category | null>{
   })
 
   return data.all_category.items[0] ?? null;
-}
-
-export async function getPaginatedArticlesByCategory(slug:string, limitArticles: number, skipArticles: number): Promise<Category[] | null>{
-  const query =`
-  `
-  return null;
 }
