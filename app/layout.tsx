@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { GoogleTagManager } from "@next/third-parties/google";
+import PageViewDataLayer from "@/components/PageViewDataLayer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +27,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <GoogleTagManager gtmId={`${GTM_ID}`}/>
-      <body className="min-h-full flex flex-col">{children}
+      <body className="min-h-full flex flex-col">
+        <PageViewDataLayer />
+        {children}
       </body>
     </html>
   );

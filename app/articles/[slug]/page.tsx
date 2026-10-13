@@ -41,8 +41,9 @@ export default async function ArticlePage({ params }: PageProps) {
     <ArticleDataLayer 
       title={article.title}
       slug={article.slug}
-      category={article.category?.title ?? "Uncategorized"}
-      author={author?.title ?? "Anonymous"}
+      category={article.category?.title}
+      author={author?.title}
+      imageUrl={article.imageUrl}
       publishedDate={article.publishedAt}>
       </ArticleDataLayer>
       <Banner />
