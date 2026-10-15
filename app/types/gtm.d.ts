@@ -10,7 +10,7 @@ export interface DataLayerArticleViewEvent extends Record<string, unknown> {
   article_slug: string;
   category_name: string;
   author_name: string;
-  article_image_url: string;
+  article_image_url: string | null;
   published_date?: string;
 }
 

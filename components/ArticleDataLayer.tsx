@@ -33,8 +33,8 @@ export default function ArticleDataLayer({
       article_slug: slug,
       category_name: category?.trim() || 'Uncategorized',
       author_name: author?.trim() || 'Anonymous',
-      article_image_url: imageUrl || '/images/emptynews.jpg',
-      has_image : imageUrl ? true : false, //Hopefully this fulfills the purpose
+      article_image_url: imageUrl || null,
+      has_image : Boolean(imageUrl), //Hopefully this fulfills the purpose, note 2: changed to Boolean(imageUrl)
       published_date: publishedDate,
     });
   }, [title, slug, category, author, imageUrl, publishedDate]);
