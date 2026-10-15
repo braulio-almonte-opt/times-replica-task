@@ -1,5 +1,4 @@
 import Image from "next/image";
-
 //This was genuenly my idea but AI helped me to do it correctly as I knew that every card should be an indenpendent component.
 //Most likely I could also apply the same logic I did with the articles and so make a 
 //file in the data folder that contains the desired data for the ArticleCards.
