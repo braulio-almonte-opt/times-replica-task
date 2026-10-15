@@ -3,12 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import CustomFooter from "@/components/CustomFooter";
 
-interface NotFoundProps{
+interface NoArticlesProps{
     title: string,
     description: string
 }
 
-export default function NoArticles({title, description} : NotFoundProps){
+export default function NoArticles({title, description} : NoArticlesProps){
 
     return (
         <>

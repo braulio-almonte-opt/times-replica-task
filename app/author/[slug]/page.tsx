@@ -5,7 +5,6 @@ import CustomFooter from "@/components/CustomFooter";
 import ArticleList from "@/components/ArticleList";
 import { getArticlesByAuthor, getAuthorBySlug } from "@/app/lib/queries";
 import { formatArticle, formatAuthor } from "@/scripts/objectParser";
-import NoArticles from "@/components/NoObjectArticles";
 
 interface PageProps{
     params: Promise<{slug: string}>;
@@ -27,7 +26,6 @@ export default async function AuthorPage({ params }:PageProps){
 
     //In this case I cannot send a 404 if the author has no articles
     //because they may be a newly hired author
-
     
     const articles = articleData.map(formatArticle);
 

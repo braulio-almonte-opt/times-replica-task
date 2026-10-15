@@ -5,7 +5,7 @@ import ArticleList from "@/components/ArticleList";
 import CustomFooter from "@/components/CustomFooter";
 import { getArticlesByCategory, getCategoryBySlug } from "@/app/lib/queries";
 import { formatArticle } from "@/scripts/objectParser";
-import NoArticles from "@/components/NoObjectArticles";
+import NoArticles from "@/components/NoArticles";
 
 //This and the home page could have been transformed into components, but again, I'm running out of time...
 
