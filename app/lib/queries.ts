@@ -166,7 +166,7 @@ export async function getFeaturedArticles(featured: boolean): Promise<Article[] 
 
   const data = await fetchGraphQL<ArticleResponse>({
     query,
-    variables:{featured, limit: 0},
+    variables:{featured, limit: 100},
     revalidate: 300,
     tags: ['contentstack:articles'],
   });
