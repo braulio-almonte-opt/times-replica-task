@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import { GoogleTagManager } from "@next/third-parties/google";
 import PageViewDataLayer from "@/components/PageViewDataLayer";
@@ -28,7 +29,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       {GTM_ID ? <GoogleTagManager gtmId={GTM_ID} /> : null}
       <body className="min-h-full flex flex-col">
-        <PageViewDataLayer />
+        <Suspense fallback={null}>
+          <PageViewDataLayer />
+        </Suspense>
         {children}
       </body>
     </html>

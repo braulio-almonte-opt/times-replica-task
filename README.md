@@ -54,11 +54,14 @@ Article requests are cached for up to five minutes. Author and category
 directory requests are cached for up to one hour. These time-based lifetimes
 are fallbacks in case a publish webhook is missed. All Contentstack requests
 also carry a shared cache tag so a publish event refreshes CMS data across the
-site on the next request.
+site on the next request. The webhook uses stale-while-revalidate behavior:
+the first request after a successful webhook may receive stale cached content
+while Next.js fetches fresh data in the background. Later requests use the
+refreshed data.
 
-To enable immediate invalidation, set `CONTENTSTACK_WEBHOOK_SECRET` in the
+To enable on-demand revalidation, set `CONTENTSTACK_WEBHOOK_SECRET` in the
 server environment and configure a Contentstack webhook to send a `POST`
 request to `/api/contentstack/revalidate` with an
 `x-contentstack-webhook-secret` header whose value matches the secret. The
-endpoint returns `401` for an invalid secret and expires the Contentstack
-cache when authentication succeeds.
+endpoint returns `401` for an invalid secret and marks the Contentstack cache
+stale when authentication succeeds.

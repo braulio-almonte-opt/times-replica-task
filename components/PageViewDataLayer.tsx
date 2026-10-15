@@ -1,25 +1,28 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 import { pushToDataLayer } from '@/app/lib/gtm';
 
 export default function PageViewDataLayer() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const queryString = searchParams.toString();
+  const pagePath = queryString ? `${pathname}?${queryString}` : pathname;
   const lastTrackedPath = useRef<string | null>(null);
 
   useEffect(() => {
-    if (!pathname || lastTrackedPath.current === pathname) return;
+    if (!pagePath || lastTrackedPath.current === pagePath) return;
 
-    lastTrackedPath.current = pathname;
+    lastTrackedPath.current = pagePath;
     const pageTitle = document.title.trim() || 'Untitled page';
 
     pushToDataLayer({
       event: 'page_view',
-      page_path: pathname,
+      page_path: pagePath,
       page_title: pageTitle,
     });
-  }, [pathname]);
+  }, [pagePath]);
 
   return null;
 }
