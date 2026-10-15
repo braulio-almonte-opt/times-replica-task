@@ -6,6 +6,13 @@ const REQUEST_TIMEOUT_MS = 10_000;
 
 export const CONTENTSTACK_CACHE_TAG = 'contentstack:all';
 
+export class ContentstackRequestError extends Error {
+  constructor(message: string, options?: ErrorOptions) {
+    super(message, options);
+    this.name = 'ContentstackRequestError';
+  }
+}
+
 interface GraphQLRequestOptions {
   query: string;
   variables?: Record<string, unknown>;
@@ -24,7 +31,7 @@ export async function fetchGraphQL<T>({
   tags,
 }: GraphQLRequestOptions): Promise<T> {
   if (!API_KEY || !ACCESS_TOKEN || !ENVIRONMENT || !BASE_ENDPOINT) {
-    throw new Error('Missing Contentstack configuration');
+    throw new ContentstackRequestError('Missing Contentstack configuration');
   }
 
   const endpoint = `${BASE_ENDPOINT}/${API_KEY}?environment=${ENVIRONMENT}`;
@@ -50,18 +57,18 @@ export async function fetchGraphQL<T>({
     });
   } catch (error) {
     if (error instanceof Error && error.name === 'TimeoutError') {
-      throw new Error(
+      throw new ContentstackRequestError(
         `Contentstack request timed out after ${REQUEST_TIMEOUT_MS / 1000} seconds`,
         { cause: error },
       );
     }
-    throw new Error('Unable to reach the Contentstack GraphQL API', {
+    throw new ContentstackRequestError('Unable to reach the Contentstack GraphQL API', {
       cause: error,
     });
   }
 
   if (!response.ok) {
-    throw new Error(
+    throw new ContentstackRequestError(
       `Contentstack GraphQL request failed with HTTP ${response.status}`,
     );
   }
@@ -70,23 +77,23 @@ export async function fetchGraphQL<T>({
   try {
     payload = await response.json();
   } catch (error) {
-    throw new Error(
+    throw new ContentstackRequestError(
       `Contentstack GraphQL returned invalid JSON (HTTP ${response.status})`,
       { cause: error },
     );
   }
 
   if (!isRecord(payload)) {
-    throw new Error('Contentstack GraphQL returned an invalid response');
+    throw new ContentstackRequestError('Contentstack GraphQL returned an invalid response');
   }
 
   if (Array.isArray(payload.errors) && payload.errors.length > 0) {
     console.error('Contentstack GraphQL Errors:', payload.errors);
-    throw new Error('Failed to fetch data from Contentstack GraphQL API');
+    throw new ContentstackRequestError('Failed to fetch data from Contentstack GraphQL API');
   }
 
   if (!('data' in payload) || payload.data === null) {
-    throw new Error('Contentstack GraphQL response did not contain data');
+    throw new ContentstackRequestError('Contentstack GraphQL response did not contain data');
   }
 
   return payload.data as T;

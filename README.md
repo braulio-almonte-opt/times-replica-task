@@ -43,9 +43,10 @@ A news site built with Next.js and Contentstack.
    ```
 
    The home page and CMS-backed footer are statically prerendered, so the
-   required Contentstack settings must be present and the CMS reachable during
-   `npm run build`. A failed CMS request fails the build rather than generating
-   an empty page.
+   required Contentstack settings should be present and the CMS reachable
+   during `npm run build` so the build can include current content. If
+   Contentstack is unavailable, the build can still render the explicit
+   temporary-outage message; the home page is revalidated after five minutes.
 
 ## Contentstack caching and publishing
 

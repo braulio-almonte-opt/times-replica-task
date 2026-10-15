@@ -5,6 +5,8 @@ import Banner from "@/components/Banner";
 import calculateTimeDifference, { formatDate } from "@/scripts/timeDifference";
 import CustomFooter from "@/components/CustomFooter";
 import { getArticleBySlug } from "@/app/lib/queries";
+import { ContentstackRequestError } from "@/app/lib/cs_data";
+import ContentstackUnavailable from "@/components/ContentstackUnavailable";
 import {formatArticle} from "@/scripts/objectParser";
 import ArticleDataLayer from "@/components/ArticleDataLayer";
 
@@ -25,7 +27,16 @@ export default async function ArticlePage({ params }: PageProps) {
   //Now that I understand the concepts I can just replicate everything with the other
   //components/pages
 
-  const articleData = await (getArticleBySlug(slug));
+  let articleData: Awaited<ReturnType<typeof getArticleBySlug>> = null;
+  let cmsUnavailable = false;
+  try {
+    articleData = await getArticleBySlug(slug);
+  } catch (error) {
+    if (!(error instanceof ContentstackRequestError)) throw error;
+    console.error(`Unable to load article "${slug}" because Contentstack is unavailable:`, error);
+    cmsUnavailable = true;
+  }
+  if (cmsUnavailable) return <ContentstackUnavailable />;
 
   if (!articleData) {
     return notFound();

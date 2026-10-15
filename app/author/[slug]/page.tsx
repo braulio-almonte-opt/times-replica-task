@@ -4,6 +4,8 @@ import Banner from "@/components/Banner";
 import CustomFooter from "@/components/CustomFooter";
 import ArticleList from "@/components/ArticleList";
 import { getArticlesByAuthor, getAuthorBySlug } from "@/app/lib/queries";
+import { ContentstackRequestError } from "@/app/lib/cs_data";
+import ContentstackUnavailable from "@/components/ContentstackUnavailable";
 import { formatArticle, formatAuthor } from "@/scripts/objectParser";
 
 interface PageProps{
@@ -12,7 +14,20 @@ interface PageProps{
 
 export default async function AuthorPage({ params }:PageProps){
     const { slug } = await params;
-    const authorData = (await getAuthorBySlug(slug));
+    let authorData: Awaited<ReturnType<typeof getAuthorBySlug>> = null;
+    let articleData: Awaited<ReturnType<typeof getArticlesByAuthor>> = null;
+    let cmsUnavailable = false;
+    try {
+        authorData = await getAuthorBySlug(slug);
+        if (authorData) {
+            articleData = await getArticlesByAuthor(authorData.slug);
+        }
+    } catch (error) {
+        if (!(error instanceof ContentstackRequestError)) throw error;
+        console.error(`Unable to load author "${slug}" because Contentstack is unavailable:`, error);
+        cmsUnavailable = true;
+    }
+    if (cmsUnavailable) return <ContentstackUnavailable />;
     
     if (!authorData) {
         return notFound();
@@ -22,12 +37,12 @@ export default async function AuthorPage({ params }:PageProps){
 
     const authorImage = author.profileImage;
 
-    const articleData = (await getArticlesByAuthor(author.slug)) ?? [];
+    const articlesFromCms = articleData ?? [];
 
     //In this case I cannot send a 404 if the author has no articles
     //because they may be a newly hired author
     
-    const articles = articleData.map(formatArticle);
+    const articles = articlesFromCms.map(formatArticle);
 
     return (
         <>

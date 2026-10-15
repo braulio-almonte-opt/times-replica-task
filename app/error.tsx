@@ -14,8 +14,8 @@ export default function ErrorPage({ error, retry }: ErrorPageProps) {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-4 p-6 text-center">
-      <h1 className="text-2xl font-bold">We couldn&apos;t load this page</h1>
-      <p>Please check your connection and try again in a moment.</p>
+      <h1 className="text-2xl font-bold">Our news service is temporarily unavailable</h1>
+      <p>We couldn&apos;t retrieve this page right now. Please try again in a moment.</p>
       <button
         type="button"
         onClick={retry}
@@ -23,6 +23,15 @@ export default function ErrorPage({ error, retry }: ErrorPageProps) {
       >
         Try again
       </button>
+      <noscript>
+        <p>
+          JavaScript is disabled, so the retry button is unavailable.{" "}
+          <a href="" className="underline">
+            Reload this page
+          </a>{" "}
+          to try again.
+        </p>
+      </noscript>
     </main>
   );
 }

@@ -4,10 +4,10 @@ import Banner from "@/components/Banner";
 import ArticleList from "@/components/ArticleList";
 import CustomFooter from "@/components/CustomFooter";
 import { getArticlesByCategory, getCategoryBySlug } from "@/app/lib/queries";
+import { ContentstackRequestError } from "@/app/lib/cs_data";
+import ContentstackUnavailable from "@/components/ContentstackUnavailable";
 import { formatArticle } from "@/scripts/objectParser";
 import NoArticles from "@/components/NoArticles";
-
-//This and the home page could have been transformed into components, but again, I'm running out of time...
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -19,7 +19,17 @@ const PAGE_SIZE = 5;
 export default async function CategoryPage({ params, searchParams }: PageProps) {
   const [{ slug }, { page: requestedPage }] = await Promise.all([params, searchParams]);
 
-  const category = await getCategoryBySlug(slug);
+  let category: Awaited<ReturnType<typeof getCategoryBySlug>> = null;
+  let cmsUnavailable = false;
+  try {
+    category = await getCategoryBySlug(slug);
+  } catch (error) {
+    if (!(error instanceof ContentstackRequestError)) throw error;
+    console.error(`Unable to load category "${slug}" because Contentstack is unavailable:`, error);
+    cmsUnavailable = true;
+  }
+  if (cmsUnavailable) return <ContentstackUnavailable />;
+
   if (!category) {
     return notFound();
   }
@@ -31,11 +41,19 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
   }
 
   const skippedArticles = (parsedPage - 1) * PAGE_SIZE;
-  const articlePage = await getArticlesByCategory(
-    category.slug,
-    skippedArticles,
-    PAGE_SIZE,
-  );
+  let articlePage: Awaited<ReturnType<typeof getArticlesByCategory>> = null;
+  try {
+    articlePage = await getArticlesByCategory(
+      category.slug,
+      skippedArticles,
+      PAGE_SIZE,
+    );
+  } catch (error) {
+    if (!(error instanceof ContentstackRequestError)) throw error;
+    console.error(`Unable to load category "${slug}" articles because Contentstack is unavailable:`, error);
+    cmsUnavailable = true;
+  }
+  if (cmsUnavailable) return <ContentstackUnavailable />;
 
   if (!articlePage || articlePage.total === 0) {
     return (
