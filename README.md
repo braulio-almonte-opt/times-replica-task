@@ -52,8 +52,8 @@ A news site built with Next.js and Contentstack.
 Article requests are cached for up to five minutes. Author and category
 directory requests are cached for up to one hour. These time-based lifetimes
 are fallbacks in case a publish webhook is missed. All Contentstack requests
-also carry a shared cache tag so a publish event can expire CMS data across
-the site immediately.
+also carry a shared cache tag so a publish event refreshes CMS data across the
+site on the next request.
 
 To enable immediate invalidation, set `CONTENTSTACK_WEBHOOK_SECRET` in the
 server environment and configure a Contentstack webhook to send a `POST`
