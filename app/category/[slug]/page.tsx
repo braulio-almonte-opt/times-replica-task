@@ -39,7 +39,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
 
   if (!articlePage || articlePage.total === 0) {
     return (
-      <NoArticles title="No discoveries in this field." description="No articles from this categoy yet."/>
+      <NoArticles title="No discoveries in this field." description="No articles from this category yet."/>
     );
   }
 
