@@ -44,49 +44,74 @@ export default async function ArticlePage({ params }: PageProps) {
   const article = formatArticle(articleData)
   const author = article.author;
 
-  //I wanted to return all the divs but apparently that is not possible and AI suggested to use a "fragment"
-  //or basically the <> </> tags.
-  //Side note, I could just wrap everything on a div that takes the whole page, but I'm running out of time...
   return (
-    <>
-    <ArticleDataLayer 
-      title={article.title}
-      slug={article.slug}
-      category={article.category?.title}
-      author={author?.title}
-      imageUrl={article.imageUrl}
-      publishedDate={article.publishedAt}>
-      </ArticleDataLayer>
+    <div className="flex min-h-screen flex-col bg-stone-100 text-neutral-950">
+      <ArticleDataLayer
+        title={article.title}
+        slug={article.slug}
+        category={article.category?.title}
+        author={author?.title}
+        imageUrl={article.imageUrl}
+        publishedDate={article.publishedAt}
+      />
       <Banner />
-      <div className="flex flex-col justify-center items-center p-4">
-        <h2 className="text-3xl font-bold mb-4">{article.title}</h2>
-        <h3 className="text-xl font-semibold mb-2">
-          Written by:{" "}
-          {author ? (
-            <Link href={`/author/${author.slug}`} className="text-blue-500 hover:underline">
-              {author.title}
-            </Link>
-          ) : (
-            "Anonymous"
-          )}
-        </h3>
-        <p className="text-lg mb-4">{article.description}</p>
-        <div className="w-full h-64 relative mb-4">
-          <Image
-            src={article.imageUrl ?? "/images/emptynews.jpg"}
-            alt={article.title}
-            width={1200}
-            height={600}
-            className="w-full h-full object-cover"
-            loading="eager"
-          />
-        </div>
-        <p className="text-base">{article.content}</p>
-        <p className="text-sm text-gray-500 mt-4">
-          Published {calculateTimeDifference(article.publishedAt)} on {formatDate(article.publishedAt)}.
-        </p>
-      </div>
-      <CustomFooter/>
-    </>
+      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <article className="mx-auto max-w-5xl">
+          <header className="mb-7 border-b border-neutral-300 pb-5">
+            {article.category && (
+              <Link
+                href={`/category/${article.category.slug}`}
+                className="mb-3 inline-block text-xs font-bold uppercase tracking-[0.18em] text-red-700 hover:text-red-800 hover:underline"
+              >
+                {article.category.title}
+              </Link>
+            )}
+            <h1 className="font-serif text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+              {article.title}
+            </h1>
+            <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-neutral-600">
+              <span>
+                Written by{" "}
+                {author ? (
+                  <Link
+                    href={`/author/${author.slug}`}
+                    className="font-semibold text-neutral-950 hover:text-red-700 hover:underline"
+                  >
+                    {author.title}
+                  </Link>
+                ) : (
+                  <span className="font-semibold text-neutral-950">Anonymous</span>
+                )}
+              </span>
+              <span aria-hidden="true">·</span>
+              <time dateTime={article.publishedAt}>
+                Published {calculateTimeDifference(article.publishedAt)} on{" "}
+                {formatDate(article.publishedAt)}
+              </time>
+            </div>
+          </header>
+
+          <div className="flow-root">
+            <figure className="relative mb-5 aspect-[16/10] w-full overflow-hidden rounded-xl bg-neutral-200 md:float-left md:mb-4 md:mr-6 md:w-[38%]">
+              <Image
+                src={article.imageUrl ?? "/images/emptynews.jpg"}
+                alt={article.title}
+                fill
+                sizes="(max-width: 767px) 100vw, 38vw"
+                priority
+                className="object-cover"
+              />
+            </figure>
+            <p className="mb-5 text-lg font-medium leading-8 text-neutral-700 sm:text-xl sm:leading-9">
+              {article.description}
+            </p>
+            <div className="whitespace-pre-line font-serif text-base leading-8 text-neutral-900 sm:text-lg sm:leading-9">
+              {article.content}
+            </div>
+          </div>
+        </article>
+      </main>
+      <CustomFooter />
+    </div>
   );
 }
