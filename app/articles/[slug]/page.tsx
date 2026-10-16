@@ -92,7 +92,7 @@ export default async function ArticlePage({ params }: PageProps) {
           </header>
 
           <div className="flow-root">
-            <figure className="relative mb-5 aspect-[16/10] w-full overflow-hidden rounded-xl bg-neutral-200 md:float-left md:mb-4 md:mr-6 md:w-[38%]">
+            <figure className="relative mb-5 aspect-16/10 w-full overflow-hidden rounded-xl bg-neutral-200 md:float-left md:mb-4 md:mr-6 md:w-[38%]">
               <Image
                 src={article.imageUrl ?? "/images/emptynews.jpg"}
                 alt={article.title}
