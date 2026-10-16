@@ -53,8 +53,8 @@ export default function ArticleList({
             {title}
           </h2>
         )}
-        <div className="w-full rounded-xl border border-neutral-200 bg-white p-5 text-neutral-600">
-          No articles yet.
+        <div className="w-full rounded-xl border border-neutral-200 bg-white p-5 text-center text-neutral-600">
+          {isCategory ? "No articles in this category yet." : "No articles yet."}
         </div>
       </section>
     );

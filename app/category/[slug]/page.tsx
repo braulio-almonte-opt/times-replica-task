@@ -7,7 +7,6 @@ import { getArticlesByCategory, getCategoryBySlug } from "@/app/lib/queries";
 import { ContentstackRequestError } from "@/app/lib/cs_data";
 import ContentstackUnavailable from "@/components/ContentstackUnavailable";
 import { formatArticle } from "@/scripts/objectParser";
-import NoArticles from "@/components/NoArticles";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -55,18 +54,13 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
   }
   if (cmsUnavailable) return <ContentstackUnavailable />;
 
-  if (!articlePage || articlePage.total === 0) {
-    return (
-      <NoArticles title="No discoveries in this field." description="No articles from this category yet."/>
-    );
-  }
-
-  const totalPages = Math.ceil(articlePage.total / PAGE_SIZE);
-  if (parsedPage > totalPages) {
+  const totalArticles = articlePage?.total ?? 0;
+  const totalPages = Math.ceil(totalArticles / PAGE_SIZE);
+  if (totalPages > 0 && parsedPage > totalPages) {
     return notFound();
   }
 
-  const pageArticles = articlePage.articles.map(formatArticle);
+  const pageArticles = (articlePage?.articles ?? []).map(formatArticle);
 
   return (
     <div className="flex min-h-screen flex-col bg-stone-100 text-neutral-950">
@@ -77,41 +71,43 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
           articles={pageArticles}
           variant="category"
         />
-      <nav
-        aria-label="Category article pages"
-        className="mx-auto flex w-full max-w-5xl items-center justify-center gap-5 px-4 pb-10 sm:px-6"
-      >
-        {parsedPage > 1 ? (
-          <Link
-            href={`/category/${category.slug}?page=${parsedPage - 1}`}
-            className="rounded-full border border-neutral-300 px-5 py-2 font-semibold text-neutral-800 transition-colors hover:border-neutral-950 hover:bg-neutral-950 hover:text-white"
+        {totalPages > 0 && (
+          <nav
+            aria-label="Category article pages"
+            className="mx-auto flex w-full max-w-5xl items-center justify-center gap-5 px-4 pb-10 sm:px-6"
           >
-            Previous
-          </Link>
-        ) : (
-          <span className="cursor-not-allowed rounded-full border border-neutral-200 px-5 py-2 font-semibold text-neutral-400">
-            Previous
-          </span>
+            {parsedPage > 1 ? (
+              <Link
+                href={`/category/${category.slug}?page=${parsedPage - 1}`}
+                className="rounded-full border border-neutral-300 px-5 py-2 font-semibold text-neutral-800 transition-colors hover:border-neutral-950 hover:bg-neutral-950 hover:text-white"
+              >
+                Previous
+              </Link>
+            ) : (
+              <span className="cursor-not-allowed rounded-full border border-neutral-200 px-5 py-2 font-semibold text-neutral-400">
+                Previous
+              </span>
+            )}
+            <span
+              aria-current="page"
+              className="whitespace-nowrap font-medium text-neutral-700"
+            >
+              Page {parsedPage} of {totalPages}
+            </span>
+            {parsedPage < totalPages ? (
+              <Link
+                href={`/category/${category.slug}?page=${parsedPage + 1}`}
+                className="rounded-full border border-neutral-300 px-5 py-2 font-semibold text-neutral-800 transition-colors hover:border-neutral-950 hover:bg-neutral-950 hover:text-white"
+              >
+                Next
+              </Link>
+            ) : (
+              <span className="cursor-not-allowed rounded-full border border-neutral-200 px-5 py-2 font-semibold text-neutral-400">
+                Next
+              </span>
+            )}
+          </nav>
         )}
-        <span
-          aria-current="page"
-          className="whitespace-nowrap font-medium text-neutral-700"
-        >
-          Page {parsedPage} of {totalPages}
-        </span>
-        {parsedPage < totalPages ? (
-          <Link
-            href={`/category/${category.slug}?page=${parsedPage + 1}`}
-            className="rounded-full border border-neutral-300 px-5 py-2 font-semibold text-neutral-800 transition-colors hover:border-neutral-950 hover:bg-neutral-950 hover:text-white"
-          >
-            Next
-          </Link>
-        ) : (
-          <span className="cursor-not-allowed rounded-full border border-neutral-200 px-5 py-2 font-semibold text-neutral-400">
-            Next
-          </span>
-        )}
-      </nav>
       </main>
       <CustomFooter />
     </div>
