@@ -1,38 +1,112 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Article } from "@/app/types/domainTypes";
 
 interface ArticleListProps {
   articles: readonly Article[];
   title: string;
+  variant?: "default" | "home";
 }
 
-export default function ArticleList({ articles, title }: ArticleListProps) {
+export default function ArticleList({
+  articles,
+  title,
+  variant = "default",
+}: ArticleListProps) {
+  const isHome = variant === "home";
 
   if (articles.length === 0) {
     return (
-      <section className="flex flex-col justify-center items-center p-4 bg-amber-gray-50">
-      <h2 className="text-xl font-bold mb-4">{title}</h2>
-      <div className="flex flex-1 bg-amber-50 p-4 rounded-lg shadow-lg">
-        <h2>No articles yet.</h2>
-      </div>
-    </section>
+      <section
+        aria-labelledby="article-list-heading"
+        className={isHome ? "mt-12" : "flex flex-col items-center p-4"}
+      >
+        <h2
+          id="article-list-heading"
+          className="mb-4 font-serif text-2xl font-bold"
+        >
+          {title}
+        </h2>
+        <div className="w-full rounded-xl border border-neutral-200 bg-white p-5 text-neutral-600">
+          No articles yet.
+        </div>
+      </section>
     );
   }
 
   return (
-    <section className="flex flex-col justify-center items-center p-4 bg-amber-gray-50">
-      <h2 className="text-xl font-bold mb-4">{title}</h2>
-      <div className="flex flex-1 bg-amber-50 p-4 rounded-lg shadow-lg">
-        <ul role="list">
+    <section
+      aria-labelledby="article-list-heading"
+      className={isHome ? "mt-12" : "flex flex-col items-center p-4"}
+    >
+      <div className="mb-4 flex w-full items-end justify-between border-b border-neutral-300 pb-3">
+        <h2
+          id="article-list-heading"
+          className="font-serif text-2xl font-bold"
+        >
+          {title}
+        </h2>
+        {isHome && (
+          <span className="hidden text-sm text-neutral-500 sm:block">
+            More from TIME
+          </span>
+        )}
+      </div>
+      <div
+        className={
+          isHome
+            ? "overflow-hidden rounded-xl border border-neutral-200 bg-white"
+            : "rounded-lg bg-amber-50 p-4 shadow-lg"
+        }
+      >
+        <ul role="list" className={isHome ? "divide-y divide-neutral-200" : ""}>
           {articles.map((article) => (
             <li
               key={article.slug}
-              className="flex py-4 text-blue-500 hover:underline first:pt-0 last:pb-0"
+              className={
+                isHome
+                  ? "group"
+                  : "flex py-4 text-blue-500 first:pt-0 last:pb-0 hover:underline"
+              }
             >
-              <Link href={`/articles/${article.slug}`}>
-                <div className="ml-3 overflow-hidden">
-                  <p className="text-sm font-medium text-gray-900">{article.title}</p>
-                  <p className="text-sm text-gray-500">{article.description}</p>
+              <Link
+                href={`/articles/${article.slug}`}
+                className={
+                  isHome
+                    ? "flex flex-col gap-4 p-4 transition-colors hover:bg-stone-50 focus-visible:bg-stone-50 focus-visible:outline-2 focus-visible:outline-red-700 sm:flex-row sm:items-center sm:gap-5 sm:px-5"
+                    : ""
+                }
+              >
+                {isHome && (
+                  <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-md bg-neutral-200 sm:aspect-square sm:w-28">
+                    <Image
+                      src={article.imageUrl ?? "/images/emptynews.jpg"}
+                      alt=""
+                      fill
+                      sizes="(max-width: 639px) 100vw, 112px"
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+                <div className={isHome ? "min-w-0 flex-1" : "ml-3 overflow-hidden"}>
+                  <p
+                    className={
+                      isHome
+                        ? "font-serif text-lg font-bold leading-snug text-neutral-950 group-hover:text-red-800"
+                        : "text-sm font-medium text-gray-900"
+                    }
+                  >
+                    {article.title}
+                  </p>
+                  <p
+                    className={
+                      isHome
+                        ? "mt-1 line-clamp-2 text-sm leading-6 text-neutral-600"
+                        : "text-sm text-gray-500"
+                    }
+                  >
+                    {article.description}
+                  </p>
                 </div>
               </Link>
             </li>

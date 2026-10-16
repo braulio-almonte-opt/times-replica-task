@@ -3,23 +3,25 @@ import Link from "next/link";
 
 export default function Banner() {
   return (
-    <div className="flex justify-center items-center">
-      <div className="flex flex-1 justify-center pl-50">
-        <div className="flex justify-center items-center">
-          <div className="flex justify-center items-start">
-            <Link href="/" className="text-blue-500 hover:underline">
-                <Image src="/images/time_logo.png" alt="TIME Logo" width={200} height={200} />
-            </Link>
-          </div>
-        </div>
-      </div>
-      <div className="flex justify-end bg-yellow-950 shadow-lg/30 transition-colors duration-300 hover:bg-yellow-800 dark:text-white rounded-full p-2 m-2">
-        <button className="rounded-full">
-          <Link href="/signup" className="text-white font-semibold">
+    <header className="border-b border-neutral-200 bg-white">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+        <Link href="/" aria-label="TIME News home" className="shrink-0">
+          <Image
+            src="/images/time_logo.png"
+            alt="TIME"
+            width={160}
+            height={64}
+            priority
+            className="h-auto w-24 sm:w-28"
+          />
+        </Link>
+        <Link
+          href="/signup"
+          className="rounded-full bg-red-700 px-4 py-2 text-center text-sm font-semibold text-white transition-colors hover:bg-red-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700 sm:px-5"
+        >
           Sign up for Newsletter
-          </Link>
-        </button>
+        </Link>
       </div>
-    </div>
+    </header>
   );
 }
