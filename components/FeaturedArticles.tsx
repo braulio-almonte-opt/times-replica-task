@@ -71,7 +71,7 @@ export default function FeaturedArticles({ articles }: FeaturedArticlesProps) {
                   href={`/articles/${article.slug}`}
                   className="group flex h-full flex-col overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
                 >
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-200">
+                  <div className="relative aspect-16/10 w-full overflow-hidden bg-neutral-200">
                     <Image
                       src={article.imageUrl ?? "/images/emptynews.jpg"}
                       alt=""
