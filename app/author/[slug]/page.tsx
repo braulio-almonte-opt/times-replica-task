@@ -35,8 +35,6 @@ export default async function AuthorPage({ params }:PageProps){
 
     const author = formatAuthor(authorData);
 
-    const authorImage = author.profileImage;
-
     const articlesFromCms = articleData ?? [];
 
     //In this case I cannot send a 404 if the author has no articles
@@ -45,24 +43,48 @@ export default async function AuthorPage({ params }:PageProps){
     const articles = articlesFromCms.map(formatArticle);
 
     return (
-        <>
-        <Banner/>
-        <div className="flex justify-center items-center">
-            <div className="flex flex-row gap-4 bg-amber-50 p-4 rounded-lg shadow-lg">
-                <div className="flex p-x4">
-                    <Image src={authorImage ?? "/images/emptynews.jpg"} alt={author.title} width={100} height={100} className="rounded-md object-cover" />
-                </div>
-                <div className="flex flex-col">
-                    <h1 className="text-2xl">{author.title}</h1>
-                    <h2>{author.bio}</h2>
-                </div>
-            </div>
+        <div className="flex min-h-screen flex-col bg-stone-100 text-neutral-950">
+            <Banner />
+            <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+                <section
+                    aria-labelledby="author-name"
+                    className="mx-auto flex w-full max-w-5xl flex-col items-center gap-5 rounded-xl border border-neutral-200 bg-white p-5 shadow-sm sm:flex-row sm:gap-7 sm:p-7"
+                >
+                    <div className="relative size-28 shrink-0 overflow-hidden rounded-full bg-neutral-200 sm:size-36">
+                        <Image
+                            src={author.profileImage ?? "/images/emptynews.jpg"}
+                            alt={author.profileImage ? `${author.title}'s profile` : ""}
+                            fill
+                            sizes="(max-width: 639px) 112px, 144px"
+                            className="object-cover"
+                            priority
+                        />
+                    </div>
+                    <div className="min-w-0 text-center sm:text-left">
+                        <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-red-700">
+                            TIME contributor
+                        </p>
+                        <h1
+                            id="author-name"
+                            className="font-serif text-3xl font-bold tracking-tight sm:text-4xl"
+                        >
+                            {author.title}
+                        </h1>
+                        {author.bio && (
+                            <p className="mt-3 whitespace-pre-line text-base leading-7 text-neutral-600 sm:text-lg">
+                                {author.bio}
+                            </p>
+                        )}
+                    </div>
+                </section>
+
+                <ArticleList
+                    title="Written Articles"
+                    articles={articles}
+                    variant="author"
+                />
+            </main>
+            <CustomFooter />
         </div>
-        <ArticleList
-            title="Written Articles"
-            articles={articles}
-        />
-        <CustomFooter/>
-        </>
     );
 }
