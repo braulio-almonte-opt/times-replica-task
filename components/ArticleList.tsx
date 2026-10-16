@@ -78,7 +78,7 @@ export default function ArticleList({
                 }
               >
                 {isHome && (
-                  <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-md bg-neutral-200 sm:aspect-square sm:w-28">
+                  <div className="relative aspect-16/10 w-full shrink-0 overflow-hidden rounded-md bg-neutral-200 sm:aspect-square sm:w-28">
                     <Image
                       src={article.imageUrl ?? "/images/emptynews.jpg"}
                       alt=""
