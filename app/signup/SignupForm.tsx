@@ -12,19 +12,28 @@ export default function SignupForm() {
   );
 
   return (
-    <>
-      <h1 className="text-4xl font-bold mt-4">Sign up for our Newsletter</h1>
-      <form action={formAction} className="flex flex-col items-center">
+    <div>
+      <form action={formAction} className="flex flex-col">
+        <label
+          htmlFor="newsletter-email"
+          className="mb-2 text-sm font-semibold text-neutral-800"
+        >
+          Email address
+        </label>
         <input
+          id="newsletter-email"
           type="email"
           name="email"
           required
-          placeholder="Enter your email"
-          className="border border-gray-300 rounded-md p-2 mt-4 w-64"
+          autoComplete="email"
+          placeholder="you@example.com"
+          className="w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-base text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-red-700 focus:ring-2 focus:ring-red-700/20"
         />
         {state.message && (
           <p
-            className={state.status === "error" ? "text-red-700" : "text-green-700"}
+            className={`mt-3 text-sm ${
+              state.status === "error" ? "text-red-700" : "text-green-700"
+            }`}
             role={state.status === "error" ? "alert" : "status"}
           >
             {state.message}
@@ -33,14 +42,14 @@ export default function SignupForm() {
         <button
           type="submit"
           disabled={pending}
-          className="bg-yellow-950 text-white rounded-md p-2 mt-4 transition-colors duration-300 hover:bg-yellow-800"
+          className="mt-4 w-full rounded-full bg-red-700 px-5 py-3 font-semibold text-white transition-colors hover:bg-red-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700 disabled:cursor-wait disabled:opacity-60"
         >
           {pending ? "Signing up..." : "Sign Up"}
         </button>
       </form>
-      <p className="text-sm text-gray-500 mt-2">
+      <p className="mt-4 text-center text-sm leading-6 text-neutral-500">
         We respect your privacy. Unsubscribe at any time.
       </p>
-    </>
+    </div>
   );
 }

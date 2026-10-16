@@ -1,27 +1,54 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import CustomFooter from "@/components/CustomFooter";
 import SignupForm from "./SignupForm";
 
 export default function SignupPage() {
   return (
-    <>
-      <div className="flex justify-center items-center">
-        <div className="flex justify-center items-start">
-          <Link href="/" className="text-blue-500 hover:underline">
+    <div className="flex min-h-screen flex-col bg-stone-100 text-neutral-950">
+      <header className="border-b border-neutral-200 bg-white">
+        <div className="mx-auto flex w-full max-w-7xl items-center px-4 py-3 sm:px-6 lg:px-8">
+          <Link href="/" aria-label="TIME News home" className="shrink-0">
             <Image
               src="/images/time_logo.png"
-              alt="TIME Logo"
-              width={200}
-              height={200}
+              alt="TIME"
+              width={160}
+              height={64}
+              priority
+              className="h-auto w-24 sm:w-28"
             />
           </Link>
         </div>
-      </div>
-      <div className="flex flex-col justify-center items-center">
-        <SignupForm />
+      </header>
+      <main className="mx-auto flex w-full max-w-7xl flex-1 items-start justify-center px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <section
+          aria-labelledby="signup-heading"
+          className="w-full max-w-2xl overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm"
+        >
+          <div className="h-1.5 bg-red-700" />
+          <div className="px-5 py-8 sm:px-10 sm:py-12">
+            <p className="mb-3 text-center text-xs font-bold uppercase tracking-[0.2em] text-red-700">
+              TIME Newsletter
+            </p>
+            <h1
+              id="signup-heading"
+              className="text-center font-serif text-3xl font-bold tracking-tight sm:text-4xl"
+            >
+              Sign up for our Newsletter
+            </h1>
+            <p className="mx-auto mt-3 max-w-lg text-center leading-7 text-neutral-600">
+              Get the latest stories and headlines from TIME, delivered to your
+              inbox.
+            </p>
+            <div className="mx-auto mt-8 max-w-md">
+              <SignupForm />
+            </div>
+          </div>
+        </section>
+      </main>
+      <div className="mt-auto">
         <CustomFooter />
       </div>
-    </>
+    </div>
   );
 }
