@@ -94,7 +94,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
 // Get articles by category for category pagination
 export async function getArticlesByCategory(category: string, skippedArticles: number, limitArticles: number): Promise<{ articles: Article[]; total: number } | null>{
   const query = `query getArticlesByCategory($category: String!, $skippedArticles: Int!, $limitArticles: Int!) {
-  all_article(where: {category: {category: {slug: $category}}}, skip:$skippedArticles, limit:$limitArticles) {
+  all_article(where: {category: {category: {slug: $category}}}, order_by: created_at_DESC, skip:$skippedArticles, limit:$limitArticles) {
     total
     items {
       title
@@ -132,6 +132,7 @@ export async function getArticlesByAuthor(authorSlug:string): Promise<Article[] 
       description
       content
       featured
+      ${imageRequestString}
     }
   }
 }
