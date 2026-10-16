@@ -69,41 +69,51 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
   const pageArticles = articlePage.articles.map(formatArticle);
 
   return (
-    <>
+    <div className="flex min-h-screen flex-col bg-stone-100 text-neutral-950">
       <Banner />
-      <div className="flex justify-center items-start">
-        <h1 className="text-4xl font-bold mt-4">Welcome to the TIME News Website</h1>
-      </div>
-      <div className="flex justify-center items-start">
-        <p className="text-lg mt-2">Today&apos;s Headlines</p>
-      </div>
-      <ArticleList title={`${category.title} articles`} articles={pageArticles} />
-      <nav aria-label="Category article pages" className="flex justify-center items-center gap-4 p-4">
+      <main className="w-full flex-1">
+        <ArticleList
+          title={category.title}
+          articles={pageArticles}
+          variant="category"
+        />
+      <nav
+        aria-label="Category article pages"
+        className="mx-auto flex w-full max-w-5xl items-center justify-center gap-5 px-4 pb-10 sm:px-6"
+      >
         {parsedPage > 1 ? (
           <Link
             href={`/category/${category.slug}?page=${parsedPage - 1}`}
-            className="text-blue-500 hover:underline"
+            className="rounded-full border border-neutral-300 px-5 py-2 font-semibold text-neutral-800 transition-colors hover:border-neutral-950 hover:bg-neutral-950 hover:text-white"
           >
             Previous
           </Link>
         ) : (
-          <span className="text-gray-400">Previous</span>
+          <span className="cursor-not-allowed rounded-full border border-neutral-200 px-5 py-2 font-semibold text-neutral-400">
+            Previous
+          </span>
         )}
-        <span aria-current="page">Page {parsedPage} of {totalPages}</span>
+        <span
+          aria-current="page"
+          className="whitespace-nowrap font-medium text-neutral-700"
+        >
+          Page {parsedPage} of {totalPages}
+        </span>
         {parsedPage < totalPages ? (
           <Link
             href={`/category/${category.slug}?page=${parsedPage + 1}`}
-            className="text-blue-500 hover:underline"
+            className="rounded-full border border-neutral-300 px-5 py-2 font-semibold text-neutral-800 transition-colors hover:border-neutral-950 hover:bg-neutral-950 hover:text-white"
           >
             Next
           </Link>
         ) : (
-          <span className="text-gray-400">Next</span>
+          <span className="cursor-not-allowed rounded-full border border-neutral-200 px-5 py-2 font-semibold text-neutral-400">
+            Next
+          </span>
         )}
       </nav>
-      <div className="flex flex-col items-center p-4 bg-amber-gray-50">
-        <CustomFooter />
-      </div>
-    </>
+      </main>
+      <CustomFooter />
+    </div>
   );
 }
