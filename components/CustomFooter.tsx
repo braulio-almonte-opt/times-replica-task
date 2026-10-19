@@ -1,8 +1,29 @@
 import Link from "next/link";
-import { authors } from "@/data/authors";
-import { categories } from "@/data/categories";
+import { getAllCategories, getAllAuthors } from "@/app/lib/queries";
+import { ContentstackRequestError } from "@/app/lib/cs_data";
 
-export default function CustomFooter(){
+export default async function CustomFooter(){
+
+    let categories: Awaited<ReturnType<typeof getAllCategories>> = null;
+    let authors: Awaited<ReturnType<typeof getAllAuthors>> = null;
+    let cmsUnavailable = false;
+    try {
+      [categories, authors] = await Promise.all([
+        getAllCategories(),
+        getAllAuthors(),
+      ]);
+    } catch (error) {
+      if (!(error instanceof ContentstackRequestError)) throw error;
+      console.error("Unable to load footer links because Contentstack is unavailable:", error);
+      cmsUnavailable = true;
+    }
+    if (cmsUnavailable) {
+      return (
+        <footer className="mt-4 p-4 text-center text-sm text-gray-500">
+          Footer links are temporarily unavailable.
+        </footer>
+      );
+    }
 
     return (
         <footer className="mt-4 flex flex-col items-center gap-6 bg-amber-gray-50 p-4 text-sm text-gray-500">
@@ -10,10 +31,10 @@ export default function CustomFooter(){
             <section aria-labelledby="footer-categories-heading">
               <h2 id="footer-categories-heading" className="text-xl font-bold my-4">Categories</h2>
               <ul role="list">
-                {categories.map((category) => (
-                  <li key={category.id}>
+                {(categories ?? []).map((category) => (
+                  <li key={category.slug}>
                     <Link href={`/category/${category.slug}`} className="hover:underline">
-                      {category.name}
+                      {category.title}
                     </Link>
                   </li>
                 ))}
@@ -22,10 +43,10 @@ export default function CustomFooter(){
             <section aria-labelledby="footer-authors-heading">
               <h2 id="footer-authors-heading" className="text-xl font-bold my-4">Authors</h2>
               <ul role="list">
-                {authors.map((author) => (
-                  <li key={author.id}>
+                {(authors ?? []).map((author) => (
+                  <li key={author.slug}>
                     <Link href={`/author/${author.slug}`} className="hover:underline">
-                      {author.name}
+                      {author.title}
                     </Link>
                   </li>
                 ))}

@@ -32,3 +32,8 @@ export default function calculateTimeDifference(articleDate: string): string {
 
   return formatDaysAgo(getDaysBetween(new Date(), parsedArticleDate));
 }
+
+export function formatDate(dateTime: string): string {
+  const [date] = dateTime.split("T");
+  return date ?? dateTime;
+}
