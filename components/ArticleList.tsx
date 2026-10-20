@@ -5,31 +5,23 @@ import type { Article } from "@/app/types/domainTypes";
 interface ArticleListProps {
   articles: readonly Article[];
   title: string;
-  variant?: "default" | "home" | "category" | "author";
+  variant: "home" | "category" | "author";
 }
 
 export default function ArticleList({
   articles,
   title,
-  variant = "default",
+  variant,
 }: ArticleListProps) {
   const isHome = variant === "home";
   const isCategory = variant === "category";
   const isAuthor = variant === "author";
-  const hasThumbnails = isHome || isCategory || isAuthor;
-  const isEditorialList = isCategory || isAuthor;
 
   if (articles.length === 0) {
     return (
       <section
         aria-labelledby="article-list-heading"
-        className={
-          isHome
-            ? "mt-12"
-            : isEditorialList
-              ? "mx-auto w-full max-w-5xl px-4 py-10 sm:px-6"
-              : "flex flex-col items-center p-4"
-        }
+        className={isHome ? "mt-12" : "mx-auto w-full max-w-5xl px-4 py-10 sm:px-6"}
       >
         {isCategory ? (
           <h1
@@ -63,19 +55,13 @@ export default function ArticleList({
   return (
     <section
       aria-labelledby="article-list-heading"
-      className={
-        isHome
-          ? "mt-12"
-          : isEditorialList
-            ? "mx-auto w-full max-w-5xl px-4 py-10 sm:px-6"
-            : "flex flex-col items-center p-4"
-      }
+      className={isHome ? "mt-12" : "mx-auto w-full max-w-5xl px-4 py-10 sm:px-6"}
     >
       <div
         className={
-          isEditorialList
-            ? "mb-6"
-            : "mb-4 flex w-full items-end justify-between border-b border-border-strong pb-3"
+          isHome
+            ? "mb-4 flex w-full items-end justify-between border-b border-border-strong pb-3"
+            : "mb-6"
         }
       >
         {isCategory ? (
@@ -103,77 +89,37 @@ export default function ArticleList({
           </span>
         )}
       </div>
-      <div
-        className={
-          isHome
-            ? "overflow-hidden rounded-xl border border-border bg-surface"
-            : isEditorialList
-              ? "overflow-hidden rounded-xl border border-border bg-surface"
-              : "rounded-lg bg-amber-50 p-4 shadow-lg"
-        }
-      >
-        <ul
-          role="list"
-          className={hasThumbnails ? "divide-y divide-border" : ""}
-        >
+      <div className="overflow-hidden rounded-xl border border-border bg-surface">
+        <ul role="list" className="divide-y divide-border">
           {articles.map((article, index) => (
-            <li
-              key={article.slug}
-              className={
-                hasThumbnails
-                  ? "group"
-                  : "flex py-4 text-blue-500 first:pt-0 last:pb-0 hover:underline"
-              }
-            >
+            <li key={article.slug} className="group">
               <Link
                 href={`/articles/${article.slug}`}
                 className={
                   isHome
                     ? "flex flex-col gap-4 p-4 transition-colors hover:bg-surface-hover focus-visible:bg-surface-hover focus-visible:outline-2 focus-visible:outline-accent sm:flex-row sm:items-center sm:gap-5 sm:px-5"
-                    : isEditorialList
-                      ? "flex flex-col gap-3 p-4 transition-colors hover:bg-surface-hover focus-visible:bg-surface-hover focus-visible:outline-2 focus-visible:outline-accent sm:flex-row sm:items-center sm:gap-5 sm:px-5"
-                      : ""
+                    : "flex flex-col gap-3 p-4 transition-colors hover:bg-surface-hover focus-visible:bg-surface-hover focus-visible:outline-2 focus-visible:outline-accent sm:flex-row sm:items-center sm:gap-5 sm:px-5"
                 }
               >
-                {hasThumbnails && (
-                  <div
-                    className="relative aspect-16/10 w-full shrink-0 overflow-hidden rounded-md bg-placeholder sm:aspect-square sm:w-28"
-                  >
-                    <Image
-                      src={article.imageUrl ?? "/images/emptynews.jpg"}
-                      alt=""
-                      fill
-                      sizes="(max-width: 639px) 100vw, 112px"
-                      loading={
-                        (isCategory || isAuthor) && index === 0
-                          ? "eager"
-                          : undefined
-                      }
-                      className="object-cover"
-                    />
-                  </div>
-                )}
-                <div
-                  className={
-                    hasThumbnails ? "min-w-0 flex-1" : "ml-3 overflow-hidden"
-                  }
-                >
-                  <p
-                    className={
-                      hasThumbnails
-                        ? "font-serif text-lg font-bold leading-snug text-foreground group-hover:text-accent-hover"
-                        : "text-sm font-medium text-gray-900"
+                <div className="relative aspect-16/10 w-full shrink-0 overflow-hidden rounded-md bg-placeholder sm:aspect-square sm:w-28">
+                  <Image
+                    src={article.imageUrl ?? "/images/emptynews.jpg"}
+                    alt=""
+                    fill
+                    sizes="(max-width: 639px) 100vw, 112px"
+                    loading={
+                      (isCategory || isAuthor) && index === 0
+                        ? "eager"
+                        : undefined
                     }
-                  >
+                    className="object-cover"
+                  />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="font-serif text-lg font-bold leading-snug text-foreground group-hover:text-accent-hover">
                     {article.title}
                   </p>
-                  <p
-                    className={
-                      hasThumbnails
-                        ? "mt-1 line-clamp-2 text-sm leading-6 text-foreground-muted"
-                        : "text-sm text-gray-500"
-                    }
-                  >
+                  <p className="mt-1 line-clamp-2 text-sm leading-6 text-foreground-muted">
                     {article.description}
                   </p>
                 </div>
