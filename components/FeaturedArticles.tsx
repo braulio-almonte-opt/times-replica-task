@@ -48,7 +48,7 @@ export default function FeaturedArticles({ articles }: FeaturedArticlesProps) {
     const gap = Number.parseFloat(styles.columnGap) || 0;
     track.scrollBy({
       left: direction * (firstCard.getBoundingClientRect().width + gap),
-      behavior: "smooth",
+      behavior: "auto",
     });
   };
 
@@ -63,7 +63,7 @@ export default function FeaturedArticles({ articles }: FeaturedArticlesProps) {
           <ul
             ref={trackRef}
             aria-label="Featured stories"
-            className="grid auto-cols-[100%] grid-flow-col gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-3 sm:auto-cols-[calc(50%-0.5rem)] lg:auto-cols-[calc(33.333%-0.667rem)]"
+            className="grid auto-cols-[100%] grid-flow-col gap-4 overflow-x-auto motion-safe:scroll-smooth motion-reduce:scroll-auto snap-x snap-mandatory pb-3 sm:auto-cols-[calc(50%-0.5rem)] lg:auto-cols-[calc(33.333%-0.667rem)]"
           >
             {articles.map((article, index) => (
               <li key={article.slug} className="min-w-0 snap-start">
