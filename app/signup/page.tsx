@@ -2,24 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import CustomFooter from "@/components/CustomFooter";
 import SignupForm from "./SignupForm";
+import Banner from "@/components/Banner";
 
 export default function SignupPage() {
   return (
     <div className="flex min-h-screen flex-col bg-stone-100 text-neutral-950">
-      <header className="border-b border-neutral-200 bg-white">
-        <div className="mx-auto flex w-full max-w-7xl items-center px-4 py-3 sm:px-6 lg:px-8">
-          <Link href="/" aria-label="TIME News home" className="shrink-0">
-            <Image
-              src="/images/time_logo.png"
-              alt="TIME"
-              width={160}
-              height={64}
-              priority
-              className="h-auto w-24 sm:w-28"
-            />
-          </Link>
-        </div>
-      </header>
+      <Banner showSignup={false}/>
       <main className="mx-auto flex w-full max-w-7xl flex-1 items-start justify-center px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <section
           aria-labelledby="signup-heading"

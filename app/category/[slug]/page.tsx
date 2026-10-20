@@ -64,7 +64,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
 
   return (
     <div className="flex min-h-screen flex-col bg-stone-100 text-neutral-950">
-      <Banner />
+      <Banner showSignup={true}/>
       <main className="w-full flex-1">
         <ArticleList
           title={category.title}
