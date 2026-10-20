@@ -1,23 +1,50 @@
 import Image from "next/image";
-//This was genuenly my idea but AI helped me to do it correctly as I knew that every card should be an indenpendent component.
-//Most likely I could also apply the same logic I did with the articles and so make a 
-//file in the data folder that contains the desired data for the ArticleCards.
+import Link from "next/link";
 
-export default function ArticleCard({ title, description, imageUrl }: { title: string; description: string; imageUrl: string }) {
+export interface ArticleCardData {
+  title: string;
+  slug: string;
+  description: string;
+  imageUrl: string | null;
+}
+
+interface ArticleCardProps {
+  article: ArticleCardData;
+  prioritizeImage: boolean;
+}
+
+export default function ArticleCard({
+  article,
+  prioritizeImage,
+}: ArticleCardProps) {
   return (
-    <div className="flex flex-col justify-center items-center w-1/2 p-4">
-      <div className="w-full h-64 relative">
-        <Image
-          src={imageUrl}
-          alt={title}
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover"
-          loading="eager"
-        />
-      </div>
-      <h2 className="text-lg font-bold mt-4">{title}</h2>
-      <p className="text-sm mt-2">{description}</p>
-    </div>
+    <li className="min-w-0 snap-start">
+      <Link
+        href={`/articles/${article.slug}`}
+        className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-surface shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      >
+        <div className="relative aspect-16/10 w-full overflow-hidden bg-placeholder">
+          <Image
+            src={article.imageUrl ?? "/images/emptynews.jpg"}
+            alt=""
+            fill
+            sizes="(max-width: 639px) 100vw, (max-width: 1023px) 45vw, 31vw"
+            loading={prioritizeImage ? "eager" : undefined}
+            className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+          />
+        </div>
+        <div className="flex flex-1 flex-col p-5">
+          <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-accent">
+            Featured
+          </p>
+          <h2 className="line-clamp-2 font-serif text-xl font-bold leading-snug group-hover:text-accent-hover">
+            {article.title}
+          </h2>
+          <p className="mt-2 line-clamp-3 text-sm leading-6 text-foreground-muted">
+            {article.description}
+          </p>
+        </div>
+      </Link>
+    </li>
   );
 }

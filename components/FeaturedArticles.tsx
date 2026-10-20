@@ -1,14 +1,10 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import type { Article } from "@/app/types/domainTypes";
+import ArticleCard, { type ArticleCardData } from "@/components/ArticleCard";
 import useCarousel from "@/components/useCarousel";
 
-type FeaturedArticle = Pick<Article, "title" | "slug" | "description" | "imageUrl">;
-
 interface FeaturedArticlesProps {
-  articles: readonly FeaturedArticle[];
+  articles: readonly ArticleCardData[];
 }
 
 export default function FeaturedArticles({ articles }: FeaturedArticlesProps) {
@@ -30,34 +26,11 @@ export default function FeaturedArticles({ articles }: FeaturedArticlesProps) {
             className="grid auto-cols-[100%] grid-flow-col gap-4 overflow-x-auto motion-safe:scroll-smooth motion-reduce:scroll-auto snap-x snap-mandatory pb-3 sm:auto-cols-[calc(50%-0.5rem)] lg:auto-cols-[calc(33.333%-0.667rem)]"
           >
             {articles.map((article, index) => (
-              <li key={article.slug} className="min-w-0 snap-start">
-                <Link
-                  href={`/articles/${article.slug}`}
-                  className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-surface shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                >
-                  <div className="relative aspect-16/10 w-full overflow-hidden bg-placeholder">
-                    <Image
-                      src={article.imageUrl ?? "/images/emptynews.jpg"}
-                      alt=""
-                      fill
-                      sizes="(max-width: 639px) 100vw, (max-width: 1023px) 45vw, 31vw"
-                      loading={index === 0 ? "eager" : undefined}
-                      className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-5">
-                    <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-accent">
-                      Featured
-                    </p>
-                    <h2 className="line-clamp-2 font-serif text-xl font-bold leading-snug group-hover:text-accent-hover">
-                      {article.title}
-                    </h2>
-                    <p className="mt-2 line-clamp-3 text-sm leading-6 text-foreground-muted">
-                      {article.description}
-                    </p>
-                  </div>
-                </Link>
-              </li>
+              <ArticleCard
+                key={article.slug}
+                article={article}
+                prioritizeImage={index === 0}
+              />
             ))}
           </ul>
           {(canScrollPrevious || canScrollNext) && (
