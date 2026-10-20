@@ -83,7 +83,7 @@ export default async function ArticlePage({ params }: PageProps) {
                   <span className="font-semibold text-neutral-950">Anonymous</span>
                 )}
               </span>
-              <span aria-hidden="true">·</span>
+              <span className="invisible sm:visible" aria-hidden="true">·</span>
               <time dateTime={article.publishedAt}>
                 Published {calculateTimeDifference(article.publishedAt)} on{" "}
                 {formatDate(article.publishedAt)}
