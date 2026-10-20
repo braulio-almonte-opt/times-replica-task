@@ -43,14 +43,14 @@ export default async function AuthorPage({ params }:PageProps){
     const articles = articlesFromCms.map(formatArticle);
 
     return (
-        <div className="flex min-h-screen flex-col bg-stone-100 text-neutral-950">
+        <div className="flex min-h-screen flex-col">
             <Banner showSignup={true}/>
             <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
                 <section
                     aria-labelledby="author-name"
-                    className="mx-auto flex w-full max-w-5xl flex-col items-center gap-5 rounded-xl border border-neutral-200 bg-white p-5 shadow-sm sm:flex-row sm:gap-7 sm:p-7"
+                    className="mx-auto flex w-full max-w-5xl flex-col items-center gap-5 rounded-xl border border-border bg-surface p-5 shadow-sm sm:flex-row sm:gap-7 sm:p-7"
                 >
-                    <div className="relative size-28 shrink-0 overflow-hidden rounded-full bg-neutral-200 sm:size-36">
+                    <div className="relative size-28 shrink-0 overflow-hidden rounded-full bg-placeholder sm:size-36">
                         <Image
                             src={author.profileImage ?? "/images/emptynews.jpg"}
                             alt={author.profileImage ? `${author.title}'s profile` : ""}
@@ -61,7 +61,7 @@ export default async function AuthorPage({ params }:PageProps){
                         />
                     </div>
                     <div className="min-w-0 text-center sm:text-left">
-                        <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-red-700">
+                        <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-accent">
                             TIME contributor
                         </p>
                         <h1
@@ -71,7 +71,7 @@ export default async function AuthorPage({ params }:PageProps){
                             {author.title}
                         </h1>
                         {author.bio && (
-                            <p className="mt-3 whitespace-pre-line text-base leading-7 text-neutral-600 sm:text-lg">
+                            <p className="mt-3 whitespace-pre-line text-base leading-7 text-foreground-muted sm:text-lg">
                                 {author.bio}
                             </p>
                         )}

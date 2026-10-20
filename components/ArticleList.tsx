@@ -53,7 +53,7 @@ export default function ArticleList({
             {title}
           </h2>
         )}
-        <div className="w-full rounded-xl border border-neutral-200 bg-white p-5 text-center text-neutral-600">
+        <div className="w-full rounded-xl border border-border bg-surface p-5 text-center text-foreground-muted">
           {isCategory ? "No articles in this category yet." : "No articles yet."}
         </div>
       </section>
@@ -75,7 +75,7 @@ export default function ArticleList({
         className={
           isEditorialList
             ? "mb-6"
-            : "mb-4 flex w-full items-end justify-between border-b border-neutral-300 pb-3"
+            : "mb-4 flex w-full items-end justify-between border-b border-border-strong pb-3"
         }
       >
         {isCategory ? (
@@ -98,7 +98,7 @@ export default function ArticleList({
           </h2>
         )}
         {isHome && (
-          <span className="hidden text-sm text-neutral-500 sm:block">
+          <span className="hidden text-sm text-foreground-subtle sm:block">
             More from TIME
           </span>
         )}
@@ -106,15 +106,15 @@ export default function ArticleList({
       <div
         className={
           isHome
-            ? "overflow-hidden rounded-xl border border-neutral-200 bg-white"
+            ? "overflow-hidden rounded-xl border border-border bg-surface"
             : isEditorialList
-              ? "overflow-hidden rounded-xl border border-neutral-200 bg-white"
+              ? "overflow-hidden rounded-xl border border-border bg-surface"
               : "rounded-lg bg-amber-50 p-4 shadow-lg"
         }
       >
         <ul
           role="list"
-          className={hasThumbnails ? "divide-y divide-neutral-200" : ""}
+          className={hasThumbnails ? "divide-y divide-border" : ""}
         >
           {articles.map((article, index) => (
             <li
@@ -129,15 +129,15 @@ export default function ArticleList({
                 href={`/articles/${article.slug}`}
                 className={
                   isHome
-                    ? "flex flex-col gap-4 p-4 transition-colors hover:bg-stone-50 focus-visible:bg-stone-50 focus-visible:outline-2 focus-visible:outline-red-700 sm:flex-row sm:items-center sm:gap-5 sm:px-5"
+                    ? "flex flex-col gap-4 p-4 transition-colors hover:bg-surface-hover focus-visible:bg-surface-hover focus-visible:outline-2 focus-visible:outline-accent sm:flex-row sm:items-center sm:gap-5 sm:px-5"
                     : isEditorialList
-                      ? "flex flex-col gap-3 p-4 transition-colors hover:bg-stone-50 focus-visible:bg-stone-50 focus-visible:outline-2 focus-visible:outline-red-700 sm:flex-row sm:items-center sm:gap-5 sm:px-5"
+                      ? "flex flex-col gap-3 p-4 transition-colors hover:bg-surface-hover focus-visible:bg-surface-hover focus-visible:outline-2 focus-visible:outline-accent sm:flex-row sm:items-center sm:gap-5 sm:px-5"
                       : ""
                 }
               >
                 {hasThumbnails && (
                   <div
-                    className="relative aspect-16/10 w-full shrink-0 overflow-hidden rounded-md bg-neutral-200 sm:aspect-square sm:w-28"
+                    className="relative aspect-16/10 w-full shrink-0 overflow-hidden rounded-md bg-placeholder sm:aspect-square sm:w-28"
                   >
                     <Image
                       src={article.imageUrl ?? "/images/emptynews.jpg"}
@@ -161,7 +161,7 @@ export default function ArticleList({
                   <p
                     className={
                       hasThumbnails
-                        ? "font-serif text-lg font-bold leading-snug text-neutral-950 group-hover:text-red-800"
+                        ? "font-serif text-lg font-bold leading-snug text-foreground group-hover:text-accent-hover"
                         : "text-sm font-medium text-gray-900"
                     }
                   >
@@ -170,7 +170,7 @@ export default function ArticleList({
                   <p
                     className={
                       hasThumbnails
-                        ? "mt-1 line-clamp-2 text-sm leading-6 text-neutral-600"
+                        ? "mt-1 line-clamp-2 text-sm leading-6 text-foreground-muted"
                         : "text-sm text-gray-500"
                     }
                   >

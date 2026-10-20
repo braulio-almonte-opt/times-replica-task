@@ -42,13 +42,13 @@ export default async function Home() {
   const latestDomainArticles = latestArticles.map(formatArticle);
 
   return (
-    <div className="flex min-h-screen flex-col bg-stone-100 text-neutral-950">
+    <div className="flex min-h-screen flex-col">
       <Banner showSignup={true}/>
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-10 sm:px-6 lg:px-8">
         <section aria-labelledby="top-stories-heading">
-          <div className="mb-5 flex items-end justify-between border-b border-neutral-300 pb-3">
+          <div className="mb-5 flex items-end justify-between border-b border-border-strong pb-3">
             <div>
-              <p className="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-red-700">
+              <p className="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-accent">
                 TIME News
               </p>
               <h1
@@ -58,7 +58,7 @@ export default async function Home() {
                 Top Stories
               </h1>
             </div>
-            <span className="hidden pb-1 text-sm text-neutral-500 sm:block">
+            <span className="hidden pb-1 text-sm text-foreground-subtle sm:block">
               The latest from TIME
             </span>
           </div>

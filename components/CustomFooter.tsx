@@ -19,21 +19,21 @@ export default async function CustomFooter(){
     }
     if (cmsUnavailable) {
       return (
-        <footer className="mt-12 border-t border-neutral-200 bg-white px-4 py-8 text-center text-sm text-gray-500">
+        <footer className="mt-12 border-t border-border bg-surface px-4 py-8 text-center text-sm text-gray-500">
           Footer links are temporarily unavailable.
         </footer>
       );
     }
 
     return (
-        <footer className="mt-12 border-t border-neutral-200 bg-white px-4 py-8 text-sm text-neutral-600 sm:px-6 lg:px-8">
+        <footer className="mt-12 border-t border-border bg-surface px-4 py-8 text-sm text-foreground-muted sm:px-6 lg:px-8">
           <div className="mx-auto flex max-w-7xl flex-col gap-8 sm:flex-row sm:gap-20">
             <section aria-labelledby="footer-categories-heading" className="flex-1">
-              <h2 id="footer-categories-heading" className="mb-3 font-serif text-lg font-bold text-neutral-950">Categories</h2>
+              <h2 id="footer-categories-heading" className="mb-3 font-serif text-lg font-bold text-foreground">Categories</h2>
               <ul role="list" className="space-y-2">
                 {(categories ?? []).map((category) => (
                   <li key={category.slug}>
-                    <Link href={`/category/${category.slug}`} className="transition-colors hover:text-red-700 hover:underline">
+                    <Link href={`/category/${category.slug}`} className="transition-colors hover:text-accent hover:underline">
                       {category.title}
                     </Link>
                   </li>
@@ -41,11 +41,11 @@ export default async function CustomFooter(){
               </ul>
             </section>
             <section aria-labelledby="footer-authors-heading" className="flex-1">
-              <h2 id="footer-authors-heading" className="mb-3 font-serif text-lg font-bold text-neutral-950">Authors</h2>
+              <h2 id="footer-authors-heading" className="mb-3 font-serif text-lg font-bold text-foreground">Authors</h2>
               <ul role="list" className="space-y-2">
                 {(authors ?? []).map((author) => (
                   <li key={author.slug}>
-                    <Link href={`/author/${author.slug}`} className="transition-colors hover:text-red-700 hover:underline">
+                    <Link href={`/author/${author.slug}`} className="transition-colors hover:text-accent hover:underline">
                       {author.title}
                     </Link>
                   </li>
@@ -53,7 +53,7 @@ export default async function CustomFooter(){
               </ul>
             </section>
           </div>
-          <p className="mx-auto mt-8 max-w-7xl border-t border-neutral-200 pt-5 text-center">
+          <p className="mx-auto mt-8 max-w-7xl border-t border-border pt-5 text-center">
             &copy; {new Date().getFullYear()} TIME News. All rights reserved.
           </p>
         </footer>

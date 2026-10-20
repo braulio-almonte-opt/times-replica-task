@@ -19,7 +19,7 @@ export default function FeaturedArticles({ articles }: FeaturedArticlesProps) {
   return (
     <div>
       {articles.length === 0 ? (
-        <p className="rounded-xl border border-neutral-200 bg-white px-5 py-8 text-neutral-600">
+        <p className="rounded-xl border border-border bg-surface px-5 py-8 text-foreground-muted">
           No featured stories right now. Check back soon.
         </p>
       ) : (
@@ -33,9 +33,9 @@ export default function FeaturedArticles({ articles }: FeaturedArticlesProps) {
               <li key={article.slug} className="min-w-0 snap-start">
                 <Link
                   href={`/articles/${article.slug}`}
-                  className="group flex h-full flex-col overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
+                  className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-surface shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
-                  <div className="relative aspect-16/10 w-full overflow-hidden bg-neutral-200">
+                  <div className="relative aspect-16/10 w-full overflow-hidden bg-placeholder">
                     <Image
                       src={article.imageUrl ?? "/images/emptynews.jpg"}
                       alt=""
@@ -46,13 +46,13 @@ export default function FeaturedArticles({ articles }: FeaturedArticlesProps) {
                     />
                   </div>
                   <div className="flex flex-1 flex-col p-5">
-                    <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-red-700">
+                    <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-accent">
                       Featured
                     </p>
-                    <h2 className="line-clamp-2 font-serif text-xl font-bold leading-snug group-hover:text-red-800">
+                    <h2 className="line-clamp-2 font-serif text-xl font-bold leading-snug group-hover:text-accent-hover">
                       {article.title}
                     </h2>
-                    <p className="mt-2 line-clamp-3 text-sm leading-6 text-neutral-600">
+                    <p className="mt-2 line-clamp-3 text-sm leading-6 text-foreground-muted">
                       {article.description}
                     </p>
                   </div>
@@ -67,11 +67,11 @@ export default function FeaturedArticles({ articles }: FeaturedArticlesProps) {
                 aria-label="Previous featured stories"
                 onClick={() => scroll(-1)}
                 disabled={!canScrollPrevious}
-                className="grid size-10 place-items-center rounded-full border border-neutral-300 text-xl text-neutral-800 transition-colors hover:border-neutral-950 hover:bg-neutral-950 hover:text-white disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-neutral-300 disabled:hover:bg-transparent disabled:hover:text-neutral-800"
+                className="grid size-10 place-items-center rounded-full border border-border-strong text-xl text-foreground-secondary transition-colors hover:border-foreground hover:bg-foreground hover:text-inverse disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-border-strong disabled:hover:bg-transparent disabled:hover:text-foreground-secondary"
               >
                 <span aria-hidden="true">←</span>
               </button>
-              <span className="text-sm font-medium text-neutral-600">
+              <span className="text-sm font-medium text-foreground-muted">
                 Explore stories
               </span>
               <button
@@ -79,7 +79,7 @@ export default function FeaturedArticles({ articles }: FeaturedArticlesProps) {
                 aria-label="Next featured stories"
                 onClick={() => scroll(1)}
                 disabled={!canScrollNext}
-                className="grid size-10 place-items-center rounded-full border border-neutral-300 text-xl text-neutral-800 transition-colors hover:border-neutral-950 hover:bg-neutral-950 hover:text-white disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-neutral-300 disabled:hover:bg-transparent disabled:hover:text-neutral-800"
+                className="grid size-10 place-items-center rounded-full border border-border-strong text-xl text-foreground-secondary transition-colors hover:border-foreground hover:bg-foreground hover:text-inverse disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-border-strong disabled:hover:bg-transparent disabled:hover:text-foreground-secondary"
               >
                 <span aria-hidden="true">→</span>
               </button>

@@ -45,7 +45,7 @@ export default async function ArticlePage({ params }: PageProps) {
   const author = article.author;
 
   return (
-    <div className="flex min-h-screen flex-col bg-stone-100 text-neutral-950">
+    <div className="flex min-h-screen flex-col">
       <ArticleDataLayer
         title={article.title}
         slug={article.slug}
@@ -57,11 +57,11 @@ export default async function ArticlePage({ params }: PageProps) {
       <Banner showSignup={true}/>
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <article className="mx-auto max-w-5xl">
-          <header className="mb-7 border-b border-neutral-300 pb-5">
+          <header className="mb-7 border-b border-border-strong pb-5">
             {article.category && (
               <Link
                 href={`/category/${article.category.slug}`}
-                className="mb-3 inline-block text-xs font-bold uppercase tracking-[0.18em] text-red-700 hover:text-red-800 hover:underline"
+                className="mb-3 inline-block text-xs font-bold uppercase tracking-[0.18em] text-accent hover:text-accent-hover hover:underline"
               >
                 {article.category.title}
               </Link>
@@ -69,18 +69,18 @@ export default async function ArticlePage({ params }: PageProps) {
             <h1 className="font-serif text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
               {article.title}
             </h1>
-            <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-neutral-600">
+            <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-foreground-muted">
               <span>
                 Written by{" "}
                 {author ? (
                   <Link
                     href={`/author/${author.slug}`}
-                    className="font-semibold text-neutral-950 hover:text-red-700 hover:underline"
+                    className="font-semibold text-foreground hover:text-accent hover:underline"
                   >
                     {author.title}
                   </Link>
                 ) : (
-                  <span className="font-semibold text-neutral-950">Anonymous</span>
+                  <span className="font-semibold text-foreground">Anonymous</span>
                 )}
               </span>
               <span className="invisible sm:visible" aria-hidden="true">·</span>
@@ -92,7 +92,7 @@ export default async function ArticlePage({ params }: PageProps) {
           </header>
 
           <div className="flow-root">
-            <figure className="relative mb-5 aspect-16/10 w-full overflow-hidden rounded-xl bg-neutral-200 md:float-left md:mb-4 md:mr-6 md:w-[38%]">
+            <figure className="relative mb-5 aspect-16/10 w-full overflow-hidden rounded-xl bg-placeholder md:float-left md:mb-4 md:mr-6 md:w-[38%]">
               <Image
                 src={article.imageUrl ?? "/images/emptynews.jpg"}
                 alt={article.title}
@@ -102,10 +102,10 @@ export default async function ArticlePage({ params }: PageProps) {
                 className="object-cover"
               />
             </figure>
-            <p className="mb-5 text-lg font-medium leading-8 text-neutral-700 sm:text-xl sm:leading-9">
+            <p className="mb-5 text-lg font-medium leading-8 text-foreground-body sm:text-xl sm:leading-9">
               {article.description}
             </p>
-            <div className="whitespace-pre-line font-serif text-base leading-8 text-neutral-900 sm:text-lg sm:leading-9">
+            <div className="whitespace-pre-line font-serif text-base leading-8 text-foreground-strong sm:text-lg sm:leading-9">
               {article.content}
             </div>
           </div>

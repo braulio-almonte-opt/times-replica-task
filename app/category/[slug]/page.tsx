@@ -63,7 +63,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
   const pageArticles = (articlePage?.articles ?? []).map(formatArticle);
 
   return (
-    <div className="flex min-h-screen flex-col bg-stone-100 text-neutral-950">
+    <div className="flex min-h-screen flex-col">
       <Banner showSignup={true}/>
       <main className="w-full flex-1">
         <ArticleList
@@ -79,30 +79,30 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
             {parsedPage > 1 ? (
               <Link
                 href={`/category/${category.slug}?page=${parsedPage - 1}`}
-                className="rounded-full border border-neutral-300 px-5 py-2 font-semibold text-neutral-800 transition-colors hover:border-neutral-950 hover:bg-neutral-950 hover:text-white"
+                className="rounded-full border border-border-strong px-5 py-2 font-semibold text-foreground-secondary transition-colors hover:border-foreground hover:bg-foreground hover:text-inverse"
               >
                 Previous
               </Link>
             ) : (
-              <span className="cursor-not-allowed rounded-full border border-neutral-200 px-5 py-2 font-semibold text-neutral-400">
+              <span className="cursor-not-allowed rounded-full border border-border px-5 py-2 font-semibold text-foreground-disabled">
                 Previous
               </span>
             )}
             <span
               aria-current="page"
-              className="whitespace-nowrap font-medium text-neutral-700"
+              className="whitespace-nowrap font-medium text-foreground-body"
             >
               Page {parsedPage} of {totalPages}
             </span>
             {parsedPage < totalPages ? (
               <Link
                 href={`/category/${category.slug}?page=${parsedPage + 1}`}
-                className="rounded-full border border-neutral-300 px-5 py-2 font-semibold text-neutral-800 transition-colors hover:border-neutral-950 hover:bg-neutral-950 hover:text-white"
+                className="rounded-full border border-border-strong px-5 py-2 font-semibold text-foreground-secondary transition-colors hover:border-foreground hover:bg-foreground hover:text-inverse"
               >
                 Next
               </Link>
             ) : (
-              <span className="cursor-not-allowed rounded-full border border-neutral-200 px-5 py-2 font-semibold text-neutral-400">
+              <span className="cursor-not-allowed rounded-full border border-border px-5 py-2 font-semibold text-foreground-disabled">
                 Next
               </span>
             )}
