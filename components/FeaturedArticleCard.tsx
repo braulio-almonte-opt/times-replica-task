@@ -1,22 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export interface ArticleCardData {
+export interface FeaturedArticleCardData {
   title: string;
   slug: string;
   description: string;
   imageUrl: string | null;
 }
 
-interface ArticleCardProps {
-  article: ArticleCardData;
+interface FeaturedArticleCardProps {
+  article: FeaturedArticleCardData;
   prioritizeImage: boolean;
 }
 
 export default function ArticleCard({
   article,
   prioritizeImage,
-}: ArticleCardProps) {
+}: FeaturedArticleCardProps) {
   return (
     <li className="min-w-0 snap-start">
       <Link

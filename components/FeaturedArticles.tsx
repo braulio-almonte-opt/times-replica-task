@@ -1,10 +1,10 @@
 "use client";
 
-import ArticleCard, { type ArticleCardData } from "@/components/ArticleCard";
+import FeaturedArticleCard, { type FeaturedArticleCardData } from "@/components/FeaturedArticleCard";
 import useCarousel from "@/components/useCarousel";
 
 interface FeaturedArticlesProps {
-  articles: readonly ArticleCardData[];
+  articles: readonly FeaturedArticleCardData[];
 }
 
 export default function FeaturedArticles({ articles }: FeaturedArticlesProps) {
@@ -26,7 +26,7 @@ export default function FeaturedArticles({ articles }: FeaturedArticlesProps) {
             className="grid auto-cols-[100%] grid-flow-col gap-4 overflow-x-auto motion-safe:scroll-smooth motion-reduce:scroll-auto snap-x snap-mandatory pb-3 sm:auto-cols-[calc(50%-0.5rem)] lg:auto-cols-[calc(33.333%-0.667rem)]"
           >
             {articles.map((article, index) => (
-              <ArticleCard
+              <FeaturedArticleCard
                 key={article.slug}
                 article={article}
                 prioritizeImage={index === 0}
