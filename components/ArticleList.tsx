@@ -3,6 +3,7 @@ import ArticleListHeading, {
   type ArticleListVariant,
 } from "@/components/ArticleListHeading";
 import ArticleListItem from "@/components/ArticleListItem";
+import ArticleListSection from "@/components/ArticleListSection";
 import EmptyArticleList from "@/components/EmptyArticleList";
 
 type EditorialVariant = Exclude<ArticleListVariant, "home">;
@@ -43,10 +44,10 @@ function HomeArticleList({
   title: string;
 }) {
   return (
-    <section aria-labelledby="article-list-heading" className="mt-12">
+    <ArticleListSection variant="home">
       <ArticleListHeading title={title} variant="home" />
       <ArticleListItems articles={articles}/>
-    </section>
+    </ArticleListSection>
   );
 }
 
@@ -60,13 +61,10 @@ function EditorialArticleList({
   variant: EditorialVariant;
 }) {
   return (
-    <section
-      aria-labelledby="article-list-heading"
-      className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6"
-    >
+    <ArticleListSection variant={variant}>
       <ArticleListHeading title={title} variant={variant} />
       <ArticleListItems articles={articles}/>
-    </section>
+    </ArticleListSection>
   );
 }
 
