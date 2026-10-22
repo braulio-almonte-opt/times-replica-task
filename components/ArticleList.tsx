@@ -45,7 +45,7 @@ function HomeArticleList({
   return (
     <section aria-labelledby="article-list-heading" className="mt-12">
       <ArticleListHeading title={title} variant="home" />
-      <ArticleListItems articles={articles} layout="home" />
+      <ArticleListItems articles={articles}/>
     </section>
   );
 }
@@ -65,17 +65,15 @@ function EditorialArticleList({
       className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6"
     >
       <ArticleListHeading title={title} variant={variant} />
-      <ArticleListItems articles={articles} layout="editorial" />
+      <ArticleListItems articles={articles}/>
     </section>
   );
 }
 
 function ArticleListItems({
   articles,
-  layout,
 }: {
   articles: readonly Article[];
-  layout: "home" | "editorial";
 }) {
   return (
     <div className="overflow-hidden rounded-xl border border-border bg-surface">
@@ -84,8 +82,7 @@ function ArticleListItems({
           <ArticleListItem
             key={article.slug}
             article={article}
-            layout={layout}
-            prioritizeImage={layout === "editorial" && index === 0}
+            prioritizeImage={index === 0}
           />
         ))}
       </ul>
