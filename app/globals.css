@@ -29,6 +29,7 @@
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-error: var(--error);
+  --color-success:var(--success);
   --color-foreground-strong: var(--foreground-strong);
   --color-foreground-secondary: var(--foreground-secondary);
   --color-foreground-body: var(--foreground-body);

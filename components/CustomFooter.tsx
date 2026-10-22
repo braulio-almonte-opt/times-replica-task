@@ -19,7 +19,7 @@ export default async function CustomFooter(){
     }
     if (cmsUnavailable) {
       return (
-        <footer className="mt-12 border-t border-border bg-surface px-4 py-8 text-center text-sm text-gray-500">
+        <footer className="mt-12 border-t border-border bg-surface px-4 py-8 text-center text-sm text-foreground-muted">
           Footer links are temporarily unavailable.
         </footer>
       );

@@ -32,7 +32,7 @@ export default function SignupForm() {
         {state.message && (
           <p
             className={`mt-3 text-sm ${
-              state.status === "error" ? "text-error" : "text-green-700"
+              state.status === "error" ? "text-error" : "text-success"
             }`}
             role={state.status === "error" ? "alert" : "status"}
           >
