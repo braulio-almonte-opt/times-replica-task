@@ -29,28 +29,48 @@ export default async function Home() {
   if (cmsUnavailable) return <ContentstackUnavailable />;
 
   const [featuredArticles, nonFeaturedArticles] = articleResults;
-  const allFeaturedArticles = featuredArticles ?? [];
-  const featuredDomainArticles = allFeaturedArticles
-    .slice(0, 3)
-    .map(formatArticle);
-  const otherArticles = sortArticlesByPublishedAt([
-    ...(nonFeaturedArticles ?? []),
-    ...allFeaturedArticles.slice(3),
-  ]);
-  const nonFeaturedDomainArticles = otherArticles.map(formatArticle);
+  const featuredDomainArticles = (featuredArticles ?? []).map((article) => {
+    const formattedArticle = formatArticle(article);
+    return {
+      title: formattedArticle.title,
+      slug: formattedArticle.slug,
+      description: formattedArticle.description,
+      imageUrl: formattedArticle.imageUrl,
+    };
+  });
+  const latestArticles = sortArticlesByPublishedAt(nonFeaturedArticles ?? []);
+  const latestDomainArticles = latestArticles.map(formatArticle);
 
   return (
-    <>
-    <Banner/>
-    <div className="flex justify-center items-start">
-      <h1 className="text-4xl font-bold mt-4">Welcome to the TIME News Website</h1>
+    <div className="flex min-h-screen flex-col">
+      <Banner />
+      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-10 sm:px-6 lg:px-8">
+        <section aria-labelledby="top-stories-heading">
+          <div className="mb-5 flex items-end justify-between border-b border-border-strong pb-3">
+            <div>
+              <p className="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-accent">
+                TIME News
+              </p>
+              <h1
+                id="top-stories-heading"
+                className="font-serif text-3xl font-bold tracking-tight sm:text-4xl"
+              >
+                Top Stories
+              </h1>
+            </div>
+            <span className="hidden pb-1 text-sm text-foreground-subtle sm:block">
+              The latest from TIME
+            </span>
+          </div>
+          <FeaturedArticles articles={featuredDomainArticles} />
+        </section>
+        <ArticleList
+          title="Latest Stories"
+          articles={latestDomainArticles}
+          variant="home"
+        />
+      </main>
+      <CustomFooter />
     </div>
-    <div className="flex justify-center items-start">
-      <p className="text-lg mt-2">Today&apos;s Headlines</p>
-    </div>
-    <FeaturedArticles articles={featuredDomainArticles} />
-    <ArticleList title="Other articles" articles={nonFeaturedDomainArticles} />
-    <CustomFooter/>
-    </>
   );
 }
