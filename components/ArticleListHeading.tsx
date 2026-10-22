@@ -1,5 +1,25 @@
 export type ArticleListVariant = "home" | "category" | "author";
 
+const headingStyles: Record<
+  ArticleListVariant,
+  { default: string; empty: string }
+> = {
+  home: {
+    default: "font-serif text-2xl font-bold",
+    empty: "mb-4 font-serif text-2xl font-bold",
+  },
+  category: {
+    default: "text-center font-serif text-4xl font-bold tracking-tight sm:text-5xl",
+    empty:
+      "mb-6 text-center font-serif text-4xl font-bold tracking-tight sm:text-5xl",
+  },
+  author: {
+    default: "text-center font-serif text-3xl font-bold tracking-tight sm:text-4xl",
+    empty:
+      "mb-6 text-center font-serif text-3xl font-bold tracking-tight sm:text-4xl",
+  },
+};
+
 interface ArticleListHeadingProps {
   title: string;
   variant: ArticleListVariant;
@@ -12,14 +32,7 @@ export default function ArticleListHeading({
   empty = false,
 }: ArticleListHeadingProps) {
   const HeadingTag = variant === "category" ? "h1" : "h2";
-  const headingClassName =
-    variant === "category"
-      ? "text-center font-serif text-4xl font-bold tracking-tight sm:text-5xl"
-      : variant === "author"
-        ? "text-center font-serif text-3xl font-bold tracking-tight sm:text-4xl"
-        : empty
-          ? "mb-4 font-serif text-2xl font-bold"
-          : "font-serif text-2xl font-bold";
+  const headingClassName = headingStyles[variant][empty ? "empty" : "default"];
 
   if (variant === "home" && !empty) {
     return (
