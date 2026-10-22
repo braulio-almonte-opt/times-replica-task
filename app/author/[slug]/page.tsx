@@ -44,7 +44,7 @@ export default async function AuthorPage({ params }:PageProps){
 
     return (
         <div className="flex min-h-screen flex-col">
-            <Banner showSignup={true}/>
+            <Banner />
             <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
                 <section
                     aria-labelledby="author-name"

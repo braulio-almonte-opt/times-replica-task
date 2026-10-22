@@ -43,7 +43,7 @@ export default async function Home() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <Banner showSignup={true}/>
+      <Banner />
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-10 sm:px-6 lg:px-8">
         <section aria-labelledby="top-stories-heading">
           <div className="mb-5 flex items-end justify-between border-b border-border-strong pb-3">

@@ -54,7 +54,7 @@ export default async function ArticlePage({ params }: PageProps) {
         imageUrl={article.imageUrl}
         publishedDate={article.publishedAt}
       />
-      <Banner showSignup={true}/>
+      <Banner />
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <article className="mx-auto max-w-5xl">
           <header className="mb-7 border-b border-border-strong pb-5">
