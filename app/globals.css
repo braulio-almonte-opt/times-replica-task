@@ -23,7 +23,6 @@
 @theme inline {
   --color-background: var(--page);
   --color-foreground: var(--foreground);
-  --color-page: var(--page);
   --color-surface: var(--surface);
   --color-surface-hover: var(--surface-hover);
   --color-accent: var(--accent);
