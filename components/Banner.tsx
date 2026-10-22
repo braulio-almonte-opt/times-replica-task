@@ -1,12 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 
-interface BannerProp{
-  showSignup : Boolean
+interface BannerProps{
+  showSignup : boolean
 }
 
-export default function Banner(props : BannerProp) {
-  let showButton = props.showSignup
+export default function Banner({showSignup} : BannerProps) {
 
   return (
     <header className="border-b border-border bg-surface">
@@ -21,7 +20,7 @@ export default function Banner(props : BannerProp) {
             className="h-auto w-24 sm:w-28"
           />
         </Link>
-        {showButton && (<Link
+        {showSignup && (<Link
           href="/signup"
           className="rounded-full bg-accent px-4 py-2 text-center text-sm font-semibold text-inverse transition-colors hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:px-5"
         >
