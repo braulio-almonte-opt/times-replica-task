@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import CustomFooter from "@/components/CustomFooter";
 import SignupForm from "./SignupForm";
 import Banner from "@/components/Banner";
