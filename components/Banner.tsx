@@ -1,25 +1,33 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Banner() {
+interface BannerProps {
+  showSignup?: boolean;
+}
+
+export default function Banner({ showSignup = true }: BannerProps) {
   return (
-    <div className="flex justify-center items-center">
-      <div className="flex flex-1 justify-center pl-50">
-        <div className="flex justify-center items-center">
-          <div className="flex justify-center items-start">
-            <Link href="/" className="text-blue-500 hover:underline">
-                <Image src="/images/time_logo.png" alt="TIME Logo" width={200} height={200} />
-            </Link>
-          </div>
-        </div>
-      </div>
-      <div className="flex justify-end bg-yellow-950 shadow-lg/30 transition-colors duration-300 hover:bg-yellow-800 dark:text-white rounded-full p-2 m-2">
-        <button className="rounded-full">
-          <Link href="/signup" className="text-white font-semibold">
-          Sign up for Newsletter
+    <header className="border-b border-border bg-surface">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+        <Link href="/" aria-label="TIME News home" className="shrink-0">
+          <Image
+            src="/images/time_logo.png"
+            alt="TIME"
+            width={160}
+            height={64}
+            priority
+            className="h-auto w-24 sm:w-28"
+          />
+        </Link>
+        {showSignup && (
+          <Link
+            href="/signup"
+            className="rounded-full bg-accent px-4 py-2 text-center text-sm font-semibold text-inverse transition-colors hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:px-5"
+          >
+            Sign up for Newsletter
           </Link>
-        </button>
+        )}
       </div>
-    </div>
+    </header>
   );
 }

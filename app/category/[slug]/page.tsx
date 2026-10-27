@@ -7,7 +7,6 @@ import { getArticlesByCategory, getCategoryBySlug } from "@/app/lib/queries";
 import { ContentstackRequestError } from "@/app/lib/cs_data";
 import ContentstackUnavailable from "@/components/ContentstackUnavailable";
 import { formatArticle } from "@/scripts/objectParser";
-import NoArticles from "@/components/NoArticles";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -55,55 +54,62 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
   }
   if (cmsUnavailable) return <ContentstackUnavailable />;
 
-  if (!articlePage || articlePage.total === 0) {
-    return (
-      <NoArticles title="No discoveries in this field." description="No articles from this category yet."/>
-    );
-  }
-
-  const totalPages = Math.ceil(articlePage.total / PAGE_SIZE);
-  if (parsedPage > totalPages) {
+  const totalArticles = articlePage?.total ?? 0;
+  const totalPages = Math.ceil(totalArticles / PAGE_SIZE);
+  if (totalPages > 0 && parsedPage > totalPages) {
     return notFound();
   }
 
-  const pageArticles = articlePage.articles.map(formatArticle);
+  const pageArticles = (articlePage?.articles ?? []).map(formatArticle);
 
   return (
-    <>
+    <div className="flex min-h-screen flex-col">
       <Banner />
-      <div className="flex justify-center items-start">
-        <h1 className="text-4xl font-bold mt-4">Welcome to the TIME News Website</h1>
-      </div>
-      <div className="flex justify-center items-start">
-        <p className="text-lg mt-2">Today&apos;s Headlines</p>
-      </div>
-      <ArticleList title={`${category.title} articles`} articles={pageArticles} />
-      <nav aria-label="Category article pages" className="flex justify-center items-center gap-4 p-4">
-        {parsedPage > 1 ? (
-          <Link
-            href={`/category/${category.slug}?page=${parsedPage - 1}`}
-            className="text-blue-500 hover:underline"
+      <main className="w-full flex-1">
+        <ArticleList
+          title={category.title}
+          articles={pageArticles}
+          variant="category"
+        />
+        {totalPages > 0 && (
+          <nav
+            aria-label="Category article pages"
+            className="mx-auto flex w-full max-w-5xl items-center justify-center gap-5 px-4 pb-10 sm:px-6"
           >
-            Previous
-          </Link>
-        ) : (
-          <span className="text-gray-400">Previous</span>
+            {parsedPage > 1 ? (
+              <Link
+                href={`/category/${category.slug}?page=${parsedPage - 1}`}
+                className="rounded-full border border-border-strong px-5 py-2 font-semibold text-foreground-secondary transition-colors hover:border-foreground hover:bg-foreground hover:text-inverse"
+              >
+                Previous
+              </Link>
+            ) : (
+              <span className="cursor-not-allowed rounded-full border border-border px-5 py-2 font-semibold text-foreground-disabled">
+                Previous
+              </span>
+            )}
+            <span
+              aria-current="page"
+              className="whitespace-nowrap font-medium text-foreground-body"
+            >
+              Page {parsedPage} of {totalPages}
+            </span>
+            {parsedPage < totalPages ? (
+              <Link
+                href={`/category/${category.slug}?page=${parsedPage + 1}`}
+                className="rounded-full border border-border-strong px-5 py-2 font-semibold text-foreground-secondary transition-colors hover:border-foreground hover:bg-foreground hover:text-inverse"
+              >
+                Next
+              </Link>
+            ) : (
+              <span className="cursor-not-allowed rounded-full border border-border px-5 py-2 font-semibold text-foreground-disabled">
+                Next
+              </span>
+            )}
+          </nav>
         )}
-        <span aria-current="page">Page {parsedPage} of {totalPages}</span>
-        {parsedPage < totalPages ? (
-          <Link
-            href={`/category/${category.slug}?page=${parsedPage + 1}`}
-            className="text-blue-500 hover:underline"
-          >
-            Next
-          </Link>
-        ) : (
-          <span className="text-gray-400">Next</span>
-        )}
-      </nav>
-      <div className="flex flex-col items-center p-4 bg-amber-gray-50">
-        <CustomFooter />
-      </div>
-    </>
+      </main>
+      <CustomFooter />
+    </div>
   );
 }

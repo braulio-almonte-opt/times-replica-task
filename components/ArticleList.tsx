@@ -1,44 +1,91 @@
-import Link from "next/link";
 import type { Article } from "@/app/types/domainTypes";
+import ArticleListHeading, {
+  type ArticleListVariant,
+} from "@/components/ArticleListHeading";
+import ArticleListItem from "@/components/ArticleListItem";
+import ArticleListSection from "@/components/ArticleListSection";
+import EmptyArticleList from "@/components/EmptyArticleList";
+
+type EditorialVariant = Exclude<ArticleListVariant, "home">;
 
 interface ArticleListProps {
   articles: readonly Article[];
   title: string;
+  variant: ArticleListVariant;
 }
 
-export default function ArticleList({ articles, title }: ArticleListProps) {
-
+export default function ArticleList({
+  articles,
+  title,
+  variant,
+}: ArticleListProps) {
   if (articles.length === 0) {
-    return (
-      <section className="flex flex-col justify-center items-center p-4 bg-amber-gray-50">
-      <h2 className="text-xl font-bold mb-4">{title}</h2>
-      <div className="flex flex-1 bg-amber-50 p-4 rounded-lg shadow-lg">
-        <h2>No articles yet.</h2>
-      </div>
-    </section>
-    );
+    return <EmptyArticleList title={title} variant={variant} />;
+  }
+
+  if (variant === "home") {
+    return <HomeArticleList articles={articles} title={title} />;
   }
 
   return (
-    <section className="flex flex-col justify-center items-center p-4 bg-amber-gray-50">
-      <h2 className="text-xl font-bold mb-4">{title}</h2>
-      <div className="flex flex-1 bg-amber-50 p-4 rounded-lg shadow-lg">
-        <ul role="list">
-          {articles.map((article) => (
-            <li
-              key={article.slug}
-              className="flex py-4 text-blue-500 hover:underline first:pt-0 last:pb-0"
-            >
-              <Link href={`/articles/${article.slug}`}>
-                <div className="ml-3 overflow-hidden">
-                  <p className="text-sm font-medium text-gray-900">{article.title}</p>
-                  <p className="text-sm text-gray-500">{article.description}</p>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
+    <EditorialArticleList
+      articles={articles}
+      title={title}
+      variant={variant}
+    />
+  );
+}
+
+function HomeArticleList({
+  articles,
+  title,
+}: {
+  articles: readonly Article[];
+  title: string;
+}) {
+  return (
+    <ArticleListSection variant="home">
+      <ArticleListHeading title={title} variant="home" />
+      <ArticleListItems articles={articles} prioritizeFirstImage={false} />
+    </ArticleListSection>
+  );
+}
+
+function EditorialArticleList({
+  articles,
+  title,
+  variant,
+}: {
+  articles: readonly Article[];
+  title: string;
+  variant: EditorialVariant;
+}) {
+  return (
+    <ArticleListSection variant={variant}>
+      <ArticleListHeading title={title} variant={variant} />
+      <ArticleListItems articles={articles} prioritizeFirstImage />
+    </ArticleListSection>
+  );
+}
+
+function ArticleListItems({
+  articles,
+  prioritizeFirstImage,
+}: {
+  articles: readonly Article[];
+  prioritizeFirstImage: boolean;
+}) {
+  return (
+    <div className="overflow-hidden rounded-xl border border-border bg-surface">
+      <ul role="list" className="divide-y divide-border">
+        {articles.map((article, index) => (
+          <ArticleListItem
+            key={article.slug}
+            article={article}
+            prioritizeImage={prioritizeFirstImage && index === 0}
+          />
+        ))}
+      </ul>
+    </div>
   );
 }
