@@ -46,7 +46,7 @@ function HomeArticleList({
   return (
     <ArticleListSection variant="home">
       <ArticleListHeading title={title} variant="home" />
-      <ArticleListItems articles={articles}/>
+      <ArticleListItems articles={articles} prioritizeFirstImage={false} />
     </ArticleListSection>
   );
 }
@@ -63,15 +63,17 @@ function EditorialArticleList({
   return (
     <ArticleListSection variant={variant}>
       <ArticleListHeading title={title} variant={variant} />
-      <ArticleListItems articles={articles}/>
+      <ArticleListItems articles={articles} prioritizeFirstImage />
     </ArticleListSection>
   );
 }
 
 function ArticleListItems({
   articles,
+  prioritizeFirstImage,
 }: {
   articles: readonly Article[];
+  prioritizeFirstImage: boolean;
 }) {
   return (
     <div className="overflow-hidden rounded-xl border border-border bg-surface">
@@ -80,7 +82,7 @@ function ArticleListItems({
           <ArticleListItem
             key={article.slug}
             article={article}
-            prioritizeImage={index === 0}
+            prioritizeImage={prioritizeFirstImage && index === 0}
           />
         ))}
       </ul>
