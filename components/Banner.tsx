@@ -22,7 +22,7 @@ export default function Banner({ showSignup = true }: BannerProps) {
         {showSignup && (
           <Link
             href="/signup"
-            className="rounded-full bg-accent px-4 py-2 text-center text-sm font-semibold text-inverse transition-colors hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:px-5"
+            className="rounded-lg bg-accent px-4 py-2 text-center text-sm font-semibold text-inverse transition-colors hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:px-5"
           >
             Sign up for Newsletter
           </Link>
