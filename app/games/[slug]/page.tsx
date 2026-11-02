@@ -1,7 +1,8 @@
 // app/games/[slug]/page.tsx
-import { notFound } from 'next/navigation';
-import MarketMovers from '@/components/games/MarketMovers';
-import WhatYeatWasIt from '@/components/games/WhatYearWasIt';
+import { notFound } from "next/navigation";
+import MarketMovers from "@/components/games/MarketMovers";
+import WhatYeatWasIt from "@/components/games/WhatYearWasIt";
+import Banner from "@/components/Banner";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -9,8 +10,8 @@ interface PageProps {
 
 // 1. Map string slugs to your unique game React components
 const gameRegistry: Record<string, React.ComponentType> = {
-  'market-movers': MarketMovers,
-  'what-year-was-it': WhatYeatWasIt
+  "market-movers": MarketMovers,
+  "what-year-was-it": WhatYeatWasIt,
 };
 
 export default async function GameDetailPage({ params }: PageProps) {
@@ -25,13 +26,16 @@ export default async function GameDetailPage({ params }: PageProps) {
   }
 
   return (
-    <main className="max-w-4xl mx-auto p-6">
-      <h1 className="text-3xl font-bold capitalize mb-6">
-        {slug.replace(/-/g, ' ')}
-      </h1>
-      
-      {/* 4. Render the specific game dynamically */}
-      <SelectedGameComponent />
-    </main>
+    <>
+      <Banner />
+      <main className="max-w-4xl mx-auto p-6">
+        <h1 className="text-3xl font-bold capitalize mb-6">
+          {slug.replace(/-/g, " ")}
+        </h1>
+
+        {/* 4. Render the specific game dynamically */}
+        <SelectedGameComponent />
+      </main>
+    </>
   );
 }

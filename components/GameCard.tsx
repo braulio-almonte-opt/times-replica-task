@@ -16,9 +16,9 @@ export default function GameCard({
 }: GameCardProps) {
   return (
     <>
-      <article className="overflow-hidden rounded-lg border border-gray-100 bg-white shadow-lg p-4 m-4">
-        <div className="flex align-items-center">
-        <Image alt="" src={imageURL} width={200} height={100}/>
+      <article className="flex flex-col justify-between align-items-end overflow-hidden rounded-lg border border-gray-100 bg-white shadow-lg p-4 m-4">
+        <div className="flex justify-center w-full">
+          <Image alt="" src={imageURL} width={200} height={100} className="aspect-square rounded-xl object-cover shadow-md hover:opacity-95 transition-opacity" />
         </div>
 
         <div className="p-4 sm:p-6">
@@ -28,13 +28,13 @@ export default function GameCard({
             </h3>
           </a>
 
-          <p className="mt-2 line-clamp-3 text-sm/relaxed text-gray-500 pb-2">
+          <p className="mt-2 line-clamp-3 text-sm/relaxed text-foreground-muted pb-2">
             {gameDescription}
           </p>
-
+          <div className="mb-5 flex items-end justify-between border-b border-border-strong pb-3 pt-4"></div>
           <button>
-            <Link href={slug}>
-              <p className="text-white bg-foreground hover:bg-accent p-2 rounded-sm">
+            <Link href={`/games/${slug}`}>
+              <p className="text-white bg-foreground hover:bg-accent p-2 rounded-sm transition-colors">
                 Play Now
               </p>
             </Link>
