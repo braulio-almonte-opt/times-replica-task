@@ -16,7 +16,7 @@ export default function GameCard({
 }: GameCardProps) {
   return (
     <>
-      <article className="flex flex-col justify-between align-items-end overflow-hidden rounded-lg border border-gray-100 bg-white shadow-lg p-4 m-4">
+      <article className="flex flex-col justify-between align-items-end overflow-hidden rounded-lg border border-gray-100 bg-white shadow-lg p-4 m-4 transition duration-200 hover:-translate-y-1 hover:shadow-lg">
         <div className="flex justify-center w-full">
           <Image alt="" loading="eager" src={imageURL} width={200} height={100} className="h-56 w-full object-cover" />
         </div>
