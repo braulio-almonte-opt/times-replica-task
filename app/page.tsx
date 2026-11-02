@@ -9,6 +9,7 @@ import {
 import { ContentstackRequestError } from "./lib/cs_data";
 import ContentstackUnavailable from "@/components/ContentstackUnavailable";
 import { formatArticle } from "@/scripts/objectParser";
+import GameSection from "@/components/GameSection";
 
 export default async function Home() {
   let articleResults: [
@@ -69,6 +70,20 @@ export default async function Home() {
           articles={latestDomainArticles}
           variant="home"
         />
+        <div className="mb-5 flex items-end justify-between border-b border-border-strong pb-3 pt-4">
+          <div>
+              <p className="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-accent">
+                TIME Games
+              </p>
+              <h1
+                id="top-stories-heading"
+                className="font-serif text-3xl font-bold tracking-tight sm:text-4xl"
+              >
+                Available Games
+              </h1>
+            </div>
+        </div>
+            <GameSection/>
       </main>
       <CustomFooter />
     </div>
