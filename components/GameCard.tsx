@@ -18,7 +18,7 @@ export default function GameCard({
     <>
       <article className="flex flex-col justify-between align-items-end overflow-hidden rounded-lg border border-gray-100 bg-white shadow-lg p-4 m-4">
         <div className="flex justify-center w-full">
-          <Image alt="" src={imageURL} width={200} height={100} className="aspect-square rounded-xl object-cover shadow-md hover:opacity-95 transition-opacity" />
+          <Image alt="" loading="eager" src={imageURL} width={200} height={100} className="h-56 w-full object-cover" />
         </div>
 
         <div className="p-4 sm:p-6">
