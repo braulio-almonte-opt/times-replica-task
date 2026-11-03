@@ -1,0 +1,242 @@
+[
+  {
+    "historical_event_title": "Wright Brothers' First Powered Flight",
+    "description": "Orville and Wilbur Wright achieve the first controlled, sustained and heavier-than-air human flight in Kitty Hawk, North Carolina.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/First_flight2.jpg",
+    "year": 1903
+  },
+  {
+    "historical_event_title": "San Francisco Earthquake and Fire",
+    "description": "A massive earthquake followed by devastating fires destroys a large portion of San Francisco, California.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Sanfrancisco1906ruins.jpg",
+    "year": 1906
+  },
+  {
+    "historical_event_title": "Roald Amundsen Reaches the South Pole",
+    "description": "Norwegian explorer Roald Amundsen and his team become the first humans to reach the geographic South Pole.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Amundsen_south_pole.jpg",
+    "year": 1911
+  },
+  {
+    "historical_event_title": "Sinking of the RMS Titanic",
+    "description": "The British ocean liner RMS Titanic sinks in the North Atlantic Ocean after colliding with an iceberg during its maiden voyage.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/RMS_Titanic_3.jpg",
+    "year": 1912
+  },
+  {
+    "historical_event_title": "Assassination of Archduke Franz Ferdinand",
+    "description": "The assassination of Archduke Franz Ferdinand of Austria in Sarajevo triggers the outbreak of World War I.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Bundesarchiv_Bild_146-1970-041-20%2C_Archduke_Franz_Ferdinand_of_Austria.jpg",
+    "year": 1914
+  },
+  {
+    "historical_event_title": "The Russian Revolution",
+    "description": "The Bolsheviks led by Vladimir Lenin overthrow the provisional government during the October Revolution, establishing Soviet rule.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/67/Lenin_in_Red_Square_%281919%29.jpg",
+    "year": 1917
+  },
+  {
+    "historical_event_title": "Signing of the Treaty of Versailles",
+    "description": "The peace treaty officially ending World War I is signed at the Palace of Versailles, imposing heavy penalties on Germany.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/The_Signing_of_Peace_in_the_Hall_of_Mirrors%2C_28_June_1919.jpg",
+    "year": 1919
+  },
+  {
+    "historical_event_title": "Establishment of the League of Nations",
+    "description": "The international organization headquartered in Geneva, Switzerland, is founded to promote global world peace.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/88/League_of_Nations_Assembly_hall.jpg",
+    "year": 1920
+  },
+  {
+    "historical_event_title": "Discovery of King Tutankhamun's Tomb",
+    "description": "British archaeologist Howard Carter discovers the virtually intact tomb of the 18th-dynasty Pharaoh Tutankhamun in Egypt's Valley of the Kings.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Howard_Carter_looking_into_Tutankhamun%27s_tomb.jpg",
+    "year": 1922
+  },
+  {
+    "historical_event_title": "Discovery of Penicillin",
+    "description": "Scottish scientist Alexander Fleming discovers penicillin, marking a monumental breakthrough in modern medicine and antibiotic treatments.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Alexander_Fleming_St._Mary%27s_Hospital_London.jpg",
+    "year": 1928
+  },
+  {
+    "historical_event_title": "Wall Street Stock Market Crash",
+    "description": "Stock prices collapse on the New York Stock Exchange, ushering in the global economic downturn known as the Great Depression.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Crowd_waiting_outside_New_York_Stock_Exchange_after_1929_crash.jpg",
+    "year": 1929
+  },
+  {
+    "historical_event_title": "Inauguration of Franklin D. Roosevelt and the New Deal",
+    "description": "FDR takes office amidst the Great Depression and introduces sweeping federal reform programs known as the New Deal.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/FDR_1933.jpg",
+    "year": 1933
+  },
+  {
+    "historical_event_title": "Opening of the Golden Gate Bridge",
+    "description": "The iconic suspension bridge connecting San Francisco Bay to the Pacific Ocean officially opens to pedestrian and vehicular traffic.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/GoldenGateBridge-001.jpg",
+    "year": 1937
+  },
+  {
+    "historical_event_title": "Outbreak of World War II",
+    "description": "Nazi Germany invades Poland, prompting the United Kingdom and France to declare war and initiating global conflict.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/22/Bundesarchiv_Bild_101I-177-1489-10%2C_Polen%2C_Soldaten_an_Schranke.jpg",
+    "year": 1939
+  },
+  {
+    "historical_event_title": "Attack on Pearl Harbor",
+    "description": "Imperial Japanese forces launch a surprise military strike on the United States naval base at Pearl Harbor, Hawaii, drawing the US into WWII.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/USS_Arizona_burning_after_Japanese_torpedo_hit_%28National_Archives%29.jpg",
+    "year": 1941
+  },
+  {
+    "historical_event_title": "End of World War II and Founding of the UN",
+    "description": "World War II concludes with unconditional surrenders by Axis powers, leading directly to the establishment of the United Nations.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Surrender_of_Japan_-_USS_Missouri.jpg",
+    "year": 1945
+  },
+  {
+    "historical_event_title": "Indian Independence",
+    "description": "India achieves independence from British colonial rule after decades of non-violent resistance led by Mahatma Gandhi and others.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/79/Jawaharlal_Nehru_speaking_on_Independence_Day_1947.jpg",
+    "year": 1947
+  },
+  {
+    "historical_event_title": "First Ascent of Mount Everest",
+    "description": "New Zealand mountaineer Edmund Hillary and Sherpa mountaineer Tenzing Norgay successfully reach the summit of Mount Everest.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Tenzing_Norgay_on_Everest_%28crop%29.jpg",
+    "year": 1953
+  },
+  {
+    "historical_event_title": "Rosa Parks and the Montgomery Bus Boycott",
+    "description": "Rosa Parks refuses to surrender her bus seat to a white passenger, sparking the Montgomery bus boycott and catalyzing the civil rights movement.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Rosa_Parks_by_Roll_and_Rise_Studio_%28cropped%29.jpg",
+    "year": 1955
+  },
+  {
+    "historical_event_title": "Launch of Sputnik 1",
+    "description": "The Soviet Union successfully launches Sputnik 1, the world's first artificial satellite, kicking off the global Space Race.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Sputnik_sm.jpg",
+    "year": 1957
+  },
+  {
+    "historical_event_title": "The Cuban Missile Crisis",
+    "description": "A 13-day confrontation between the United States and the Soviet Union over Soviet ballistic missiles deployed in Cuba brings the world to the brink of nuclear war.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Cuban_Missile_Crisis_Il-28_aircraft_being_loaded.jpg",
+    "year": 1962
+  },
+  {
+    "historical_event_title": "Martin Luther King Jr.'s 'I Have a Dream' Speech",
+    "description": "During the March on Washington, civil rights leader Martin Luther King Jr. delivers his historic speech advocating for racial equality and civil rights.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Martin_Luther_King_Jr._by_Rowell_Laboratories.jpg",
+    "year": 1963
+  },
+  {
+    "historical_event_title": "Apollo 11 Moon Landing",
+    "description": "American astronauts Neil Armstrong and Buzz Aldrin land on the lunar surface, marking humanity's first footsteps on another celestial body.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/98/Apollo_11_Lawnchair.jpg",
+    "year": 1969
+  },
+  {
+    "historical_event_title": "Introduction of the Intel 4004 Microprocessor",
+    "description": "Intel releases the world's first commercially available single-chip microprocessor, setting the foundation for the personal computing revolution.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Intel_4004.jpg",
+    "year": 1971
+  },
+  {
+    "historical_event_title": "Watergate Scandal Resignation",
+    "description": "US President Richard Nixon resigns from office following the Watergate political break-in scandal and impending impeachment proceedings.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Richard_Nixon_official_portrait_1971.jpg",
+    "year": 1974
+  },
+  {
+    "historical_event_title": "Launch of Voyager 1",
+    "description": "NASA launches the Voyager 1 space probe to study the outer solar system and eventually interstellar space.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Voyager_spacecraft_model.png",
+    "year": 1977
+  },
+  {
+    "historical_event_title": "First Space Shuttle Mission (STS-1)",
+    "description": "NASA successfully launches Columbia, the world's first reusable orbital spacecraft, on its maiden voyage.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/STS-1_launch.jpg",
+    "year": 1981
+  },
+  {
+    "historical_event_title": "Fall of the Berlin Wall",
+    "description": "Citizens breach the Berlin Wall, opening the border between East and West Berlin and marking the impending collapse of the Iron Curtain.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Fall_of_the_Berlin_Wall_1989.jpg",
+    "year": 1989
+  },
+  {
+    "historical_event_title": "Launch of the World Wide Web",
+    "description": "Tim Berners-Lee launches the first-ever web server and browser to the general public, forever transforming global communication.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Sir_Tim_Berners-Lee_%28cropped%29.jpg",
+    "year": 1990
+  },
+  {
+    "historical_event_title": "Dissolution of the Soviet Union",
+    "description": "The Soviet Union officially ceases to exist as an independent nation, splitting into 15 separate post-Soviet republics and ending the Cold War.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Soviet_flag_lowered_December_1991.jpg",
+    "year": 1991
+  },
+  {
+    "historical_event_title": "Nelson Mandela Elected President",
+    "description": "Nelson Mandela wins South Africa's first fully representative democratic election, formally dismantling the apartheid regime.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/02/Nelson_Mandela_1994.jpg",
+    "year": 1994
+  },
+  {
+    "historical_event_title": "Deep Blue Defeats Garry Kasparov",
+    "description": "IBM's supercomputer Deep Blue defeats reigning world chess champion Garry Kasparov in a historic six-game match.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Deep_Blue.jpg",
+    "year": 1997
+  },
+  {
+    "historical_event_title": "Launch of Wikipedia",
+    "description": "Jimmy Wales and Larry Sanger launch Wikipedia, establishing the world's largest collaborative free online encyclopedia.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg",
+    "year": 2001
+  },
+  {
+    "historical_event_title": "Launch of Facebook",
+    "description": "Mark Zuckerberg and fellow Harvard college roommates launch Facebook from their dormitory room, revolutionizing social networking.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_logo_%282023%29.svg",
+    "year": 2004
+  },
+  {
+    "historical_event_title": "Release of the First iPhone",
+    "description": "Steve Jobs introduces the original iPhone at Macworld, transforming mobile telephony, computing, and digital culture.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/IPhone_%281st_generation%29_on_white_background.jpg",
+    "year": 2007
+  },
+  {
+    "historical_event_title": "Global Financial Crisis and Bitcoin Whitepaper",
+    "description": "A severe global economic downturn unfolds following the US subprime mortgage crisis, coinciding with the publication of the Bitcoin whitepaper.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg",
+    "year": 2008
+  },
+  {
+    "historical_event_title": "Discovery of the Higgs Boson",
+    "description": "CERN scientists working at the Large Hadron Collider announce the discovery of the Higgs Boson elementary particle.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/73/CERN_LHC_tunnel.jpg",
+    "year": 2012
+  },
+  {
+    "historical_event_title": "Adoption of the Paris Climate Agreement",
+    "description": "Representatives from 196 nations adopt a legally binding international treaty on climate change addressing greenhouse gas emissions mitigation.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/COP21_Paris_Climate_Change_Conference_November_2015.jpg",
+    "year": 2015
+  },
+  {
+    "historical_event_title": "COVID-19 Pandemic Declared",
+    "description": "The World Health Organization officially declares the outbreak of the novel coronavirus (COVID-19) a global pandemic.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/58/SARS-CoV-2_%28transparent%29.png",
+    "year": 2020
+  },
+  {
+    "historical_event_title": "Launch of the James Webb Space Telescope",
+    "description": "NASA successfully launches the James Webb Space Telescope, designed to peer further back into the universe than any previous telescope.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/JWST_launch_preparation.jpg",
+    "year": 2021
+  }
+]
