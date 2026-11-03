@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import MarketMovers from "@/components/games/MarketMovers";
 import WhatYeatWasIt from "@/components/games/WhatYearWasIt";
 import Banner from "@/components/Banner";
+import CustomFooter from "@/components/CustomFooter";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -32,6 +33,7 @@ export default async function GameDetailPage({ params }: PageProps) {
         {/* 4. Render the specific game dynamically */}
         <SelectedGameComponent />
       </main>
+      <CustomFooter/>
     </>
   );
 }
