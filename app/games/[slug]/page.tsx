@@ -29,10 +29,6 @@ export default async function GameDetailPage({ params }: PageProps) {
     <>
       <Banner />
       <main className="max-w-4xl mx-auto p-6">
-        <h1 className="text-3xl font-bold capitalize mb-6">
-          {slug.replace(/-/g, " ")}
-        </h1>
-
         {/* 4. Render the specific game dynamically */}
         <SelectedGameComponent />
       </main>
