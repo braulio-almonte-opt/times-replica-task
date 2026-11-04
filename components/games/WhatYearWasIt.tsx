@@ -10,7 +10,7 @@ function extractDate() {
   return today.toLocaleDateString("en-US", options)
 }
 
-function beginName(){
+function beginGame(){
     
 }
 
